@@ -17,7 +17,7 @@ using System.Text;
 namespace WeChatCommon.WeChatAuth
 {
     /// <summary>
-    /// 微信认真
+    /// 微信认证
     /// </summary>
     public class WeChatAuthen
     {

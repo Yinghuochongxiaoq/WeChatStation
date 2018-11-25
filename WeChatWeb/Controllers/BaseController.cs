@@ -167,9 +167,12 @@ namespace WeChatWeb.Controllers
             if (filterContext.HttpContext.Request.Url != null)
             {
                 var currentUrl = filterContext.HttpContext.Request.Url.AbsoluteUri;
-                if (currentUrl.Contains("8005"))
+                if (!string.IsNullOrEmpty(WeChatConstModel.LocalIISPart))
                 {
-                    currentUrl = currentUrl.Replace(":8005", "");
+                    if (currentUrl.Contains(WeChatConstModel.LocalIISPart))
+                    {
+                        currentUrl = currentUrl.Replace($":{WeChatConstModel.LocalIISPart}", "");
+                    }
                 }
                 var changeEncodeUrl = HttpUtility.UrlEncode(currentUrl);
                 var url = string.Format(

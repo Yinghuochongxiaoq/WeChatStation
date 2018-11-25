@@ -31,12 +31,12 @@ namespace WeChatCommon.WeChatAuth
         /// <summary>
         /// Token
         /// </summary>
-        public static readonly string Token = AppConfigurationHelper.GetString("Appsecret");
+        public static readonly string Token = AppConfigurationHelper.GetString("Token");
 
         /// <summary>
         /// 是否静默授权 默认：false:非静默授权;true:静默授权
         /// </summary>
-        public const bool IsSilentAuthorization = false;
+        public static readonly bool IsSilentAuthorization = AppConfigurationHelper.GetString("IsSilentAuthorization").Equals("true", System.StringComparison.CurrentCultureIgnoreCase);
 
         /// <summary>
         /// 公众号获取AccessToken的Url(需Format  0.AppId 1.Secret)
@@ -142,5 +142,10 @@ namespace WeChatCommon.WeChatAuth
         /// </summary>
         /// <remarks>scene_id场景值ID  永久二维码时最大值为100000（目前参数只支持1--100000）</remarks>
         public const string WeiXinQrCodeTicketCreateJsonString = "{\"action_name\": \"QR_LIMIT_SCENE\", \"action_info\": {\"scene\": {\"scene_id\":{0}}}}";
+
+        /// <summary>
+        /// 本地iis端口
+        /// </summary>
+        public static readonly string LocalIISPart = AppConfigurationHelper.GetString("LocalIISPart");
     }
 }
