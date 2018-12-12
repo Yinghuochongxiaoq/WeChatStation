@@ -1,15 +1,4 @@
-﻿#region	Vesion Info
-//======================================================================
-//Copyright(C) FreshMan.All right reserved.
-//命名空间：WeChatCommon
-//文件名称：WeChatAuthen
-//创 建 人：FreshMan
-//创建日期：2017/12/30 10:27:31
-//用    途：记录类的用途
-//======================================================================
-#endregion
-
-using System;
+﻿using System;
 using System.Collections;
 using System.Security.Cryptography;
 using System.Text;

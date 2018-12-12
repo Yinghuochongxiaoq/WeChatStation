@@ -36,7 +36,7 @@ namespace WeChatWeb.Controllers
             //验证是否登陆或者拿到了授权
             if (CurrentModel == null)
             {
-                //filterContext.Result = RedirectToAction("Login", "Auth", new { Area = "Account" });
+                filterContext.Result = RedirectToAction("Index", "WeChatAuth");
                 var code = GetCode(filterContext);
                 var openId = WeiXinHelper.GetUserOpenId(code);
                 var wechatUserInfo = WeiXinHelper.GetUserInfo(openId);
@@ -87,6 +87,7 @@ namespace WeChatWeb.Controllers
         /// </summary>
         /// <param name="notice"></param>
         /// <param name="redirect"></param>
+        /// <param name="isAlert"></param>
         /// <returns></returns>
         public ContentResult Stop(string notice, string redirect, bool isAlert = false)
         {

@@ -33,8 +33,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -51,6 +51,7 @@
     <Compile Include="Configure\AppConfigurationHelper.cs" />
     <Compile Include="Cookie\CookieHelper.cs" />
     <Compile Include="CustomerAttribute\AuthorizeIgnoreAttribute.cs" />
+    <Compile Include="LogHelper\LogUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebHelper\HttpClientHelper.cs" />
     <Compile Include="WebHelper\WebRequestHelper.cs" />
@@ -61,13 +62,13 @@
     <Compile Include="WeChatHelper\WeiXinHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\WeChatModel\WeChatModel.csproj">
       <Project>{a27a8c68-29db-4ef7-a468-3965c1ebef3c}</Project>
       <Name>WeChatModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

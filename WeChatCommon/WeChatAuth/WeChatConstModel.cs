@@ -1,15 +1,4 @@
-﻿#region	Vesion Info
-//======================================================================
-//Copyright(C) 重庆海外旅业.All right reserved.
-//命名空间：WeChatCommon.WeChatAuth
-//文件名称：WeChatConstModel
-//创 建 人：FreshMan
-//创建日期：2017/12/30 12:15:23
-//用    途：记录类的用途
-//======================================================================
-#endregion
-
-using WeChatCommon.Configure;
+﻿using WeChatCommon.Configure;
 
 namespace WeChatCommon.WeChatAuth
 {
@@ -21,17 +10,17 @@ namespace WeChatCommon.WeChatAuth
         /// <summary>
         /// AppId
         /// </summary>
-        public static readonly string AppId = AppConfigurationHelper.GetString("AppId");
+        public static readonly string AppId = AppConfigurationHelper.GetString("WeixinAppId");
 
         /// <summary>
         /// Appsecret
         /// </summary>
-        public static readonly string Appsecret = AppConfigurationHelper.GetString("Appsecret");
+        public static readonly string Appsecret = AppConfigurationHelper.GetString("WeixinAppSecret");
 
         /// <summary>
         /// Token
         /// </summary>
-        public static readonly string Token = AppConfigurationHelper.GetString("Token");
+        public static readonly string Token = AppConfigurationHelper.GetString("WeixinToken");
 
         /// <summary>
         /// 是否静默授权 默认：false:非静默授权;true:静默授权

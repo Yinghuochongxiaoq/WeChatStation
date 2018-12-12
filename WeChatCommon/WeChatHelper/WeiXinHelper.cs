@@ -1,15 +1,4 @@
-﻿#region	Vesion Info
-//======================================================================
-//Copyright(C) 重庆海外旅业.All right reserved.
-//命名空间：WeChatCommon.WeChatHelper
-//文件名称：WeiXinHelper
-//创 建 人：FreshMan
-//创建日期：2017/12/30 13:42:02
-//用    途：记录类的用途
-//======================================================================
-#endregion
-
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using WeChatCommon.WebHelper;
 using WeChatCommon.WeChatAuth;
 using WeChatModel.Message;

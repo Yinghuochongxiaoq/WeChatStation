@@ -1,15 +1,4 @@
-﻿#region	Vesion Info
-//======================================================================
-//Copyright(C) 重庆海外旅业.All right reserved.
-//命名空间：WeChatCommon.WebHelp
-//文件名称：WebRequestHelper
-//创 建 人：FreshMan
-//创建日期：2017/12/30 11:28:32
-//用    途：记录类的用途
-//======================================================================
-#endregion
-
-using System;
+﻿using System;
 using System.Text.RegularExpressions;
 using System.Web;
 

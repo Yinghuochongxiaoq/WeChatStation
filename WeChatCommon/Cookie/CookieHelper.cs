@@ -1,15 +1,4 @@
-﻿#region	Vesion Info
-//======================================================================
-//Copyright(C) 重庆海外旅业.All right reserved.
-//命名空间：WeChatCommon.Cookie
-//文件名称：CookieHelper
-//创 建 人：FreshMan
-//创建日期：2017/12/30 13:56:27
-//用    途：记录类的用途
-//======================================================================
-#endregion
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
