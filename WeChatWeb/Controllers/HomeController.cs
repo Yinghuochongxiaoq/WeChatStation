@@ -18,5 +18,10 @@ namespace WeChatWeb.Controllers
         {
             return View();
         }
+
+        public ActionResult QPage()
+        {
+            return View();
+        }
     }
 }

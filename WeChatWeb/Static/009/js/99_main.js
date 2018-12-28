@@ -764,27 +764,30 @@ function audio_close() {
 
             audio_interval = setInterval(function() {
 
-                if (!isNaN($("#car_audio")[0].duration)) {
+                    if (!isNaN($("#car_audio")[0].duration)) {
 
-                    if ($("#car_audio")[0].currentTime != 0 && $("#car_audio")[0].duration != 0 && $("#car_audio")[0].duration == $("#car_audio")[0].currentTime) {
+                        if ($("#car_audio")[0].currentTime != 0 &&
+                            $("#car_audio")[0].duration != 0 &&
+                            $("#car_audio")[0].duration == $("#car_audio")[0].currentTime) {
 
-                        $("#car_audio")[0].currentTime = 0;
+                            $("#car_audio")[0].currentTime = 0;
 
-                        $("#car_audio")[0].pause();
+                            $("#car_audio")[0].pause();
 
-                        clearInterval(audio_interval);
+                            clearInterval(audio_interval);
 
-                        audio_btn = true;
+                            audio_btn = true;
 
-                        audio_start = true;
+                            audio_start = true;
 
-                        if (!isNaN(audioTime) && audioTime > audioTimeT) audioTimeT = audioTime;
+                            if (!isNaN(audioTime) && audioTime > audioTimeT) audioTimeT = audioTime;
+
+                        }
 
                     }
 
-                }
-
-            }, 20)
+                },
+                20);
 
         }
 

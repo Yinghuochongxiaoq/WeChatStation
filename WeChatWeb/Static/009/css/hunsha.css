@@ -1,0 +1,352 @@
+﻿html, body {
+    position: relative;
+    height: 100%;
+}
+
+body {
+    background: #eee;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.swiper-slide {
+    font-size: 14px;
+    background: #fff;
+    /*-webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;*/
+}
+
+/**
+    声音
+*/
+
+.audio_open {
+    background-position: -60px 0 !important;
+}
+
+.audio_close {
+    background-position: 0 0 !important;
+}
+
+
+/* 统一功能模块样式 fn- */
+
+.fn-audio {
+    position: fixed;
+    top: 0px;
+    right: 20px;
+    z-index: 2000;
+    width: 60px;
+    height: 61px;
+    line-height: 120px;
+    text-align: center;
+}
+
+    .fn-audio .btn p {
+        width: 60px;
+        height: 61px;
+    }
+
+        .fn-audio .btn p span {
+            display: none;
+            width: 60px;
+            height: 61px;
+        }
+
+            .fn-audio .btn p span:first-child {
+                display: inline-block;
+            }
+
+    .fn-audio .btn audio {
+        height: 0;
+        width: 0;
+        opacity: 0;
+    }
+
+
+/**
+    图片
+*/
+.plate {
+    position: relative;
+    width: 100%;
+    height: 50% !important;
+}
+
+.plate01 {
+    margin-bottom: 1%;
+}
+
+.m-img {
+    width: 100%;
+    height: 100%;
+}
+
+.pic0 {
+    background: url(../images/pic0.jpg) center no-repeat;
+    background-size: cover;
+}
+
+.pic2 {
+    background: url(../images/pic2.jpg) center no-repeat;
+    background-size: cover;
+}
+
+.pic3 {
+    background: url(../images/pic3.jpg) center no-repeat;
+    background-size: cover;
+}
+
+.pic5 {
+    background: url(../images/pic5.jpg) center no-repeat;
+    background-size: cover;
+}
+
+.pic6 {
+    background: url(../images/pic6.jpg) center no-repeat;
+    background-size: cover;
+}
+
+.pic7 {
+    background: url(../images/pic7.jpg) center no-repeat;
+    background-size: cover;
+}
+
+.pic8 {
+    background: url(../images/pic8.jpg) center no-repeat;
+    background-size: cover;
+}
+
+.pic9 {
+    background: url(../images/pic9.jpg) center no-repeat;
+    background-size: cover;
+}
+
+/**
+ * 箭头指示元件
+ * -u-arrow
+ */
+.u-arrow {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    z-index: 150;
+    width: 30px;
+    height: 30px;
+    margin-left: -40px;
+}
+
+    .u-arrow img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -14px 0 0 -25px;
+        width: 30px;
+        height: 20px;
+        background-position: 0 -82px;
+        -webkit-animation: start 1.5s infinite ease-in-out;
+        -moz-animation: start 1.5s infinite ease-in-out;
+        animation: start 1.5s infinite ease-in-out;
+    }
+
+
+/*箭头指示引导*/
+
+@-webkit-keyframes start {
+    0%, 30% {
+        opacity: 0;
+        -webkit-transform: translate(0, 10px);
+    }
+
+    60% {
+        opacity: 1;
+        -webkit-transform: translate(0, 0);
+    }
+
+    100% {
+        opacity: 0;
+        -webkit-transform: translate(0, -8px);
+    }
+}
+
+@-moz-keyframes start {
+    0%, 30% {
+        opacity: 0;
+        -moz-transform: translate(0, 10px);
+    }
+
+    60% {
+        opacity: 1;
+        -moz-transform: translate(0, 0);
+    }
+
+    100% {
+        opacity: 0;
+        -moz-transform: translate(0, -8px);
+    }
+}
+
+@keyframes start {
+    0%, 30% {
+        opacity: 0;
+        transform: translate(0, 10px);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(0, -8px);
+    }
+}
+
+
+/**
+    输入框
+*/
+.form-control {
+    display: inline-block;
+    width: 69%;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 20px;
+    margin-left: 20px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+/**
+    评论轮播数据
+*/
+a:link, a:visited {
+    text-decoration: none;
+}
+
+.overflow-text {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0;
+    clear: both;
+    padding: 3px 5px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    max-width: 100%;
+    color: #fff;
+    animation: colorchange 3s infinite alternate;
+    -webkit-animation: colorchange 3s infinite alternate;
+}
+
+/**
+    地图
+*/
+.m-map {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #fff;
+    -webkit-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+    .m-map .ylMap {
+        height: 100%;
+        width: 100%;
+    }
+
+    .m-map .tit {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 44px;
+        width: 100%;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+        .m-map .tit p a span {
+            display: inline-block;
+            width: 42px;
+            height: 42px;
+            position: absolute;
+            top: -13px;
+            left: 15px;
+        }
+
+        .m-map .tit p a span {
+            background-position: 0 -61px;
+        }
+
+        .m-map .tit p a {
+            display: block;
+            position: relative;
+            font-size: 14px;
+            color: #fff;
+            height: 22px;
+            line-height: 22px;
+            padding-left: 70px;
+        }
+
+.css_sprite01 {
+    background: url(../images/sprite01.png) no-repeat;
+    background-repeat: no-repeat;
+}
