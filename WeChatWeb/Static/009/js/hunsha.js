@@ -103,42 +103,54 @@ $(function () {
             $("#car_audio")[0].pause();
             audio_switch_btn = false;
             $("#car_audio")[0].currentTime = 0;
-            btn_au.find("span").eq(0).css("display", "none");
-            btn_au.find("span").eq(1).css("display", "inline-block");
+            btn_au.find("span").eq(1).css("display", "none");
+            btn_au.find("span").eq(0).css("display", "inline-block");
         }
         //开启声音
         else {
             audio_switch_btn = true;
-            btn_au.find("span").eq(1).css("display", "none");
-            btn_au.find("span").eq(0).css("display", "inline-block");
+            btn_au.find("span").eq(0).css("display", "none");
+            btn_au.find("span").eq(1).css("display", "inline-block");
         }
     }
-
     changeOpen();
 });
-var data = [{
-    href: 'http://www.jsdaima.com/',
-    text: 'js特效代码大全'
-}, {
-    href: 'http://www.jsdaima.com/video-75.html',
-    text: 'Python基础视频教程大全'
-}, {
-    href: 'http://www.jsdaima.com/video-88.html',
-    text: '微信小程序开发教程'
-}, {
-    href: 'http://www.jsdaima.com/yuanma/',
-    text: '网站源码下载'
-}, {
-    href: 'http://www.jsdaima.com/webpage/',
-    text: 'HTML5手机网站模板'
-}, {
-    href: 'http://www.jsdaima.com/qita-76.html',
-    text: 'ThinkPHP源码下载'
-}];
+
+
+var data = [];
+/**
+ * 获取数据
+ */
+function getAllMessage() {
+    $.ajax({
+        url: "/Home/GetAllMessage",
+        type: "POST",
+        success: function (dataStr) {
+            Obj.data = dataStr;
+        }
+    });
+}
+
+/**
+ * 添加数据
+ */
+function addMessage(strMessage) {
+    var postData = {};
+    postData.message = strMessage;
+    $.ajax({
+        url: "/Home/InserInfo",
+        data: postData,
+        type: "POST",
+        success: function (dataStr) {
+        }
+    });
+}
+
+
+var data = [];
 
 
 $.fn.barrage = function (opt) {
-
     var _self = $(this);
 
     var opts = { //默认参数
@@ -149,6 +161,7 @@ $.fn.barrage = function (opt) {
         position: 'fixed', //绝对定位
         direction: 'bottom right', //方向
         ismoseoverclose: true, //悬浮是否停止
+        ajaxTime: 3000,
     }
 
     var settings = $.extend({}, opts, opt); //合并参数
@@ -161,21 +174,24 @@ $.fn.barrage = function (opt) {
     Obj.arrEle = []; //预计存储dom集合数组
     M.barrageBox = $('<div id="barrage" style="z-index:999;max-width:100%;position:' + settings.position + ';' + M.vertical + ':0px;' + M.horizontal + ':0;"></div>'); //存所有弹幕的盒子
     M.timer = null;
+    M.ajaxTime = null;
     var createView = function () {
         var randomIndex = Math.floor(Math.random() * M.bgColors.length);
-        var ele = $('<a class="overflow-text" target="_blank" style="opacity:0;text-align:' + settings.direction.split(/\s+/)[1] + ';font-size:14px;float:' + settings.direction.split(/\s+/)[1] + ';background-color:' + M.bgColors[randomIndex] + '"; href="' + (Obj.data[0].href ? Obj.data[0].href : "javascript:;") + '">' + Obj.data[0].text + '</a>');
+        var ele = $('<a class="overflow-text" target="_blank" style="opacity:0;text-align:' + settings.direction.split(/\s+/)[1] + ';font-size:14px;float:' + settings.direction.split(/\s+/)[1] + ';background-color:' + M.bgColors[randomIndex] + '"; href="javascript:;' + '">' + (Obj.data && Obj.data.length > 0 ? Obj.data[0].Message : "") + '</a>');
         var str = Obj.data.shift();
         if (M.vertical == 'top') {
             ele.animate({
                 'opacity': 1,
                 'margin-top': settings.gap,
-            }, 1000)
+            },
+                1000);
             M.barrageBox.prepend(ele);
         } else {
             ele.animate({
                 'opacity': 1,
                 'margin-bottom': settings.gap,
-            }, 1000)
+            },
+                1000);
             M.barrageBox.append(ele);
         }
         Obj.data.push(str);
@@ -197,18 +213,24 @@ $.fn.barrage = function (opt) {
                 M.barrageBox.mouseover(function () {
                     clearInterval(M.timer);
                     M.timer = null;
+                    M.ajaxTime = null;
                 }).mouseout(function () {
                     M.timer = setInterval(function () { //循环
                         createView();
                     },
                         settings.time);
+                    M.ajaxTime = setInterval(function () {
+                        getAllMessage();
+                    }, settings.ajaxTime);
                 });
             })();
     }
     Obj.close = function () {
         M.barrageBox.remove();
         clearInterval(M.timer);
+        clearInterval(M.ajaxTime);
         M.timer = null;
+        M.ajaxTime = null;
     }
     Obj.start = function () {
         if (M.timer) return;
@@ -218,9 +240,11 @@ $.fn.barrage = function (opt) {
             createView();
         },
             settings.time);
+        M.ajaxTime = setInterval(function () {
+            getAllMessage();
+        }, settings.ajaxTime);
         M.mouseClose();
     }
-
     return Obj;
 }
 
@@ -234,20 +258,23 @@ var Obj = $('body').barrage({
     direction: 'bottom left', //方向
     ismoseoverclose: true, //悬浮是否停止
 });
+getAllMessage();
 Obj.start();
 
 //添加评论
 $("#submit_barraget").click(function () {
 
     var val = $("#barrage_content").val();
+    if (val == '') {
+        return;
+    }
     //此格式与dataa.js的数据格式必须一致
     var addVal = {
-        href: '',
-        text: val
+        Message: val
     }
     //添加进数组
     Obj.data.unshift(addVal);
-    alert('评论成功');
+    addMessage(val);
+    alert('谢谢你的祝福');
     $("#barrage_content").val('');
-
 });

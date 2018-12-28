@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using FreshCommonUtility.Dapper;
 using Senparc.CO2NET;
 using Senparc.CO2NET.RegisterServices;
 using Senparc.Weixin;
@@ -7,6 +8,7 @@ using Senparc.Weixin.Entities;
 using Senparc.Weixin.MP.Containers;
 using Senparc.Weixin.MP.MessageHandlers;
 using WeChatCommon.LogHelper;
+using WeChatService;
 using WeChatService.MessageHandlers;
 using Config = Senparc.Weixin.Config;
 
@@ -19,7 +21,8 @@ namespace WeChatWeb
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
+            SimpleCRUD.SetDialect(SimpleCRUD.Dialect.MySQL);
+            DbLinkTestService.DbLink();
             /* CO2NET 全局注册开始
              * 建议按照以下顺序进行注册
              */
