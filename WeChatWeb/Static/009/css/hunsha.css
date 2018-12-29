@@ -349,3 +349,24 @@ a:link, a:visited {
     background: url(../images/sprite01.png) no-repeat;
     background-repeat: no-repeat;
 }
+
+
+.main {
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.main_top {
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-87%);
+}
+
+.wenzi {
+    color: #fff;
+}

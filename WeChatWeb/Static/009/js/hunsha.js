@@ -114,6 +114,12 @@ $(function () {
         }
     }
     changeOpen();
+
+    var options = {
+        animateThreshold: 100,
+        scrollPollInterval: 50
+    }
+    $('.aniview').AniView(options);
 });
 
 
@@ -275,6 +281,7 @@ $("#submit_barraget").click(function () {
     //添加进数组
     Obj.data.unshift(addVal);
     addMessage(val);
-    alert('谢谢你的祝福');
+    alert('谢谢您的祝福');
     $("#barrage_content").val('');
+    $("#barrage_content").blur();
 });

@@ -127,9 +127,7 @@ ylmap.init = function () {
             $(".m-page").off('mouseup touchend mouseout');
         } else {
             $('.fn-audio').show();
-            $(".m-page").on('mousedown touchstart', page_touchstart);
             $(".m-page").on('mousemove touchmove', page_touchmove);
-            $(".m-page").on('mouseup touchend mouseout', page_touchend);
         }
     });
     bus_transit = function () {
