@@ -169,6 +169,7 @@
     <Content Include="Static\009\images\btn01_arrow.png" />
     <Content Include="Static\009\images\load.gif" />
     <Content Include="Static\009\images\pic0.jpg" />
+    <Content Include="Static\009\images\pic1.jpg" />
     <Content Include="Static\009\images\pic2.jpg" />
     <Content Include="Static\009\images\pic3.jpg" />
     <Content Include="Static\009\images\pic5.jpg" />
@@ -177,12 +178,14 @@
     <Content Include="Static\009\images\pic8.jpg" />
     <Content Include="Static\009\images\pic9.jpg" />
     <Content Include="Static\009\images\sprite01.png" />
+    <Content Include="Static\009\images\xin.bmp" />
     <Content Include="Static\009\js\hunsha.js" />
     <Content Include="Static\009\js\jquery-1.8.2.min.js" />
     <Content Include="Static\009\js\jquery.easing.1.3.js" />
     <Content Include="Static\009\js\swiper.min.js" />
     <Content Include="Static\009\js\ylMap.js" />
     <Content Include="Static\009\sounds\music.mp3" />
+    <Content Include="Static\css\animate.min.css" />
     <Content Include="Static\css\index.css" />
     <Content Include="Static\css\swiper.min.css" />
     <Content Include="Static\images\banner.jpg" />
@@ -210,6 +213,7 @@
     <Content Include="Static\images\shig_ship1.jpg" />
     <Content Include="Static\images\sos.png" />
     <Content Include="Static\images\zhuagnxiu_1.jpg" />
+    <Content Include="Static\js\jquery.aniview.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
