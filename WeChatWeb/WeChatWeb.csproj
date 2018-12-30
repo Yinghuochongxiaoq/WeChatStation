@@ -169,6 +169,7 @@
     <Content Include="Static\009\css\swiper.min.css" />
     <Content Include="Static\009\images\btn01_arrow.png" />
     <Content Include="Static\009\images\flower.png" />
+    <Content Include="Static\009\images\hua.png" />
     <Content Include="Static\009\images\load.gif" />
     <Content Include="Static\009\images\love.png" />
     <Content Include="Static\009\images\love_head.png" />
@@ -249,6 +250,7 @@
     <Content Include="Static\js\swiper.min.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\QPage.cshtml" />
+    <Content Include="Static\009\css\Y_hanyi_dieyu.woff" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
