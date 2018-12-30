@@ -1,13 +1,48 @@
-﻿var swiper = new Swiper('.swiper-container', {
-    direction: 'vertical',
-    slidesPerView: 1,
-    spaceBetween: 30,
-    mousewheel: true,
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-    }
-});
+﻿var mySwiper = new Swiper('.swiper-container',
+    {
+        direction: 'vertical',
+        pagination: '.swiper-pagination',
+        mousewheelControl: true,
+        onInit: function(swiper) {
+            swiperAnimateCache(swiper);
+            swiperAnimate(swiper);
+        },
+        onSlideChangeEnd: function(swiper) {
+            swiperAnimate(swiper);
+        },
+        onTransitionEnd: function(swiper) {
+            swiperAnimate(swiper);
+        },
+
+
+        watchSlidesProgress: true,
+
+        onProgress: function(swiper) {
+            for (var i = 0; i < swiper.slides.length; i++) {
+                var slide = swiper.slides[i];
+                var progress = slide.progress;
+                var translate = progress * swiper.height / 4;
+                scale = 1 - Math.min(Math.abs(progress * 0.5), 1);
+                var opacity = 1 - Math.min(Math.abs(progress / 2), 0.5);
+                slide.style.opacity = opacity;
+                es = slide.style;
+                es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform =
+                    'translate3d(0,' + translate + 'px,-' + translate + 'px) scaleY(' + scale + ')';
+
+            }
+        },
+
+        onSetTransition: function(swiper, speed) {
+            for (var i = 0; i < swiper.slides.length; i++) {
+                es = swiper.slides[i].style;
+                es.webkitTransitionDuration = es.MsTransitionDuration = es.msTransitionDuration =
+                    es.MozTransitionDuration = es.OTransitionDuration = es.transitionDuration = speed + 'ms';
+
+            }
+        },
+
+
+    });
 //初始化地图
 var map = new ylmap.init;
 map.mapInit;
@@ -114,12 +149,6 @@ $(function () {
         }
     }
     changeOpen();
-
-    var options = {
-        animateThreshold: 100,
-        scrollPollInterval: 50
-    }
-    $('.aniview').AniView(options);
 });
 
 
@@ -166,7 +195,7 @@ $.fn.barrage = function (opt) {
         gap: 5, //每一个的间隙
         position: 'fixed', //绝对定位
         direction: 'bottom right', //方向
-        ismoseoverclose: true, //悬浮是否停止
+        ismoseoverclose: false, //悬浮是否停止
         ajaxTime: 3000,
     }
 

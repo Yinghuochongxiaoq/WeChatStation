@@ -164,10 +164,14 @@
     <Content Include="App_Data\sensitive.txt" />
     <Content Include="Global.asax" />
     <Content Include="lib\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="Static\009\css\animate.min.css" />
     <Content Include="Static\009\css\hunsha.css" />
     <Content Include="Static\009\css\swiper.min.css" />
     <Content Include="Static\009\images\btn01_arrow.png" />
+    <Content Include="Static\009\images\flower.png" />
     <Content Include="Static\009\images\load.gif" />
+    <Content Include="Static\009\images\love.png" />
+    <Content Include="Static\009\images\love_head.png" />
     <Content Include="Static\009\images\pic0.jpg" />
     <Content Include="Static\009\images\pic1.jpg" />
     <Content Include="Static\009\images\pic2.jpg" />
@@ -182,6 +186,7 @@
     <Content Include="Static\009\js\hunsha.js" />
     <Content Include="Static\009\js\jquery-1.8.2.min.js" />
     <Content Include="Static\009\js\jquery.easing.1.3.js" />
+    <Content Include="Static\009\js\swiper.animate.min.js" />
     <Content Include="Static\009\js\swiper.min.js" />
     <Content Include="Static\009\js\ylMap.js" />
     <Content Include="Static\009\sounds\music.mp3" />
