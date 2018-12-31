@@ -6,6 +6,7 @@
 body {
     background: #eee;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    /*font-family:华文行楷;*/
     font-size: 14px;
     color: #000;
     margin: 0;
@@ -404,7 +405,7 @@ a:link, a:visited {
 .big_frame {
     width: 90%;
     height: 90%;
-    border: #1193c7 solid;
+    /*border: #1193c7 solid;*/
     background-color: #fff;
 }
 
@@ -454,10 +455,12 @@ a:link, a:visited {
     border-radius: 10px;
     margin-top: -200px;
 }
+
 @font-face {
     src: url("Y_hanyi_dieyu.woff");
     font-family: Y_hanyi_dieyu;
 }
+
 .hua {
     width: 283px;
     height: 283px;

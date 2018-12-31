@@ -1,48 +1,47 @@
-﻿var mySwiper = new Swiper('.swiper-container',
-    {
-        direction: 'vertical',
-        pagination: '.swiper-pagination',
-        mousewheelControl: true,
-        onInit: function(swiper) {
-            swiperAnimateCache(swiper);
-            swiperAnimate(swiper);
-        },
-        onSlideChangeEnd: function(swiper) {
-            swiperAnimate(swiper);
-        },
-        onTransitionEnd: function(swiper) {
-            swiperAnimate(swiper);
-        },
+﻿var mySwiper = new Swiper('.swiper-container', {
+    direction: 'vertical',
+    pagination: '.swiper-pagination',
+    mousewheelControl: true,
+    onInit: function(swiper) {
+        swiperAnimateCache(swiper);
+        swiperAnimate(swiper);
+    },
+    onSlideChangeEnd: function(swiper) {
+        swiperAnimate(swiper);
+    },
+    onTransitionEnd: function(swiper) {
+        swiperAnimate(swiper);
+    },
 
 
-        watchSlidesProgress: true,
+    watchSlidesProgress: true,
 
-        onProgress: function(swiper) {
-            for (var i = 0; i < swiper.slides.length; i++) {
-                var slide = swiper.slides[i];
-                var progress = slide.progress;
-                var translate = progress * swiper.height / 4;
-                scale = 1 - Math.min(Math.abs(progress * 0.5), 1);
-                var opacity = 1 - Math.min(Math.abs(progress / 2), 0.5);
-                slide.style.opacity = opacity;
-                es = slide.style;
-                es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform =
-                    'translate3d(0,' + translate + 'px,-' + translate + 'px) scaleY(' + scale + ')';
+    onProgress: function(swiper) {
+        for (var i = 0; i < swiper.slides.length; i++) {
+            var slide = swiper.slides[i];
+            var progress = slide.progress;
+            var translate = progress * swiper.height / 4;
+            scale = 1 - Math.min(Math.abs(progress * 0.5), 1);
+            var opacity = 1 - Math.min(Math.abs(progress / 2), 0.5);
+            slide.style.opacity = opacity;
+            es = slide.style;
+            es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform =
+                'translate3d(0,' + translate + 'px,-' + translate + 'px) scaleY(' + scale + ')';
 
-            }
-        },
+        }
+    },
 
-        onSetTransition: function(swiper, speed) {
-            for (var i = 0; i < swiper.slides.length; i++) {
-                es = swiper.slides[i].style;
-                es.webkitTransitionDuration = es.MsTransitionDuration = es.msTransitionDuration =
-                    es.MozTransitionDuration = es.OTransitionDuration = es.transitionDuration = speed + 'ms';
+    onSetTransition: function(swiper, speed) {
+        for (var i = 0; i < swiper.slides.length; i++) {
+            es = swiper.slides[i].style;
+            es.webkitTransitionDuration = es.MsTransitionDuration = es.msTransitionDuration =
+                es.MozTransitionDuration = es.OTransitionDuration = es.transitionDuration = speed + 'ms';
 
-            }
-        },
+        }
+    },
 
 
-    });
+});
 //初始化地图
 var map = new ylmap.init;
 map.mapInit;
@@ -52,7 +51,7 @@ map.mapInit;
  * @param {any} e
  */
 function changeOpen(e) {
-    $(".swiper-container").on('mousemove touchmove', page_touchmove);
+    $(".swiper-container").on('touchmove', page_touchmove);
 }
 
 /**
@@ -72,7 +71,7 @@ function page_touchmove(e) {
 /**
  * 声音控制
  */
-var audio_switch_btn = true;//声音开关控制值
+var audio_switch_btn = true; //声音开关控制值
 var audio_btn = true, //声音播放完毕
     audio_loop = true, //声音循环
     audioTime = null, //声音播放延时
@@ -97,7 +96,7 @@ function audio_close() {
         if (!isNaN(audioTime) && audioTime != 0) {
             audio_btn = false;
             setTimeout(
-                function () {
+                function() {
                     $("#car_audio")[0].pause();
                     $("#car_audio")[0].currentTime = 0;
                     audio_btn = true;
@@ -105,30 +104,31 @@ function audio_close() {
                     if (!isNaN(audioTime) && audioTime > audioTimeT) audioTimeT = audioTime;
                 }, audioTime);
         } else {
-            audio_interval = setInterval(function () {
-                if (!isNaN($("#car_audio")[0].duration)) {
-                    if ($("#car_audio")[0].currentTime != 0 &&
-                        $("#car_audio")[0].duration != 0 &&
-                        $("#car_audio")[0].duration == $("#car_audio")[0].currentTime) {
-                        $("#car_audio")[0].currentTime = 0;
-                        $("#car_audio")[0].pause();
-                        clearInterval(audio_interval);
-                        audio_btn = true;
-                        audio_start = true;
-                        if (!isNaN(audioTime) && audioTime > audioTimeT) audioTimeT = audioTime;
+            audio_interval = setInterval(function() {
+                    if (!isNaN($("#car_audio")[0].duration)) {
+                        if ($("#car_audio")[0].currentTime != 0 &&
+                            $("#car_audio")[0].duration != 0 &&
+                            $("#car_audio")[0].duration == $("#car_audio")[0].currentTime) {
+                            $("#car_audio")[0].currentTime = 0;
+                            $("#car_audio")[0].pause();
+                            clearInterval(audio_interval);
+                            audio_btn = true;
+                            audio_start = true;
+                            if (!isNaN(audioTime) && audioTime > audioTimeT) audioTimeT = audioTime;
+                        }
                     }
-                }
-            },
+                },
                 20);
         }
     }
 }
 //页面声音播放
-$(function () {
+$(function() {
     //获取声音元件
     var btn_au = $(".fn-audio").find(".btn");
     //绑定点击事件
     btn_au.on('click', audio_switch);
+
     function audio_switch() {
         if ($("#car_audio") == undefined) {
             return;
@@ -160,7 +160,7 @@ function getAllMessage() {
     $.ajax({
         url: "/Home/GetAllMessage",
         type: "POST",
-        success: function (dataStr) {
+        success: function(dataStr) {
             Obj.data = dataStr;
         }
     });
@@ -176,8 +176,7 @@ function addMessage(strMessage) {
         url: "/Home/InserInfo",
         data: postData,
         type: "POST",
-        success: function (dataStr) {
-        }
+        success: function(dataStr) {}
     });
 }
 
@@ -185,7 +184,7 @@ function addMessage(strMessage) {
 var data = [];
 
 
-$.fn.barrage = function (opt) {
+$.fn.barrage = function(opt) {
     var _self = $(this);
 
     var opts = { //默认参数
@@ -196,7 +195,7 @@ $.fn.barrage = function (opt) {
         position: 'fixed', //绝对定位
         direction: 'bottom right', //方向
         ismoseoverclose: false, //悬浮是否停止
-        ajaxTime: 3000,
+        ajaxTime: 20000,
     }
 
     var settings = $.extend({}, opts, opt); //合并参数
@@ -210,72 +209,72 @@ $.fn.barrage = function (opt) {
     M.barrageBox = $('<div id="barrage" style="z-index:999;max-width:100%;position:' + settings.position + ';' + M.vertical + ':0px;' + M.horizontal + ':0;"></div>'); //存所有弹幕的盒子
     M.timer = null;
     M.ajaxTime = null;
-    var createView = function () {
+    var createView = function() {
         var randomIndex = Math.floor(Math.random() * M.bgColors.length);
         var ele = $('<a class="overflow-text" target="_blank" style="opacity:0;text-align:' + settings.direction.split(/\s+/)[1] + ';font-size:14px;float:' + settings.direction.split(/\s+/)[1] + ';background-color:' + M.bgColors[randomIndex] + '"; href="javascript:;' + '">' + (Obj.data && Obj.data.length > 0 ? Obj.data[0].Message : "") + '</a>');
         var str = Obj.data.shift();
         if (M.vertical == 'top') {
             ele.animate({
-                'opacity': 1,
-                'margin-top': settings.gap,
-            },
+                    'opacity': 1,
+                    'margin-top': settings.gap,
+                },
                 1000);
             M.barrageBox.prepend(ele);
         } else {
             ele.animate({
-                'opacity': 1,
-                'margin-bottom': settings.gap,
-            },
+                    'opacity': 1,
+                    'margin-bottom': settings.gap,
+                },
                 1000);
             M.barrageBox.append(ele);
         }
         Obj.data.push(str);
         if (M.barrageBox.children().length > settings.row) {
             M.barrageBox.children().eq(0).animate({
-                'opacity': 0,
-            },
+                    'opacity': 0,
+                },
                 300,
-                function () {
+                function() {
                     $(this).css({
                         'margin': 0,
                     }).remove();
                 });
         }
     }
-    M.mouseClose = function () {
+    M.mouseClose = function() {
         settings.ismoseoverclose &&
-            (function () {
-                M.barrageBox.mouseover(function () {
+            (function() {
+                M.barrageBox.mouseover(function() {
                     clearInterval(M.timer);
                     M.timer = null;
                     M.ajaxTime = null;
-                }).mouseout(function () {
-                    M.timer = setInterval(function () { //循环
-                        createView();
-                    },
+                }).mouseout(function() {
+                    M.timer = setInterval(function() { //循环
+                            createView();
+                        },
                         settings.time);
-                    M.ajaxTime = setInterval(function () {
+                    M.ajaxTime = setInterval(function() {
                         getAllMessage();
                     }, settings.ajaxTime);
                 });
             })();
     }
-    Obj.close = function () {
+    Obj.close = function() {
         M.barrageBox.remove();
         clearInterval(M.timer);
         clearInterval(M.ajaxTime);
         M.timer = null;
         M.ajaxTime = null;
     }
-    Obj.start = function () {
+    Obj.start = function() {
         if (M.timer) return;
         _self.append(M.barrageBox); //把弹幕盒子放到页面中
         createView(); //创建试图并开始动画
-        M.timer = setInterval(function () { //循环
-            createView();
-        },
+        M.timer = setInterval(function() { //循环
+                createView();
+            },
             settings.time);
-        M.ajaxTime = setInterval(function () {
+        M.ajaxTime = setInterval(function() {
             getAllMessage();
         }, settings.ajaxTime);
         M.mouseClose();
@@ -297,7 +296,7 @@ getAllMessage();
 Obj.start();
 
 //添加评论
-$("#submit_barraget").click(function () {
+$("#submit_barraget").click(function() {
 
     var val = $("#barrage_content").val();
     if (val == '') {
@@ -305,9 +304,9 @@ $("#submit_barraget").click(function () {
     }
     //此格式与dataa.js的数据格式必须一致
     var addVal = {
-        Message: val
-    }
-    //添加进数组
+            Message: val
+        }
+        //添加进数组
     Obj.data.unshift(addVal);
     addMessage(val);
     alert('谢谢您的祝福');
