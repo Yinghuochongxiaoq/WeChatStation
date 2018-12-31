@@ -45,7 +45,7 @@ ylmap.init = function () {
                 '</a></p>');
             content_infoWindow.append('<p class="address">' + data.address + '</p>');
             content_infoWindow.append(
-                '<div class="window_btn"><button class="open_navigate open_bus" onclick="open_navigate(this)">公交</button><button class="open_navigate open_car" onclick="open_navigate(this)">自驾</button><span class="State"></span></div>');
+                '<div class="window_btn"><button class="open_navigate open_bus" onclick="openNavigate(this)">公交</button><button class="open_navigate open_car" onclick="openNavigate(this)">自驾</button><span class="State"></span></div>');
             var opts = {
                 width: 400,
                 height: 0,
@@ -53,12 +53,12 @@ ylmap.init = function () {
             }
             var info = new BMap.InfoWindow(content_infoWindow[0], opts);
             marker_.openInfoWindow(info, map.getCenter());
-        };
-    open_navigate = function (obj) {
-        $(obj).hasClass("open_bus") ? way = 'bus' : way = 'car';
-        navigate();
-        $('.infoWindow').find('span.State').html('正在定位您的位置！');
-    },
+        },
+        openNavigate = function (obj) {
+            $(obj).hasClass("open_bus") ? way = 'bus' : way = 'car';
+            navigate();
+            $('.infoWindow').find('span.State').html('正在定位您的位置！');
+        },
         navigate = function () {
             if (window.navigator.geolocation) {
                 window.navigator.geolocation.getCurrentPosition(handleSuccess, handleError, {
@@ -107,9 +107,7 @@ ylmap.init = function () {
                 map.centerAndZoom(point, 15);
                 mapBox.parent().find(".close_map").hide();
                 mapOpenInfo();
-                $(".m-page").on('mousedown touchstart', page_touchstart);
                 $(".m-page").on('mousemove touchmove', page_touchmove);
-                $(".m-page").on('mouseup touchend mouseout', page_touchend);
                 $('.fn-audio').show();
                 $('#transit_result').removeClass("open");
                 $(".transitBtn").hide();
@@ -130,7 +128,7 @@ ylmap.init = function () {
             $(".m-page").on('mousemove touchmove', page_touchmove);
         }
     });
-    bus_transit = function () {
+    var bus_transit = function () {
         if (transit) transit.clearResults();
         if (driving) driving.clearResults();
         if (!location_point) {
@@ -201,17 +199,18 @@ ylmap.init = function () {
             } else {
                 $(".close").find("a").html("打开");
             }
+        },
+        transit_result_close = function () {
+            if ($("#transit_result").hasClass("open")) {
+                $('#transit_result').removeClass("open");
+                $(".close").find("a").html("打开");
+            } else {
+                $('#transit_result').addClass("open");
+                $(".close").find("a").html("关闭");
+            }
         };
-    transit_result_close = function () {
-        if ($("#transit_result").hasClass("open")) {
-            $('#transit_result').removeClass("open");
-            $(".close").find("a").html("打开");
-        } else {
-            $('#transit_result').addClass("open");
-            $(".close").find("a").html("关闭");
-        }
-    };
     window.mapInit = mapInit;
+    window.openNavigate = openNavigate;
     function loadfunction() {
         var script = document.createElement("script");
         script.src = "http://api.map.baidu.com/api?v=1.4&callback=mapInit";
