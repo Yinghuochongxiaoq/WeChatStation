@@ -1,298 +1,235 @@
 ﻿@model dynamic
 
 <!DOCTYPE html>
-
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <meta content="贵州亿众宇豪装饰集团" http-equiv="keywords">
-    <meta name="description" content="贵州亿众宇豪装饰集团">
-    <meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
-    <link rel="stylesheet" href="@(ViewBag.RootNote)/Static/css/index.css" type="text/css">
-    <link rel="stylesheet" href="@(ViewBag.RootNote)/Static/css/swiper.min.css" type="text/css">
-    <script type="text/javascript" src="@(ViewBag.RootNote)/Static/js/swiper.min.js"></script>
-    <script type="text/javascript" src="@(ViewBag.RootNote)/Static/js/jquery-1.4.4.min.js"></script>
-
-    <!-- huad -->
-    <script type="text/javascript" src="@(ViewBag.RootNote)/Static/js/iscroll.js"></script>
-    <script type="text/javascript" src="@(ViewBag.RootNote)/Static/js/navbarscroll.js"></script>
-    <title>小杨装饰</title>
+    <meta charset="utf-8">
+    <title>FreshMan个人博客</title>
+    <meta name="keywords" content="FreshMan,博客,秦小白,技术狗,FreshMan是谁" />
+    <meta name="description" content="FreshMan个人博客网站" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="@(ViewBag.RootNode)/Content/Blog/css/index.css" rel="stylesheet">
+    <script src="@(ViewBag.RootNode)/Content/Blog/js/jquery.min.js"></script>
+    <script src="@(ViewBag.RootNode)/Content/Blog/js/comm.js"></script>
+    <!--[if lt IE 9]>
+    <script src="@(ViewBag.RootNode)/Content/Blog/js/modernizr.js"></script>
+    <![endif]-->
 </head>
 <body>
-    <!-- 内容——外框 -->
-    <div id="neir_waik">
-        <!-- 开始 -->
-        <!-- banner -->
-        <div class="banner">
-
-            <div class="swiper-container_1 swiper-container-horizontal swiper-container-ios">
-                <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
-                    <div class="swiper-slide swiper-slide-active" style="width: 375px;">
-                        <a href="/index.html#"><img src="@(ViewBag.RootNote)/Static/images/banner.jpg"></a>
-                    </div>
-                    <div class="swiper-slide swiper-slide-next" style="width: 375px;">
-                        <a href="/index.html#"><img src="@(ViewBag.RootNote)/Static/images/banner_1.jpg"></a>
-                    </div>
-                    <div class="swiper-slide" style="width: 375px;">
-                        <a href="/index.html#"><img src="@(ViewBag.RootNote)/Static/images/banner_2.jpg"></a>
-                    </div>
-                </div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination swiper-pagination-bullets"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div>
-            </div>
-
-            <!-- Initialize Swiper -->
-            <script>
-                var swiper = new Swiper('.swiper-container_1', {
-                    pagination: {
-                        el: '.swiper-pagination',
-                    },
-                    autoplay: {
-                        delay: 3000
-                    },
-                });
-            </script>
-        </div>
-        <!-- 内容 -->
-        <div class="zhongj_daoh">
-            <ul>
-                <li>
-                    <a href="/index.html#">
-                        <h1><img src="@(ViewBag.RootNote)/Static/images/daohang_zj_1.png"></h1>
-                        <p>装修风格</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/index.html#">
-                        <h1><img src="@(ViewBag.RootNote)/Static/images/daohang_zj_2.png"></h1>
-                        <p>装修工艺</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/index.html#">
-                        <h1><img src="@(ViewBag.RootNote)/Static/images/daohang_zj_3.png"></h1>
-                        <p>VR展区</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/index.html#">
-                        <h1><img src="@(ViewBag.RootNote)/Static/images/daohang_zj_4.png"></h1>
-                        <p>产品搜索</p>
-                    </a>
-                </li>
+    <header>
+        <div class="logo">FreshMan个人博客</div>
+        <div class="top-nav">
+            <h2 id="mnavh"><span class="navicon"></span></h2>
+            <ul id="nav">
+                <li><a href="index.html">网站首页</a></li>
+                <li><a href="list.html">个人博客日记</a></li>
+                <li><a href="/2">个人博客模板</a></li>
+                <li><a href="/3">博客网站制作</a></li>
+                <li><a href="/4">网页设计心得</a></li>
+                <li><a href="/5">优秀个人博客</a></li>
+                <li><a href="/5">关于我</a></li>
+                <li><a href="/5">留言</a></li>
             </ul>
         </div>
-        <!-- 间隔 -->
-        <div class="div_jiange"></div>
-
-        <!-- 标题一 -->
-        <div class="biaoti_yi">
-            <h1>品牌实力</h1><span>良心与精品！，值得信赖！</span>
+        <div class="search">
+            <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
+                <input name="keyboard" id="keyboard" class="input_text" value="搜索你喜欢的" style="color: rgb(153, 153, 153);" onfocus="if(value=='搜索你喜欢的'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='搜索你喜欢的'}" type="text">
+                <input name="show" value="title" type="hidden">
+                <input name="tempid" value="1" type="hidden">
+                <input name="tbname" value="news" type="hidden">
+                <input name="Submit" class="input_submit" value="" type="submit">
+            </form>
         </div>
-        <!--  -->
-        <div class="jianjie_h">
-            <img src="@(ViewBag.RootNote)/Static/images/jiajia_biaot.png">
-            <div class="you_neir">
-                <div class="text_k">
-                    <p>小杨装饰是一家集室内设计、预算、施工、材料于一体的专业化装饰团队……</p>
+    </header>
+    <aside class="side">
+        <div class="about">
+            <i><a href="/"><img src="images/avatar.jpg"></a></i>
+            <p>杨青，一个80后草根女站长！09年入行。一直潜心研究web前端技术，一边工作一边积累经验，分享一些个人博客模板，以及SEO优化等心得。</p>
+        </div>
+        <div class="weixin">
+            <img src="http://www.yangqq.com/skin/html/images/wx.jpg">
+            <p>关注我 么么哒！</p>
+        </div>
+    </aside>
+    <main>
+        <div class="main-content">
+            <div class="welcome"> 您好，欢迎您访问我们的官方网站！ </div>
+            <div class="picbox">
+                <h2 class="pictitle"><a href="/">个人博客网站模板</a></h2>
+                <!--box begin-->
+                <div class="Box_con">
+                    <span class="btnl btn" id="btnl"></span> <span class="btnr btn" id="btnr"></span>
+                    <div class="conbox" id="BoxUl">
+                        <ul>
+                            <li class="cur">
+                                <a href="/">
+                                    <img src="http://www.yangqq.com/d/file/news/humor/2014-01-13/67ce0f90b72e884e562d3360575ab3c3.jpg" alt="" />
+                                    <p>如何快速建立自己的个人博客网站1</p>
+                                </a>
+                            </li>
+                            <li class="cur">
+                                <a href="/">
+                                    <img src="http://www.yangqq.com/d/file/news/life/2018-04-27/762f99f369ae786f970477feeb3b9d77.jpg" alt="" />
+                                    <p>如何快速建立自己的个人博客网站2</p>
+                                </a>
+                            </li>
+                            <li class="cur">
+                                <a href="/">
+                                    <img src="http://www.yangqq.com/d/file/news/life/2018-06-17/917d732926d79cc2ae1012831ce51d1e.jpg" alt="" />
+                                    <p>如何快速建立自己的个人博客网站3</p>
+                                </a>
+                            </li>
+                            <li class="cur">
+                                <a href="/">
+                                    <img src="http://www.yangqq.com/d/file/jstt/bj/2018-06-29/3f0b6da48a6fd4e626a021ff7bd0d74f.jpg" alt="" />
+                                    <p>如何快速建立自己的个人博客网站4</p>
+                                </a>
+                            </li>
+                            <li class="cur">
+                                <a href="/">
+                                    <img src="http://www.yangqq.com/d/file/news/life/2018-06-29/75842f4d1e18d692a66c38eb172a40ab.jpg" alt="" />
+                                    <p>如何快速建立自己的个人博客网站5</p>
+                                </a>
+                            </li>
+                            <li class="cur">
+                                <a href="/">
+                                    <img src="http://www.yangqq.com/d/file/news/s/2014-06-14/072f267a54748c6e71d40a2d03978993.jpg" alt="" />
+                                    <p>如何快速建立自己的个人博客网站6</p>
+                                </a>
+                            </li>
+                            <li class="cur">
+                                <a href="/">
+                                    <img src="http://www.yangqq.com/d/file/blogs/2018-08-22/28e3bbca2ae0205f641a9072ecb7c100.jpg" alt="" />
+                                    <p>如何快速建立自己的个人博客网站7</p>
+                                </a>
+                            </li>
+                            <li class="cur">
+                                <a href="/">
+                                    <img src="http://www.yangqq.com/d/file/blogs/2018-08-17/3ee0644472fa8556562ab3d8716b5316.jpg" alt="" />
+                                    <p>如何快速建立自己的个人博客网站8</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <a href="/index.html#">查看详情 &gt;</a>
+                <!--box end-->
             </div>
-        </div>
-        <!-- 标题2 -->
-        <div class="biaoti_yi">
-            <h1>家装案例</h1><span>时下主流风格，万家装修案例供您欣赏</span>
-        </div>
-        <div class="wrapper wrapper03" id="wrapper03">
-            <div class="scroller" style="width: 550px; transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(-172px, 0px) translateZ(0px);">
-                <ul class="clearfix">
-                    <li class="" style="margin-left: 0px; margin-right: 0px;"><a href="/index.html#">现代风格</a></li>
-                    <li class="" style="margin-left: 0px; margin-right: 0px;"><a href="/index.html#">中式风格</a></li>
-                    <li class="" style="margin-left: 0px; margin-right: 0px;"><a href="/index.html#">欧式风格 </a></li>
-                    <li class="" style="margin-left: 0px; margin-right: 0px;"><a href="/index.html#">田园风格</a></li>
-                    <li class="" style="margin-left: 0px; margin-right: 0px;"><a href="/index.html#">美式风格</a></li>
-                    <li class="cur" style="margin-left: 0px; margin-right: 0px;"><a href="/index.html#">其他风格</a></li>
+            <div class="newsbox">
+                <section>
+                    <div class="news">
+                        <h2 class="newstitle"><span><a href="/">更多</a></span><b>个人博客日记</b></h2>
+                        <ul>
+                            <li><a href="/"><span>08-30</span>如何快速建立自己的个人博客网站</a></li>
+                            <li><a href="/"><span>08-30</span>个人博客，属于我的小世界！</a></li>
+                            <li><a href="/"><span>08-30</span>网易博客关闭，何不从此开始潇洒行走江湖！</a></li>
+                            <li><a href="/"><span>08-30</span>个人网站做好了，百度不收录怎么办？来，看看他们怎么做的。</a></li>
+                            <li><a href="/"><span>08-30</span>帝国cms 循环调用子栏目信息以及头条图片</a></li>
+                            <li><a href="/"><span>08-30</span>我是怎么评价自己的？</a></li>
+                            <li><a href="/"><span>08-30</span>html5 个人博客模板《蓝色畅想》</a></li>
+                            <li><a href="/"><span>08-30</span>【匆匆那些年】总结个人博客经历的这四年</a></li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <div class="news">
+                        <h2 class="newstitle"><span><a href="/">更多</a></span><b>设计思维</b></h2>
+                        <ul>
+                            <li><a href="/"><span>08-30</span>如何快速建立自己的个人博客网站</a></li>
+                            <li><a href="/"><span>08-30</span>个人博客，属于我的小世界！</a></li>
+                            <li><a href="/"><span>08-30</span>网易博客关闭，何不从此开始潇洒行走江湖！</a></li>
+                            <li><a href="/"><span>08-30</span>个人网站做好了，百度不收录怎么办？来，看看他们怎么做的。</a></li>
+                            <li><a href="/"><span>08-30</span>帝国cms 循环调用子栏目信息以及头条图片</a></li>
+                            <li><a href="/"><span>08-30</span>我是怎么评价自己的？</a></li>
+                            <li><a href="/"><span>08-30</span>html5 个人博客模板《蓝色畅想》</a></li>
+                            <li><a href="/"><span>08-30</span>【匆匆那些年】总结个人博客经历的这四年</a></li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <div class="news">
+                        <h2 class="newstitle"><span><a href="/">更多</a></span><b>结构设计</b></h2>
+                        <ul>
+                            <li><a href="/"><span>08-30</span>如何快速建立自己的个人博客网站</a></li>
+                            <li><a href="/"><span>08-30</span>个人博客，属于我的小世界！</a></li>
+                            <li><a href="/"><span>08-30</span>网易博客关闭，何不从此开始潇洒行走江湖！</a></li>
+                            <li><a href="/"><span>08-30</span>个人网站做好了，百度不收录怎么办？来，看看他们怎么做的。</a></li>
+                            <li><a href="/"><span>08-30</span>帝国cms 循环调用子栏目信息以及头条图片</a></li>
+                            <li><a href="/"><span>08-30</span>我是怎么评价自己的？</a></li>
+                            <li><a href="/"><span>08-30</span>html5 个人博客模板《蓝色畅想》</a></li>
+                            <li><a href="/"><span>08-30</span>【匆匆那些年】总结个人博客经历的这四年</a></li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <div class="news">
+                        <h2 class="newstitle"><span><a href="/">更多</a></span><b>设计素材</b></h2>
+                        <ul>
+                            <li><a href="/"><span>08-30</span>如何快速建立自己的个人博客网站</a></li>
+                            <li><a href="/"><span>08-30</span>个人博客，属于我的小世界！</a></li>
+                            <li><a href="/"><span>08-30</span>网易博客关闭，何不从此开始潇洒行走江湖！</a></li>
+                            <li><a href="/"><span>08-30</span>个人网站做好了，百度不收录怎么办？来，看看他们怎么做的。</a></li>
+                            <li><a href="/"><span>08-30</span>帝国cms 循环调用子栏目信息以及头条图片</a></li>
+                            <li><a href="/"><span>08-30</span>我是怎么评价自己的？</a></li>
+                            <li><a href="/"><span>08-30</span>html5 个人博客模板《蓝色畅想》</a></li>
+                            <li><a href="/"><span>08-30</span>【匆匆那些年】总结个人博客经历的这四年</a></li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <div class="news">
+                        <h2 class="newstitle"><span><a href="/">更多</a></span><b>设计教程</b></h2>
+                        <ul>
+                            <li><a href="/"><span>08-30</span>如何快速建立自己的个人博客网站</a></li>
+                            <li><a href="/"><span>08-30</span>个人博客，属于我的小世界！</a></li>
+                            <li><a href="/"><span>08-30</span>网易博客关闭，何不从此开始潇洒行走江湖！</a></li>
+                            <li><a href="/"><span>08-30</span>个人网站做好了，百度不收录怎么办？来，看看他们怎么做的。</a></li>
+                            <li><a href="/"><span>08-30</span>帝国cms 循环调用子栏目信息以及头条图片</a></li>
+                            <li><a href="/"><span>08-30</span>我是怎么评价自己的？</a></li>
+                            <li><a href="/"><span>08-30</span>html5 个人博客模板《蓝色畅想》</a></li>
+                            <li><a href="/"><span>08-30</span>【匆匆那些年】总结个人博客经历的这四年</a></li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <div class="news">
+                        <h2 class="newstitle"><span><a href="/">更多</a></span><b>设计心得</b></h2>
+                        <ul>
+                            <li><a href="/"><span>08-30</span>如何快速建立自己的个人博客网站</a></li>
+                            <li><a href="/"><span>08-30</span>个人博客，属于我的小世界！</a></li>
+                            <li><a href="/"><span>08-30</span>网易博客关闭，何不从此开始潇洒行走江湖！</a></li>
+                            <li><a href="/"><span>08-30</span>个人网站做好了，百度不收录怎么办？来，看看他们怎么做的。</a></li>
+                            <li><a href="/"><span>08-30</span>帝国cms 循环调用子栏目信息以及头条图片</a></li>
+                            <li><a href="/"><span>08-30</span>我是怎么评价自己的？</a></li>
+                            <li><a href="/"><span>08-30</span>html5 个人博客模板《蓝色畅想》</a></li>
+                            <li><a href="/"><span>08-30</span>【匆匆那些年】总结个人博客经历的这四年</a></li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            <div class="blank"></div>
+            <div class="links">
+                <h2 class="linktitle">合作伙伴</h2>
+                <ul class="link-pic">
+                    <li><a href="/"><img src="images/yqlj.png"></a></li>
+                    <li><a href="/"><img src="images/yqlj.png"></a></li>
+                    <li><a href="/"><img src="images/yqlj.png"></a></li>
+                    <li><a href="/"><img src="images/yqlj.png"></a></li>
+                    <li><a href="/"><img src="images/yqlj.png"></a></li>
+                </ul>
+                <ul class="link-text">
+                    <li><a href="http://www.yangqq.com">杨青个人博客</a></li>
+                    <li><a href="http://www.yangqq.com">杨青个人博客</a></li>
+                    <li><a href="http://www.yangqq.com">杨青个人博客</a></li>
+                    <li><a href="http://www.yangqq.com">杨青个人博客</a></li>
+                    <li><a href="http://www.yangqq.com">杨青个人博客</a></li>
                 </ul>
             </div>
-        </div>
-        <script type="text/javascript">
-            $(function () {
-
-                //demo示例一到四 通过lass调取，一句可以搞定，用于页面中可能有多个导航的情况
-                $('.wrapper').navbarscroll();
-            });
-        </script>
-        <div class="zhuagnxiu_fg">
-            <ul>
-                <li>
-                    <a href="/index.html#">
-                        <h1><img src="@(ViewBag.RootNote)/Static/images/zhuagnxiu_1.jpg"></h1>
-                        <h2>万景铭瑄城</h2>
-                    </a>
-                </li>
-                <li>
-                    <a href="/index.html#">
-                        <h1><img src="@(ViewBag.RootNote)/Static/images/zhuagnxiu_1.jpg"></h1>
-                        <h2>万景铭瑄城</h2>
-                    </a>
-                </li>
-                <li>
-                    <a href="/index.html#">
-                        <h1><img src="@(ViewBag.RootNote)/Static/images/zhuagnxiu_1.jpg"></h1>
-                        <h2>万景铭瑄城</h2>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="chakan_gend">
-            <a href="/index.html#">查看全部</a>
-        </div>
-        <!-- 间隔 -->
-        <div class="div_jiange"></div>
-
-        <!-- 标题3 -->
-        <div class="biaoti_yi">
-            <h1>VR展区</h1><span>优选各类施工视频供您欣赏！</span> <a href="/index.html#">更多+</a>
-        </div>
-        <div class="ship_zhans">
-            <ul>
-                <li>
-                    <a href="/index.html#">
-                        <div>
-                            <img src="@(ViewBag.RootNote)/Static/images/shig_ship.jpg">
-                            <p>立即播放</p>
-                        </div>
-                        <h2>远景国际城装修</h2>
-                    </a>
-                </li>
-                <li>
-                    <a href="/index.html#">
-                        <div>
-                            <img src="@(ViewBag.RootNote)/Static/images/shig_ship1.jpg">
-                            <p>立即播放</p>
-                        </div>
-                        <h2>远景国际城装修</h2>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!-- 间隔 -->
-        <div class="div_jiange"></div>
-        <!-- 标题4 -->
-        <div class="biaoti_yi">
-            <h1>资讯中心</h1><span>您要了解的装修知识这里都有！</span>
-        </div>
-        <div class="news_k">
-            <ul>
-                <li>
-                    <a href="/index.html#">
-                        <div class="text">
-                            <h1>如果挑选性价比高的软装好物！</h1>
-                            <p>装修违规物业如何处理装修的声音墙面鼓 空鼓 纤维布鼓 纤维布千姿百态装修师傅...</p>
-                        </div>
-                        <div class="img">
-                            <img src="@(ViewBag.RootNote)/Static/images/news_1.jpg">
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/index.html#">
-                        <div class="text">
-                            <h1>如果挑选性价比高的软装好物！</h1>
-                            <p>装修违规物业如何处理装修的声音墙面鼓 空鼓 纤维布鼓 纤维布千姿百态装修师傅...</p>
-                        </div>
-                        <div class="img">
-                            <img src="@(ViewBag.RootNote)/Static/images/news_2.jpg">
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="/index.html#">
-                        <div class="text">
-                            <h1>如果挑选性价比高的软装好物！</h1>
-                            <p>装修违规物业如何处理装修的声音墙面鼓 空鼓 纤维布鼓 纤维布千姿百态装修师傅...</p>
-                        </div>
-                        <div class="img">
-                            <img src="@(ViewBag.RootNote)/Static/images/news_3.jpg">
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="chakan_gd"><a href="/index.html#">更多资讯 &gt;</a></div>
-        <!-- 底部 -->
-        <div class="dibu_k">
-            <div class="text_dbu">
-                <p>公司地址：重庆市</p>
-                <p>备案号：渝ICP备xxxxxxx号</p>
-                <p>技术支持：FreshMan 三人行</p>
+            <div class="copyright">
+                <p>Copyright 2018  Inc. AllRights Reserved. Design by <a href="/">杨青个人博客</a> 蜀ICP备11002373号-1</p>
             </div>
         </div>
-        <!-- 导航 -->
-        <div class="dibu_daoh">
-            <ul>
-                <li>
-                    <a href="/index.html" class="no">
-                        <img src="@(ViewBag.RootNote)/Static/images/dibu_daoh_img1.png">
-                        <p>首页</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/index.html#">
-                        <img src="@(ViewBag.RootNote)/Static/images/dibu_daoh_img2.png">
-                        <p>产品搜索</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/index.html#">
-                        <img src="@(ViewBag.RootNote)/Static/images/dibu_daoh_img3.png">
-                        <p>电话咨询</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/zhuangx_baoj.html">
-                        <img src="@(ViewBag.RootNote)/Static/images/dibu_daoh_img4.png">
-                        <p>装修报价</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div style="height: 1.2rem;background: #191a1b;"></div>
-        <!-- 内容——外框 -->
-    </div>
-    <!-- 结束 -->
-
-
-
-    <script type="text/javascript">
-        //
-        var DaoHang = document.getElementsByClassName('daoh_shouy')[0];
-        var Sous = document.getElementsByClassName('shousuo')[0];
-        var aId = document.getElementById('neir_waik');
-
-        function daoh() {
-            if (DaoHang.style.display == 'none') {
-                DaoHang.style.display = 'block';
-                aId.style.display = 'none';
-            } else {
-                DaoHang.style.display = 'none';
-                aId.style.display = 'block';
-            }
-        }
-
-        function sos() {
-
-            if (Sous.style.display == 'none') {
-                Sous.style.display = 'block';
-                aId.style.display = 'none';
-            } else {
-                Sous.style.display = 'none';
-                aId.style.display = 'block';
-            }
-
-        }
-    </script>
-
+    </main>
+    <a href="#" class="cd-top cd-is-visible">Top</a>
 </body>
 </html>
+

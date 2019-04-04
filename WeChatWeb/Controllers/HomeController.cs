@@ -7,15 +7,7 @@ namespace WeChatWeb.Controllers
     [AuthorizeIgnore]
     public class HomeController : BaseController
     {
-        /// <summary>
-        ///  GET: Home
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+        #region [1、结婚请帖]
         /// <summary>
         /// 获取信息
         /// </summary>
@@ -61,5 +53,19 @@ namespace WeChatWeb.Controllers
             new HunshaMessageServer().InsertMessage(info);
             return Json(1, JsonRequestBehavior.AllowGet);
         }
+        #endregion
+
+        #region [2、博客首页]
+
+        /// <summary>
+        ///  GET: Home
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        #endregion
     }
 }

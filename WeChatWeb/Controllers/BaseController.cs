@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
+using FreshCommonUtility.Configure;
 using Newtonsoft.Json;
 using WeChatCommon.Cookie;
 using WeChatCommon.CustomerAttribute;
@@ -182,6 +184,25 @@ namespace WeChatWeb.Controllers
                         : WeChatConstModel.WeiXinDetailUserOAuth2Url, changeEncodeUrl);
                 filterContext.Result = new RedirectResult(url);
             }
+        }
+
+        /// <summary>
+        /// 重写初始化方法
+        /// </summary>
+        /// <param name="requestContext"></param>
+        protected override void Initialize(RequestContext requestContext)
+        {
+            base.Initialize(requestContext);
+            InitializeStaticResource();
+
+        }
+
+        /// <summary>
+        /// 设置全局变量
+        /// </summary>
+        private void InitializeStaticResource()
+        {
+            ViewBag.RootNode = AppConfigurationHelper.GetString("ReferenceKey.RootNode") ?? string.Empty;
         }
     }
 }

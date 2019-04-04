@@ -230,6 +230,7 @@
     <Compile Include="App_Start\HunshaMessageServer.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\Decorate\DecorateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WeChatAuth\WeChatAuthController.cs" />
     <Compile Include="Filter\PageAuthFilter.cs" />
@@ -248,7 +249,7 @@
     <Content Include="Static\js\jquery-1.4.4.min.js" />
     <Content Include="Static\js\navbarscroll.js" />
     <Content Include="Static\js\swiper.min.js" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Decorate\Index.cshtml" />
     <Content Include="Views\Home\QPage.cshtml" />
     <Content Include="Static\009\css\Y_hanyi_dieyu.woff" />
     <None Include="Web.Debug.config">
