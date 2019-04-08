@@ -1,6 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using WeChatCommon.Configure;
 using WeChatCommon.CustomerAttribute;
+using WeChatService.ContentService;
 
 namespace WeChatWeb.Controllers
 {
@@ -66,6 +68,30 @@ namespace WeChatWeb.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 博客列表
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public ActionResult BlogHistory(int page = 1, int pageSize = 10)
+        {
+            var server = new ContentService();
+            var contentList = server.GetList(null, null, null, "", null, page, pageSize, out var total);
+            ViewBag.Total = total;
+            ViewBag.PageCount = total / pageSize + (total % pageSize > 0 ? 1 : 0);
+            return View(contentList);
+        }
+
+        /// <summary>
+        /// 博客详情
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult BlogDetail(int id)
+        {
+            return View();
+        }
         #endregion
     }
 }

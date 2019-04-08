@@ -202,7 +202,7 @@ namespace WeChatWeb.Controllers
         /// </summary>
         private void InitializeStaticResource()
         {
-            ViewBag.RootNode = AppConfigurationHelper.GetString("ReferenceKey.RootNode") ?? string.Empty;
+            ViewBag.RootNode = AppConfigurationHelper.GetString("ReferenceKey.RootNode","") ?? string.Empty;
         }
     }
 }

@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>@(string.IsNullOrEmpty(ViewBag.Title) ? "FreshMan个人博客" : ViewBag.Title)</title>
+    <meta name="keywords" content="FreshMan,博客,秦小白,技术狗,FreshMan是谁" />
+    <meta name="description" content="FreshMan个人博客网站" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="@(ViewBag.RootNode)/Content/Blog/css/index.css" rel="stylesheet">
+    <script src="@(ViewBag.RootNode)/Content/Blog/js/jquery.min.js"></script>
+    <script src="@(ViewBag.RootNode)/Content/Blog/js/comm.js"></script>
+    <!--[if lt IE 9]>
+    <script src="@(ViewBag.RootNode)/Content/Blog/js/modernizr.js"></script>
+    <![endif]-->
+    @RenderSection("css", false)
+</head>
+<body>
+    <!-- 页面内容块 -->
+    <input type="hidden" id="hidRootNode" value="@ViewBag.RootNode" />
+    <header>
+        <div class="logo">FreshMan个人博客</div>
+        <div class="top-nav">
+            <h2 id="mnavh"><span class="navicon"></span></h2>
+            <ul id="nav">
+                <li><a href="@(ViewBag.RootNode)/Home/Index">网站首页</a></li>
+                <li><a href="@(ViewBag.RootNode)/Home/BlogHistory">个人博客日记</a></li>
+                <li><a href="@(ViewBag.RootNode)/Home/BlogDetail?id=1">开源专区</a></li>
+                <li><a href="/2">留言</a></li>
+            </ul>
+        </div>
+    </header>
+    <aside class="side">
+        <div class="about">
+            <i><a href="/"><img src="@(ViewBag.RootNode)/Content/Blog/images/avatar.jpg"></a></i>
+            <p>FreshMan，一个90后屌丝！14年入行。一直潜心研究web前端技术，一边工作一边积累经验，分享一些个人学习经验，遇到的问题，不懂的问题，不求教会众生，只求不犯相同错误。</p>
+        </div>
+        <div class="weixin">
+            <img src="@(ViewBag.RootNode)/Content/Blog/images/wx.jpg" />
+            <p>关注我 么么哒！</p>
+        </div>
+    </aside>
+    <main>
+        <div class="main-content">
+            @RenderBody()
+            <div class="blank"></div>
+            <div class="copyright">
+                <p>Copyright 2019  Inc. AllRights Reserved. Design by <a href="/">FreshMan个人博客</a>渝ICP备18017004号-1</p>
+            </div>
+        </div>
+    </main>
+    <a href="#" class="cd-top cd-is-visible">Top</a>
+    @RenderSection("Script", false)
+</body>
+</html>
+

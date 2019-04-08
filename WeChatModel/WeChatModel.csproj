@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,7 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\ConfigModel.cs" />
+    <Compile Include="DatabaseModel\Syscontent.cs" />
     <Compile Include="Enum\EnumBusinessPermission.cs" />
+    <Compile Include="Enum\FlagEnum.cs" />
     <Compile Include="Message\ErrorMessage.cs" />
     <Compile Include="WeChatUser\WeChatSystemUserInfo.cs" />
     <Compile Include="WeChatUser\WeiXinUserInfo.cs" />
