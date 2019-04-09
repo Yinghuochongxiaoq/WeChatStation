@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>@(string.IsNullOrEmpty(ViewBag.Title) ? "FreshMan个人博客" : ViewBag.Title)</title>
-    <meta name="keywords" content="FreshMan,博客,秦小白,技术狗,FreshMan是谁" />
+    <meta name="keywords" content='@(string.IsNullOrEmpty(ViewBag.KeyWords)?"FreshMan,博客,秦小白,技术狗,FreshMan是谁":ViewBag.KeyWords)' />
     <meta name="description" content="FreshMan个人博客网站" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="@(ViewBag.RootNode)/Content/Blog/css/index.css" rel="stylesheet">
@@ -24,8 +24,8 @@
             <ul id="nav">
                 <li><a href="@(ViewBag.RootNode)/Home/Index">网站首页</a></li>
                 <li><a href="@(ViewBag.RootNode)/Home/BlogHistory">个人博客日记</a></li>
-                <li><a href="@(ViewBag.RootNode)/Home/BlogDetail?id=1">开源专区</a></li>
-                <li><a href="/2">留言</a></li>
+                <li><a href="@(ViewBag.RootNode)/Home/OpenSourceArea">开源专区</a></li>
+                <li><a href="/0">留言</a></li>
             </ul>
         </div>
     </header>

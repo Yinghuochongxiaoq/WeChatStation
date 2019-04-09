@@ -1,11 +1,10 @@
 ﻿@model List<WeChatModel.DatabaseModel.Syscontent>
 
 @{
-    ViewBag.Title = "个人博客日记";
     Layout = "~/Views/Share/_Layout.cshtml";
 }
 
-<div class="welcome">您现在的位置是：首页>个人博客日记</div>
+<div class="welcome">您现在的位置是：首页>@ViewBag.Title</div>
 <div class="blogbox">
     <div class="bloglist">
         <ul>
@@ -15,7 +14,10 @@
                 {
                     <li>
                         <h2><a href="@(ViewBag.RootNote)/Home/BlogDetail?id=@(syscontent.Id)">@syscontent.Title</a></h2>
-                        <i><a href="/"><img src="http://www.yangqq.com/d/file/jstt/bj/2018-06-29/3f0b6da48a6fd4e626a021ff7bd0d74f.jpg"></a></i>
+                        @if (!string.IsNullOrEmpty(syscontent.ContentDisImage))
+                        {
+                            <i><a href="/"><img src="@(syscontent.ContentDisImage)"></a></i>
+                        }
                         <p class="blogtext">@syscontent.Introduction</p>
                         <p class="bloginfo"><span>FreshMan</span><span>@syscontent.CreateTime.ToString("yyyy年MM月dd日 HH:mm")</span><span>@syscontent.ContentFlag</span></p>
                     </li>

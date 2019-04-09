@@ -1,44 +1,46 @@
-﻿@model dynamic
+﻿@model WeChatModel.DatabaseModel.Syscontent
 
 @{
-    ViewBag.Title = "博客详情";
-    Layout = "~/Views/Share/_Layout.cshtml";
+    ViewBag.Title = string.IsNullOrEmpty(Model.Title) ? "博客详情" : Model.Title;
+    ViewBag.KeyWords = Model.ContentFlag;
+    Layout = ViewBag.RootNote + "/Views/Share/_Layout.cshtml";
 }
 
 <div class="welcome">您现在的位置是：首页>博客详情</div>
 <div class="blogbox">
     <div class="contentbox">
-        <h2 class="contitle">【匆匆那些年】总结个人博客经历的这四年…</h2>
-        <p class="bloginfo"><span>杨青</span><span>2018年3月19日</span><span><a href="/">个人博客模板</a></span></p>
-        <p class="jianjie"><b>简介</b>博客从最初的域名购买，到上线已经有四年的时间了，这四年的时间，有笑过，有怨过，有悔过，有执着过，也有放弃过…但最后还是坚持了下来，时间如此匆匆，等再回过头已来不及去弥补...</p>
+        <h2 class="contitle">@Model.Title</h2>
+        <p class="bloginfo">
+            <span>FreshMan</span>
+            <span>@Model.CreateTime.ToString("yyyy年MM月dd日 HH:mm")</span>
+            @if (!string.IsNullOrEmpty(Model.ContentFlag))
+            {
+                <span>@Model.ContentFlag</span>
+            }
+        </p>
+        <p class="jianjie"><b>简介</b>@Model.Introduction</p>
         <div class="entry">
-            <p>博客从最初的域名购买，到上线已经有四年的时间了，这四年的时间，有笑过，有怨过，有悔过，有执着过，也有放弃过…但最后还是坚持了下来，时间如此匆匆，等再回过头已来不及去弥补…</p>
-            <p><strong>新增那些出色的功能：</strong></p>
-            <p><img src="http://www.yangqq.com/d/file/jstt/bj/2015-01-09/bb9e1b25215426d6c375e453c756f136.jpg"></p>
-            <p>新功能：</p>
-            <p>1、支持4K高分辨率，在4K分辨率的显示器上可以获得佳效果。</p>
-            <p>2、PDF这个功能加强，CAD2018生成的PDF文件可以存储为几何对象。</p>
-            <p>3、视觉效果加强，优化填充和显示性能。</p>
-            <p>4、图形卡的反走样和高质量图形可以相互独立控制。</p>
-            <p>5、外部参照路径改为为&lt;相对&gt;，功能变得更强大。</p>
-            <p>6、更新DWG格式，打开和保存速度更快。</p>
-            <p>AutoCAD2018官方破解中文版64位安装教程：</p>
-            <p>1、下载AutoCAD2018官方破解中文版64位的软件，然后解压。</p>
-            <p>2、根据提示安装完成。</p>
-            <p>3、打开AutoCAD2018输入序列号和密钥（666-69696969,001J1）</p>
-            <p>4、打开注册机开始激活</p>
-            <p>5、把申请号粘贴到注册机里面生成激活码，把激活码粘贴到AutoCAD2018激活界面里面。</p>
-            <p>6、点击下一步，激活完成</p>
+            @Html.Raw(Model.Content)
+        </div>
+        @if (!string.IsNullOrEmpty(Model.AttachmentFile))
+        {
+            <div class="down">
+                <p><strong>下载地址：</strong></p>
+                <p>文件名称：@(Model.AttachmentFileName)</p>
+                <p>文件大小：@(Model.AttachmentFileSize)KB</p>
+                <p>更新日期：@(Model.CreateTime.ToString("yyyy/MM/dd"))</p>
+                <div class="downlink">
+                    <strong>
+                        <a class="downbtn" title="@(Model.AttachmentFileName)" href="@(Model.AttachmentFile)" target="_blank">点击下载</a>
+                    </strong>
+                </div>
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(Model.ContentSource))
+        {
+            <div class="share">文章来源： @Model.ContentSource </div>
+        }
 
-        </div>
-        <div class="down">
-            <p><strong>下载地址：</strong></p>
-            <p>文件名称：Autocad2018</p>
-            <p>文件大小：2.29G</p>
-            <p>更新日期：2018/3/19</p>
-            <div class="downlink"><strong><a class="downbtn" title="Autocad2018" href="/" target="_blank">点击下载</a></strong> </div>
-        </div>
-        <div class="share"> 分享 </div>
         <div class="nextinfo">
             <p>上一篇：<a href="/download/f/881.html">纯文字个人博客模板《时尚黑》</a></p>
             <p>下一篇：<a href="/download/f/886.html">html5 个人博客模板《蓝色畅想》</a></p>

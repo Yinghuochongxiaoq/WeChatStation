@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using WeChatCommon.Configure;
 using WeChatCommon.CustomerAttribute;
+using WeChatModel.DatabaseModel;
 using WeChatService.ContentService;
+using WeChatService.SysDicService;
 
 namespace WeChatWeb.Controllers
 {
@@ -73,14 +76,50 @@ namespace WeChatWeb.Controllers
         /// </summary>
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
+        /// <param name="type"></param>
         /// <returns></returns>
-        public ActionResult BlogHistory(int page = 1, int pageSize = 10)
+        public ActionResult BlogHistory(int page = 1, int pageSize = 10, string type = null)
         {
+            if (string.IsNullOrEmpty(type))
+            {
+                var openSourceDics = new SysDicService().GetDicByValue("Technology");
+                type = openSourceDics.FirstOrDefault()?.Id;
+            }
+            if (string.IsNullOrEmpty(type))
+            {
+                ViewBag.Total = 0;
+                ViewBag.PageCount = 0;
+                return View(new List<Syscontent>());
+            }
             var server = new ContentService();
-            var contentList = server.GetList(null, null, null, "", null, page, pageSize, out var total);
+            var contentList = server.GetList(null, null, null, type, null, page, pageSize, out var total);
             ViewBag.Total = total;
+            ViewBag.Title = "个人博客日记";
             ViewBag.PageCount = total / pageSize + (total % pageSize > 0 ? 1 : 0);
             return View(contentList);
+        }
+
+        /// <summary>
+        /// 开源专区
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public ActionResult OpenSourceArea(int page = 1, int pageSize = 10)
+        {
+            ViewBag.Title = "开源专区";
+            var openSourceDics = new SysDicService().GetDicByValue("OpenSourceArea");
+            if (openSourceDics == null || openSourceDics.Count < 1)
+            {
+                ViewBag.Total = 0;
+                ViewBag.PageCount = 0;
+                return View("BlogHistory", new List<Syscontent>());
+            }
+            var server = new ContentService();
+            var contentList = server.GetList(null, null, null, openSourceDics.FirstOrDefault()?.Id, null, page, pageSize, out var total);
+            ViewBag.Total = total;
+            ViewBag.PageCount = total / pageSize + (total % pageSize > 0 ? 1 : 0);
+            return View("BlogHistory", contentList);
         }
 
         /// <summary>
@@ -90,7 +129,9 @@ namespace WeChatWeb.Controllers
         /// <returns></returns>
         public ActionResult BlogDetail(int id)
         {
-            return View();
+            var server = new ContentService();
+            var model = server.GetContentModel(id);
+            return View(model);
         }
         #endregion
     }
