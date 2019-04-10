@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -72,6 +73,51 @@ namespace WeChatCommon.WebHelper
             var stringValue = context.Request.QueryString[key];
             if (string.IsNullOrEmpty(stringValue)) stringValue = context.Request.Form[key];
             return !DateTime.TryParse(stringValue, out value) ? new DateTime(1900, 1, 1) : value;
+        }
+
+        /// <summary>
+        /// 获取ip地址
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public static string GetIp(this HttpContextBase context)
+        {
+            string ipv4 = String.Empty;
+            if (context.Request.UserHostAddress != null)
+                foreach (IPAddress ipa in Dns.GetHostAddresses(context.Request.UserHostAddress))
+                {
+                    if (ipa.AddressFamily.ToString() == "InterNetwork")
+                    {
+                        ipv4 = ipa.ToString();
+                        break;
+                    }
+                }
+
+            if (ipv4 != String.Empty)
+            {
+                return ipv4;
+            }
+            foreach (IPAddress ipa in Dns.GetHostAddresses(Dns.GetHostName()))
+            {
+                if (ipa.AddressFamily.ToString() == "InterNetwork")
+                {
+                    ipv4 = ipa.ToString();
+                    break;
+                }
+            }
+            return ipv4;
+        }
+
+        /// <summary>
+        /// 获取浏览器信息
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public static string GetBrowserInfo(this HttpContextBase context)
+        {
+            var browser = context.Request.Browser.Browser + context.Request.Browser.Version;//获取客户端浏览器的完整版本号   
+            var plat = context.Request.Browser.Platform;//获取客户端使用平台的名字
+            return plat + "  " + browser;
         }
     }
 }

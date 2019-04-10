@@ -147,5 +147,25 @@ namespace WeChatDataAccess
                 return conn.GetList<Syscontent>(" where Id in @Ids ", new { Ids = listContentIds })?.ToList();
             }
         }
+
+        /// <summary>
+        /// 获取前后文章
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public List<Syscontent> GetPreNextContent(long id)
+        {
+            if (id < 1) return null;
+            var result = new List<Syscontent>();
+            using (var conn = SqlConnectionHelper.GetOpenConnection())
+            {
+                var pre = conn.GetListPaged<Syscontent>(1, 1, " where Id<@Id ", " CreateTime desc ", new { Id = id })?.ToList().FirstOrDefault();
+                var next = conn.GetListPaged<Syscontent>(1, 1, " where Id>@Id ", " CreateTime asc ", new { Id = id })?.ToList().FirstOrDefault();
+                if (pre != null) result.Add(pre);
+                if (next != null) result.Add(next);
+            }
+
+            return result;
+        }
     }
 }

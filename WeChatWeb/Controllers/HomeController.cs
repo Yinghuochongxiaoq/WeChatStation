@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Web;
 using System.Web.Mvc;
 using WeChatCommon.Configure;
 using WeChatCommon.CustomerAttribute;
+using WeChatCommon.WebHelper;
 using WeChatModel.DatabaseModel;
 using WeChatService.ContentService;
-using WeChatService.SysDicService;
 
 namespace WeChatWeb.Controllers
 {
@@ -148,6 +149,33 @@ namespace WeChatWeb.Controllers
         {
             var server = new ContentService();
             var model = server.GetContentModel(id);
+            var topNoList = server.GetTopNoContent(1, 20);
+            ViewBag.TopNoList = topNoList;
+            var preNextList = server.GetPreNextContent(id);
+            ViewBag.Pre = null;
+            ViewBag.Next = null;
+            if (preNextList != null && preNextList.Count > 0)
+            {
+                preNextList.ForEach(f =>
+                {
+                    if (f.CreateTime > model.CreateTime)
+                    {
+                        ViewBag.Next = f;
+                    }
+                    else
+                    {
+                        ViewBag.Pre = f;
+                    }
+                });
+            }
+            var viewModel = new SyscontentviewinfoModel
+            {
+                Browser = HttpContext.GetBrowserInfo(),
+                ContentId = id,
+                CreateTime = DateTime.Now,
+                Ip = HttpContext.GetIp()
+            };
+            server.AddViewinfo(viewModel);
             return View(model);
         }
         #endregion

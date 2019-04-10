@@ -79,5 +79,25 @@ namespace WeChatService.ContentService
         {
             return _dataAccess.GetTopNoContent(page, pageSize);
         }
+
+        /// <summary>
+        /// 获取上一篇，下一篇
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public List<Syscontent> GetPreNextContent(long id)
+        {
+            if (id < 1) return null;
+            return _dataAccess.GetPreNextContent(id);
+        }
+
+        /// <summary>
+        /// 保存点击数
+        /// </summary>
+        /// <param name="model"></param>
+        public void AddViewinfo(SyscontentviewinfoModel model)
+        {
+            new SyscontentviewinfoData().SaveMenuModel(model);
+        }
     }
 }
