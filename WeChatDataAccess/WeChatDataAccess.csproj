@@ -98,6 +98,7 @@
   <ItemGroup>
     <Compile Include="SysContentData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SyscontentviewinfoData.cs" />
     <Compile Include="SysDicData.cs" />
   </ItemGroup>
   <ItemGroup>

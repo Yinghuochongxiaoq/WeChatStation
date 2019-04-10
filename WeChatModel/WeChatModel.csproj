@@ -43,7 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\ConfigModel.cs" />
+    <Compile Include="DatabaseModel\StatisticsViewModel.cs" />
     <Compile Include="DatabaseModel\Syscontent.cs" />
+    <Compile Include="DatabaseModel\SyscontentviewinfoModel.cs" />
     <Compile Include="DatabaseModel\SysdictModel.cs" />
     <Compile Include="Enum\EnumBusinessPermission.cs" />
     <Compile Include="Enum\FlagEnum.cs" />

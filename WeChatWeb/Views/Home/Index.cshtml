@@ -1,7 +1,11 @@
-﻿@model dynamic
+﻿@using WeChatModel.DatabaseModel
+@model dynamic
 @{
     Layout = "/Views/Share/_Layout.cshtml";
     ViewBag.Title = "FreshMan个人博客";
+    var technologyList = ViewBag.TechnologyList != null ? (List<Syscontent>)ViewBag.TechnologyList : null;
+    var lifeFeelList = ViewBag.LifeFeelList != null ? (List<Syscontent>)ViewBag.LifeFeelList : null;
+    var openSourceList = ViewBag.OpenSourceList != null ? (List<Syscontent>)ViewBag.OpenSourceList : null;
 }
 
 
@@ -67,50 +71,49 @@
     <!--box end-->
 </div>
 <div class="newsbox">
-    <section>
-        <div class="news">
-            <h2 class="newstitle"><span><a href="/">更多</a></span><b>个人博客日记</b></h2>
-            <ul>
-                <li><a href="/"><span>08-30</span>如何快速建立自己的个人博客网站</a></li>
-                <li><a href="/"><span>08-30</span>个人博客，属于我的小世界！</a></li>
-                <li><a href="/"><span>08-30</span>网易博客关闭，何不从此开始潇洒行走江湖！</a></li>
-                <li><a href="/"><span>08-30</span>个人网站做好了，百度不收录怎么办？来，看看他们怎么做的。</a></li>
-                <li><a href="/"><span>08-30</span>帝国cms 循环调用子栏目信息以及头条图片</a></li>
-                <li><a href="/"><span>08-30</span>我是怎么评价自己的？</a></li>
-                <li><a href="/"><span>08-30</span>html5 个人博客模板《蓝色畅想》</a></li>
-                <li><a href="/"><span>08-30</span>【匆匆那些年】总结个人博客经历的这四年</a></li>
-            </ul>
-        </div>
-    </section>
-    <section>
-        <div class="news">
-            <h2 class="newstitle"><span><a href="/">更多</a></span><b>开源专区</b></h2>
-            <ul>
-                <li><a href="/"><span>08-30</span>如何快速建立自己的个人博客网站</a></li>
-                <li><a href="/"><span>08-30</span>个人博客，属于我的小世界！</a></li>
-                <li><a href="/"><span>08-30</span>网易博客关闭，何不从此开始潇洒行走江湖！</a></li>
-                <li><a href="/"><span>08-30</span>个人网站做好了，百度不收录怎么办？来，看看他们怎么做的。</a></li>
-                <li><a href="/"><span>08-30</span>帝国cms 循环调用子栏目信息以及头条图片</a></li>
-                <li><a href="/"><span>08-30</span>我是怎么评价自己的？</a></li>
-                <li><a href="/"><span>08-30</span>html5 个人博客模板《蓝色畅想》</a></li>
-                <li><a href="/"><span>08-30</span>【匆匆那些年】总结个人博客经历的这四年</a></li>
-            </ul>
-        </div>
-    </section>
-    <section>
-        <div class="news">
-            <h2 class="newstitle"><span><a href="/">更多</a></span><b>生活感悟</b></h2>
-            <ul>
-                <li><a href="/"><span>08-30</span>如何快速建立自己的个人博客网站</a></li>
-                <li><a href="/"><span>08-30</span>个人博客，属于我的小世界！</a></li>
-                <li><a href="/"><span>08-30</span>网易博客关闭，何不从此开始潇洒行走江湖！</a></li>
-                <li><a href="/"><span>08-30</span>个人网站做好了，百度不收录怎么办？来，看看他们怎么做的。</a></li>
-                <li><a href="/"><span>08-30</span>帝国cms 循环调用子栏目信息以及头条图片</a></li>
-                <li><a href="/"><span>08-30</span>我是怎么评价自己的？</a></li>
-                <li><a href="/"><span>08-30</span>html5 个人博客模板《蓝色畅想》</a></li>
-                <li><a href="/"><span>08-30</span>【匆匆那些年】总结个人博客经历的这四年</a></li>
-            </ul>
-        </div>
-    </section>
+    @if (technologyList != null && technologyList.Count > 0)
+    {
+        <section>
+            <div class="news">
+                <h2 class="newstitle"><span><a href="@(ViewBag.RootNode)/Home/BlogHistory">更多</a></span><b>个人博客日记</b></h2>
+                <ul>
+                    @foreach (var technology in technologyList)
+                    {
+                        <li><a href="@(ViewBag.RootNote)/Home/BlogDetail?id=@(technology.Id)"><span>@(technology.CreateTime.ToString("yyyy/MM/dd"))</span>@technology.Title</a></li>
+                    }
+                </ul>
+            </div>
+        </section>
+    }
+
+    @if (openSourceList != null && openSourceList.Count > 0)
+    {
+        <section>
+            <div class="news">
+                <h2 class="newstitle"><span><a href="@(ViewBag.RootNode)/Home/OpenSourceArea">更多</a></span><b>开源专区</b></h2>
+                <ul>
+                    @foreach (var openSource in openSourceList)
+                    {
+                        <li><a href="@(ViewBag.RootNote)/Home/BlogDetail?id=@(openSource.Id)"><span>@(openSource.CreateTime.ToString("yyyy/MM/dd"))</span>@openSource.Title</a></li>
+                    }
+                </ul>
+            </div>
+        </section>
+    }
+
+    @if (lifeFeelList != null && lifeFeelList.Count > 0)
+    {
+        <section>
+            <div class="news">
+                <h2 class="newstitle"><span><a href="@(ViewBag.RootNode)/Home/Life">更多</a></span><b>生活感悟</b></h2>
+                <ul>
+                    @foreach (var lifeFeel in lifeFeelList)
+                    {
+                        <li><a href="@(ViewBag.RootNote)/Home/BlogDetail?id=@(lifeFeel.Id)"><span>@(lifeFeel.CreateTime.ToString("yyyy/MM/dd"))</span>@lifeFeel.Title</a></li>
+                    }
+                </ul>
+            </div>
+        </section>
+    }
 </div>
 

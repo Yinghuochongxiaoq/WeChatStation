@@ -68,6 +68,9 @@ namespace WeChatWeb.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
+            ViewBag.TechnologyList = GetTypeContents("Technology", out _);
+            ViewBag.LifeFeelList = GetTypeContents("FeelLife", out _);
+            ViewBag.OpenSourceList = GetTypeContents("OpenSourceArea", out _);
             return View();
         }
 
@@ -80,21 +83,11 @@ namespace WeChatWeb.Controllers
         /// <returns></returns>
         public ActionResult BlogHistory(int page = 1, int pageSize = 10, string type = null)
         {
-            if (string.IsNullOrEmpty(type))
-            {
-                var openSourceDics = new SysDicService().GetDicByValue("Technology");
-                type = openSourceDics.FirstOrDefault()?.Id;
-            }
-            if (string.IsNullOrEmpty(type))
-            {
-                ViewBag.Total = 0;
-                ViewBag.PageCount = 0;
-                return View(new List<Syscontent>());
-            }
-            var server = new ContentService();
-            var contentList = server.GetList(null, null, null, type, null, page, pageSize, out var total);
-            ViewBag.Total = total;
             ViewBag.Title = "个人博客日记";
+            var contentList = GetTypeContents("Technology", out var total, page, pageSize);
+            var topNoList = new ContentService().GetTopNoContent(1, 20);
+            ViewBag.TopNoList = topNoList;
+            ViewBag.Total = total;
             ViewBag.PageCount = total / pageSize + (total % pageSize > 0 ? 1 : 0);
             return View(contentList);
         }
@@ -108,18 +101,42 @@ namespace WeChatWeb.Controllers
         public ActionResult OpenSourceArea(int page = 1, int pageSize = 10)
         {
             ViewBag.Title = "开源专区";
-            var openSourceDics = new SysDicService().GetDicByValue("OpenSourceArea");
-            if (openSourceDics == null || openSourceDics.Count < 1)
-            {
-                ViewBag.Total = 0;
-                ViewBag.PageCount = 0;
-                return View("BlogHistory", new List<Syscontent>());
-            }
-            var server = new ContentService();
-            var contentList = server.GetList(null, null, null, openSourceDics.FirstOrDefault()?.Id, null, page, pageSize, out var total);
+            var contentList = GetTypeContents("OpenSourceArea", out var total, page, pageSize);
+            var topNoList = new ContentService().GetTopNoContent(1, 20);
+            ViewBag.TopNoList = topNoList;
             ViewBag.Total = total;
             ViewBag.PageCount = total / pageSize + (total % pageSize > 0 ? 1 : 0);
             return View("BlogHistory", contentList);
+        }
+
+        /// <summary>
+        /// 生活
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public ActionResult Life(int page = 1, int pageSize = 10)
+        {
+            ViewBag.Title = "感悟不断，生活常在";
+            var contentList = GetTypeContents("FeelLife", out var total, page, pageSize);
+            var topNoList = new ContentService().GetTopNoContent(1, 20);
+            ViewBag.TopNoList = topNoList;
+            ViewBag.Total = total;
+            ViewBag.PageCount = total / pageSize + (total % pageSize > 0 ? 1 : 0);
+            return View("BlogHistory", contentList);
+        }
+
+        /// <summary>
+        /// 获取文章列表
+        /// </summary>
+        /// <param name="dicValue"></param>
+        /// <param name="count">总量</param>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        private List<Syscontent> GetTypeContents(string dicValue, out int count, int page = 1, int pageSize = 10)
+        {
+            return new ContentService().GetTypeContents(dicValue, out count, page, pageSize);
         }
 
         /// <summary>

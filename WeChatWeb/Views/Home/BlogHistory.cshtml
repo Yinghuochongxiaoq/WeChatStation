@@ -1,7 +1,9 @@
-﻿@model List<WeChatModel.DatabaseModel.Syscontent>
+﻿@using WeChatModel.DatabaseModel
+@model List<WeChatModel.DatabaseModel.Syscontent>
 
 @{
     Layout = "~/Views/Share/_Layout.cshtml";
+    var topNoList = ViewBag.TopNoList != null ? (List<Syscontent>)ViewBag.TopNoList : null;
 }
 
 <div class="welcome">您现在的位置是：首页>@ViewBag.Title</div>
@@ -38,43 +40,16 @@
     </div>
 </div>
 <div class="rside">
-    <div class="news">
-        <h2 class="newstitle"><b>文章排行</b></h2>
-        <ul>
-            <li><a href="/"><span>08-30</span>如何快速建立自己的个人博客网站</a></li>
-            <li><a href="/"><span>08-30</span>个人博客，属于我的小世界！</a></li>
-            <li><a href="/"><span>08-30</span>网易博客关闭，何不从此开始潇洒行走江湖！</a></li>
-            <li><a href="/"><span>08-30</span>个人网站做好了，百度不收录怎么办？来，看看他们怎么做的。</a></li>
-            <li><a href="/"><span>08-30</span>帝国cms 循环调用子栏目信息以及头条图片</a></li>
-            <li><a href="/"><span>08-30</span>我是怎么评价自己的？</a></li>
-            <li><a href="/"><span>08-30</span>html5 个人博客模板《蓝色畅想》</a></li>
-            <li><a href="/"><span>08-30</span>【匆匆那些年】总结个人博客经历的这四年</a></li>
-        </ul>
-    </div>
-    <div class="news">
-        <h2 class="newstitle"><b>本栏推荐</b></h2>
-        <ul>
-            <li><a href="/"><span>08-30</span>如何快速建立自己的个人博客网站</a></li>
-            <li><a href="/"><span>08-30</span>个人博客，属于我的小世界！</a></li>
-            <li><a href="/"><span>08-30</span>网易博客关闭，何不从此开始潇洒行走江湖！</a></li>
-            <li><a href="/"><span>08-30</span>个人网站做好了，百度不收录怎么办？来，看看他们怎么做的。</a></li>
-            <li><a href="/"><span>08-30</span>帝国cms 循环调用子栏目信息以及头条图片</a></li>
-            <li><a href="/"><span>08-30</span>我是怎么评价自己的？</a></li>
-            <li><a href="/"><span>08-30</span>html5 个人博客模板《蓝色畅想》</a></li>
-            <li><a href="/"><span>08-30</span>【匆匆那些年】总结个人博客经历的这四年</a></li>
-        </ul>
-    </div>
-    <div class="news">
-        <h2 class="newstitle"><b>栏目更新</b></h2>
-        <ul>
-            <li><a href="/"><span>08-30</span>如何快速建立自己的个人博客网站</a></li>
-            <li><a href="/"><span>08-30</span>个人博客，属于我的小世界！</a></li>
-            <li><a href="/"><span>08-30</span>网易博客关闭，何不从此开始潇洒行走江湖！</a></li>
-            <li><a href="/"><span>08-30</span>个人网站做好了，百度不收录怎么办？来，看看他们怎么做的。</a></li>
-            <li><a href="/"><span>08-30</span>帝国cms 循环调用子栏目信息以及头条图片</a></li>
-            <li><a href="/"><span>08-30</span>我是怎么评价自己的？</a></li>
-            <li><a href="/"><span>08-30</span>html5 个人博客模板《蓝色畅想》</a></li>
-            <li><a href="/"><span>08-30</span>【匆匆那些年】总结个人博客经历的这四年</a></li>
-        </ul>
-    </div>
+    @if (topNoList != null && topNoList.Count > 0)
+    {
+        <div class="news">
+            <h2 class="newstitle"><b>文章排行</b></h2>
+            <ul>
+                @foreach (var syscontent in topNoList)
+                {
+                    <li><a href="@(ViewBag.RootNote)/Home/BlogDetail?id=@(syscontent.Id)"><span>@syscontent.CreateTime.ToString("MM/dd")</span>@syscontent.Title</a></li>
+                }
+            </ul>
+        </div>
+    }
 </div>

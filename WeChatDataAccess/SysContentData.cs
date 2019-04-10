@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Dapper;
 using FreshCommonUtility.Dapper;
 using FreshCommonUtility.SqlHelper;
 using WeChatModel.DatabaseModel;
@@ -120,6 +121,30 @@ namespace WeChatDataAccess
             using (var conn = SqlConnectionHelper.GetOpenConnection())
             {
                 return conn.RecordCount<Syscontent>(where.ToString(), param);
+            }
+        }
+
+        /// <summary>
+        /// 获取前No个记录数
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public List<Syscontent> GetTopNoContent(int page, int pageSize)
+        {
+            if (page < 1) page = 1;
+            if (pageSize < 1) pageSize = 10;
+            var viewInfoData = new SyscontentviewinfoData();
+            var dataViews = viewInfoData.GetTopNoContentIds(page, pageSize);
+            if (dataViews == null || dataViews.Count < 1)
+            {
+                return GetModels(null, null, null, null, null, page, pageSize);
+            }
+
+            var listContentIds = dataViews.Select(f => f.ContentId);
+            using (var conn = SqlConnectionHelper.GetOpenConnection())
+            {
+                return conn.GetList<Syscontent>(" where Id in @Ids ", new { Ids = listContentIds })?.ToList();
             }
         }
     }
