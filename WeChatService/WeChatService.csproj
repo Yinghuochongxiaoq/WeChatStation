@@ -110,6 +110,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Advertise\SysAdvertiseService.cs" />
     <Compile Include="ContentService\ContentService.cs" />
     <Compile Include="DbLinkTestService.cs" />
     <Compile Include="LocationService.cs" />

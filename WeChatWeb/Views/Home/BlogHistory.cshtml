@@ -4,6 +4,8 @@
 @{
     Layout = "~/Views/Share/_Layout.cshtml";
     var topNoList = ViewBag.TopNoList != null ? (List<Syscontent>)ViewBag.TopNoList : null;
+    int page = ViewBag.Page;
+    int pageCount = ViewBag.PageCount;
 }
 
 <div class="welcome">您现在的位置是：首页>@ViewBag.Title</div>
@@ -28,15 +30,60 @@
         </ul>
     </div>
     <div class="pagelist">
-        <a title="Total record">&nbsp;<b>170</b> </a>&nbsp;&nbsp;&nbsp;
-        <b>1</b>&nbsp;
-        <a href="/jstt/index_2.html">2</a>&nbsp;
-        <a href="/jstt/index_3.html">3</a>&nbsp;
-        <a href="/jstt/index_4.html">4</a>&nbsp;
-        <a href="/jstt/index_5.html">5</a>&nbsp;
-        <a href="/jstt/index_6.html">6</a>&nbsp;
-        <a href="/jstt/index_2.html">下一页</a>&nbsp;
-        <a href="/jstt/index_15.html">尾页</a>
+        <a title="Total record">&nbsp;<b>共@(ViewBag.Total)条</b> </a>&nbsp;&nbsp;&nbsp;
+        @if (pageCount > 0)
+        {
+            if (page > 1)
+            {
+                <a href="@(ViewBag.Url+"?page=1")">首页</a>
+                <a href="@(ViewBag.Url+"?page="+(page-1))">上一页</a>
+            }
+            if (pageCount > 6)
+            {
+                var beginIndex = page - 3;
+                var endIndex = page + 2;
+                if (beginIndex < 1)
+                {
+                    beginIndex = 1;
+                    endIndex = beginIndex + 6;
+                }
+                if (endIndex > pageCount)
+                {
+                    endIndex = pageCount;
+                    beginIndex = endIndex - 6;
+                }
+                for (int i = beginIndex; i <= endIndex; i++)
+                {
+                    if (page == i)
+                    {
+                        <b>@(i)</b>
+                    }
+                    else
+                    {
+                        <a href="@(ViewBag.Url+"?page="+i)">@(i)</a>
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 1; i <= pageCount; i++)
+                {
+                    if (page == i)
+                    {
+                        <b>@(i)</b>
+                    }
+                    else
+                    {
+                        <a href="@(ViewBag.Url+"?page="+i)">@(i)</a>
+                    }
+                }
+            }
+            if (page != pageCount)
+            {
+                <a href="@(ViewBag.Url+"?page="+(page+1))">下一页</a>
+                <a href="@(ViewBag.Url+"?page="+pageCount)">尾页</a>
+            }
+        }
     </div>
 </div>
 <div class="rside">
