@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WeChatCommon.Configure;
 using WeChatCommon.CustomerAttribute;
 using WeChatCommon.WebHelper;
 using WeChatModel.DatabaseModel;
+using WeChatService.Advertise;
 using WeChatService.ContentService;
+using WeChatService.SysDicService;
 
 namespace WeChatWeb.Controllers
 {
@@ -69,6 +72,13 @@ namespace WeChatWeb.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
+            var dicSlider = new SysDicService().GetDicByValue("BlogIndexPageSlider")?.FirstOrDefault();
+            var sliderServer = new SysAdvertiseService();
+            ViewBag.SliderList = null;
+            if (dicSlider != null)
+            {
+                ViewBag.SliderList = sliderServer.GetList(dicSlider.Id, 1, 10, out _);
+            }
             ViewBag.TechnologyList = GetTypeContents("Technology", out _);
             ViewBag.LifeFeelList = GetTypeContents("FeelLife", out _);
             ViewBag.OpenSourceList = GetTypeContents("OpenSourceArea", out _);
@@ -89,7 +99,9 @@ namespace WeChatWeb.Controllers
             var topNoList = new ContentService().GetTopNoContent(1, 20);
             ViewBag.TopNoList = topNoList;
             ViewBag.Total = total;
+            ViewBag.Page = page;
             ViewBag.PageCount = total / pageSize + (total % pageSize > 0 ? 1 : 0);
+            ViewBag.Url = ViewBag.RootNote + "/Home/BlogHistory";
             return View(contentList);
         }
 
@@ -106,7 +118,9 @@ namespace WeChatWeb.Controllers
             var topNoList = new ContentService().GetTopNoContent(1, 20);
             ViewBag.TopNoList = topNoList;
             ViewBag.Total = total;
+            ViewBag.Page = page;
             ViewBag.PageCount = total / pageSize + (total % pageSize > 0 ? 1 : 0);
+            ViewBag.Url = ViewBag.RootNote + "/Home/OpenSourceArea";
             return View("BlogHistory", contentList);
         }
 
@@ -123,7 +137,9 @@ namespace WeChatWeb.Controllers
             var topNoList = new ContentService().GetTopNoContent(1, 20);
             ViewBag.TopNoList = topNoList;
             ViewBag.Total = total;
+            ViewBag.Page = page;
             ViewBag.PageCount = total / pageSize + (total % pageSize > 0 ? 1 : 0);
+            ViewBag.Url = ViewBag.RootNote + "/Home/Life";
             return View("BlogHistory", contentList);
         }
 
