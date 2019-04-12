@@ -21,6 +21,7 @@
             {
                 <span>@Model.ContentFlag</span>
             }
+            <span>@(ViewBag.ViewCount == null ? 0 : ViewBag.ViewCount)</span>
         </p>
         <p class="jianjie"><b>简介</b>@Model.Introduction</p>
         <div class="entry">
@@ -71,24 +72,24 @@
         </div>
     </div>
     @*<div class="viewbox">
-            <h2 class="newstitle"><b>随便看看</b></h2>
-            <ul>
-                <li>
-                    <a href="/">
-                        <i><img src=""></i>
-                        <p>带</p>
-                        <span>2018年7月25日</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+                <h2 class="newstitle"><b>随便看看</b></h2>
+                <ul>
+                    <li>
+                        <a href="/">
+                            <i><img src=""></i>
+                            <p>带</p>
+                            <span>2018年7月25日</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-    <div class="pinlun">
-        <h2 class="newstitle"><b>评论</b></h2>
-        <div class="gbok">
-            评论插件
-        </div>
-    </div>*@
+        <div class="pinlun">
+            <h2 class="newstitle"><b>评论</b></h2>
+            <div class="gbok">
+                评论插件
+            </div>
+        </div>*@
 
 </div>
 <div class="rside">

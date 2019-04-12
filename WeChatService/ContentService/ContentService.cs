@@ -97,7 +97,17 @@ namespace WeChatService.ContentService
         /// <param name="model"></param>
         public void AddViewinfo(SyscontentviewinfoModel model)
         {
-            new SyscontentviewinfoData().SaveMenuModel(model);
+            new SyscontentviewinfoData().SaveViewInfoModel(model);
+        }
+
+        /// <summary>
+        /// 获取浏览数
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public long? GetViewCount(long id)
+        {
+            return new SyscontentviewinfoData().GetViewCountByContentId(id);
         }
     }
 }

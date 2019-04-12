@@ -1,4 +1,4 @@
- @charset "utf-8";
+﻿ @charset "utf-8";
 /* css */
 * { margin: 0; padding: 0 }
 body { font: 15px "Microsoft YaHei", Arial, Helvetica, sans-serif; background: #ededed url(../images/bg.jpg) repeat-y left 0; color: #666; line-height: 1.5; }
@@ -93,7 +93,7 @@ aside { width: 180px; float: left; overflow: hidden; position: fixed; color: #ff
 .bloginfo span:nth-child(1) { background: url(../images/yh.png) no-repeat left center }
 .bloginfo span:nth-child(2) { background: url(../images/sj.png) no-repeat left center }
 .bloginfo span:nth-child(3) { background: url(../images/bq.png) no-repeat left center }
-.bloginfo span:nth-child(4) { background: url(../images/yh.png) no-repeat left center }
+.bloginfo span:nth-child(4) { background: url(../images/ll.png) no-repeat left center }
 /*rside*/
 .rside { width: 30%; float: right }
 .rside .news { background: #fff; margin: 20px 20px 20px 0; border: 1px solid #e2e2e2; }

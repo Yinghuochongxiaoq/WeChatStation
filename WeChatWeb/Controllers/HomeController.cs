@@ -175,6 +175,7 @@ namespace WeChatWeb.Controllers
                 CreateTime = DateTime.Now,
                 Ip = HttpContext.GetIp()
             };
+            ViewBag.ViewCount = server.GetViewCount(id);
             server.AddViewinfo(viewModel);
             return View(model);
         }

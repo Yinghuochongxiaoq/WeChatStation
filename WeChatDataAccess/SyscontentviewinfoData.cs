@@ -16,7 +16,7 @@ namespace WeChatDataAccess
         /// 保存信息
         /// </summary>
         /// <param name="model"></param>
-        public void SaveMenuModel(SyscontentviewinfoModel model)
+        public void SaveViewInfoModel(SyscontentviewinfoModel model)
         {
             if (model == null) return;
             using (var conn = SqlConnectionHelper.GetOpenConnection())
@@ -44,6 +44,22 @@ namespace WeChatDataAccess
             {
                 var sql = $"select ContentId,count(1) as ViewCount from syscontentviewinfo GROUP BY ContentId ORDER BY ViewCount desc LIMIT {(pageIndex - 1) * pageSize},{pageSize}";
                 return conn.Query<StatisticsViewModel>(sql)?.ToList();
+            }
+        }
+
+        /// <summary>
+        /// 获取浏览数
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public long? GetViewCountByContentId(long id)
+        {
+            if (id < 1) return 0;
+            using (var conn = SqlConnectionHelper.GetOpenConnection())
+            {
+                var sql = $"select ContentId,count(1) as ViewCount from syscontentviewinfo where ContentId={id} ";
+                return conn.Query<StatisticsViewModel>(sql)?.FirstOrDefault()?.ViewCount;
+
             }
         }
     }
