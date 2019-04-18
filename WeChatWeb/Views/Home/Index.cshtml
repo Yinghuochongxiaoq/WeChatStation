@@ -44,7 +44,7 @@
                 <ul>
                     @foreach (var technology in technologyList)
                     {
-                        <li><a href="@(ViewBag.RootNote)/Home/BlogDetail?id=@(technology.Id)"><span>@(technology.CreateTime.ToString("yyyy/MM/dd"))</span>@technology.Title</a></li>
+                        <li><a href="@Url.Action("BlogDetail","Home",new {id=technology.Id})"><span>@(technology.CreateTime.ToString("yyyy/MM/dd"))</span>@technology.Title</a></li>
                     }
                 </ul>
             </div>
@@ -59,7 +59,7 @@
                 <ul>
                     @foreach (var openSource in openSourceList)
                     {
-                        <li><a href="@(ViewBag.RootNote)/Home/BlogDetail?id=@(openSource.Id)"><span>@(openSource.CreateTime.ToString("yyyy/MM/dd"))</span>@openSource.Title</a></li>
+                        <li><a href="@Url.Action("BlogDetail","Home",new {id=openSource.Id})"><span>@(openSource.CreateTime.ToString("yyyy/MM/dd"))</span>@openSource.Title</a></li>
                     }
                 </ul>
             </div>
@@ -74,7 +74,7 @@
                 <ul>
                     @foreach (var lifeFeel in lifeFeelList)
                     {
-                        <li><a href="@(ViewBag.RootNote)/Home/BlogDetail?id=@(lifeFeel.Id)"><span>@(lifeFeel.CreateTime.ToString("yyyy/MM/dd"))</span>@lifeFeel.Title</a></li>
+                        <li><a href="@Url.Action("BlogDetail","Home",new {id=lifeFeel.Id})"><span>@(lifeFeel.CreateTime.ToString("yyyy/MM/dd"))</span>@lifeFeel.Title</a></li>
                     }
                 </ul>
             </div>

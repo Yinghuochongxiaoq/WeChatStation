@@ -17,7 +17,7 @@
                 foreach (var syscontent in Model)
                 {
                     <li>
-                        <h2><a href="@(ViewBag.RootNote)/Home/BlogDetail?id=@(syscontent.Id)">@syscontent.Title</a></h2>
+                        <h2><a href="@Url.Action("BlogDetail","Home",new {id=syscontent.Id})">@syscontent.Title</a></h2>
                         @if (!string.IsNullOrEmpty(syscontent.ContentDisImage))
                         {
                             <i><a href="/"><img src="@(syscontent.ContentDisImage)"></a></i>
@@ -94,7 +94,7 @@
             <ul>
                 @foreach (var syscontent in topNoList)
                 {
-                    <li><a href="@(ViewBag.RootNote)/Home/BlogDetail?id=@(syscontent.Id)"><span>@syscontent.CreateTime.ToString("MM/dd")</span>@syscontent.Title</a></li>
+                    <li><a href="@Url.Action("BlogDetail","Home",new {id=syscontent.Id})"><span>@syscontent.CreateTime.ToString("MM/dd")</span>@syscontent.Title</a></li>
                 }
             </ul>
         </div>

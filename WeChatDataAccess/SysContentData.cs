@@ -159,8 +159,8 @@ namespace WeChatDataAccess
             var result = new List<Syscontent>();
             using (var conn = SqlConnectionHelper.GetOpenConnection())
             {
-                var pre = conn.GetListPaged<Syscontent>(1, 1, " where Id<@Id ", " CreateTime desc ", new { Id = id })?.ToList().FirstOrDefault();
-                var next = conn.GetListPaged<Syscontent>(1, 1, " where Id>@Id ", " CreateTime asc ", new { Id = id })?.ToList().FirstOrDefault();
+                var pre = conn.GetListPaged<Syscontent>(1, 1, " where Id<@Id ", " Id desc ", new { Id = id })?.ToList().FirstOrDefault();
+                var next = conn.GetListPaged<Syscontent>(1, 1, " where Id>@Id ", " Id asc ", new { Id = id })?.ToList().FirstOrDefault();
                 if (pre != null) result.Add(pre);
                 if (next != null) result.Add(next);
             }
