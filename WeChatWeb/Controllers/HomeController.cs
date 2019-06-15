@@ -1,14 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FreshCommonUtility.Web;
 using WeChatCommon.Configure;
 using WeChatCommon.CustomerAttribute;
+using WeChatCommon.LogHelper;
 using WeChatCommon.WebHelper;
 using WeChatModel.DatabaseModel;
+using WeChatModel.Enum;
+using WeChatModel.Message;
 using WeChatService.Advertise;
 using WeChatService.ContentService;
+using WeChatService.MessageHandlers;
 using WeChatService.SysDicService;
 
 namespace WeChatWeb.Controllers
@@ -194,6 +202,112 @@ namespace WeChatWeb.Controllers
             ViewBag.ViewCount = server.GetViewCount(id);
             server.AddViewinfo(viewModel);
             return View(model);
+        }
+
+        /// <summary>
+        /// 留言
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Message()
+        {
+            var server = new ContentService();
+            var topNoList = server.GetTopNoContent(1, 20);
+            ViewBag.TopNoList = topNoList;
+            return View();
+        }
+
+        /// <summary>
+        /// 获取验证码
+        /// </summary>
+        public ActionResult CheckCode()
+        {
+            var yzm = new YzmHelper();
+            yzm.CreateImage();
+            var code = yzm.Text;
+            Session["MessageValidateCode"] = code;
+            Bitmap img = yzm.Image;
+            MemoryStream ms = new MemoryStream();
+            img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            return File(ms.ToArray(), @"image/jpeg");
+        }
+
+        /// <summary>
+        /// 添加留言信息
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult AddCommentInfo()
+        {
+            var resultMode = new ResponseBaseModel<dynamic>
+            {
+                ResultCode = ResponceCodeEnum.Fail,
+                Message = "响应成功"
+            };
+            try
+            {
+                var checkcode = System.Web.HttpContext.Current.GetStringFromParameters("checkcode");
+                if (string.IsNullOrEmpty(checkcode) || string.IsNullOrEmpty(Session["MessageValidateCode"]?.ToString()))
+                {
+                    resultMode.Message = "验证码必填";
+                    return Json(resultMode, JsonRequestBehavior.AllowGet);
+                }
+
+                var oldCode = Session["MessageValidateCode"];
+                Session["MessageValidateCode"] = null;
+                if (!oldCode.Equals(checkcode))
+                {
+                    resultMode.Message = "验证码错误";
+                    return Json(resultMode, JsonRequestBehavior.AllowGet);
+                }
+                var content = System.Web.HttpContext.Current.GetStringFromParameters("content");
+                var createTime = DateTime.Now;
+                var customerEmail = System.Web.HttpContext.Current.GetStringFromParameters("email");
+                var customerName = System.Web.HttpContext.Current.GetStringFromParameters("username");
+                var customerPhone = System.Web.HttpContext.Current.GetStringFromParameters("tel");
+                var fw = new FilterWord();
+                string str = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
+                var filePath = AppConfigurationHelper.GetString("SensitiveFilePath");
+                fw.DictionaryPath = str + filePath;
+                fw.SourctText = content;
+                content = fw.Filter('*');
+                if (string.IsNullOrEmpty(content))
+                {
+                    resultMode.Message = "留言内容不能为空";
+                    return Json(resultMode, JsonRequestBehavior.AllowGet);
+                }
+                fw.SourctText = customerEmail;
+                customerEmail = fw.Filter('*');
+                if (string.IsNullOrEmpty(customerEmail) || !RegExp.IsEmail(customerEmail))
+                {
+                    resultMode.Message = "邮箱内容错误";
+                    return Json(resultMode, JsonRequestBehavior.AllowGet);
+                }
+                fw.SourctText = customerName;
+                customerName = fw.Filter('*');
+                if (string.IsNullOrEmpty(customerName))
+                {
+                    resultMode.Message = "姓名内容错误";
+                    return Json(resultMode, JsonRequestBehavior.AllowGet);
+                }
+                fw.SourctText = customerPhone;
+                customerPhone = fw.Filter('*');
+                if (string.IsNullOrEmpty(customerPhone) || !RegExp.IsMobileNo(customerPhone))
+                {
+                    resultMode.Message = "电话内容错误";
+                    return Json(resultMode, JsonRequestBehavior.AllowGet);
+                }
+                var commentModel = new CustomercommentModel { Content = content, CreateTime = createTime, CustomerName = customerName, CustomerEmail = customerEmail, CustomerPhone = customerPhone, IsDel = FlagEnum.HadZore.GetHashCode(), HasDeal = FlagEnum.HadZore };
+                var server = new CustomerCommentService();
+                server.SaveModel(commentModel);
+                resultMode.Message = "处理成功";
+                resultMode.ResultCode = ResponceCodeEnum.Success;
+            }
+            catch (Exception e)
+            {
+                LogUtil.LogError(e.Message+e.StackTrace);
+                Trace.WriteLine(e);
+                resultMode.Message = "系统异常";
+            }
+            return Json(resultMode, JsonRequestBehavior.AllowGet);
         }
         #endregion
     }
