@@ -1,0 +1,175 @@
+﻿@using WeChatModel.DatabaseModel
+@model dynamic
+
+@{
+    ViewBag.Title = "联系作者";
+    Layout = "~/Views/Share/_Layout.cshtml";
+    var topNoList = ViewBag.TopNoList != null ? (List<Syscontent>)ViewBag.TopNoList : null;
+}
+@section css
+{
+    <style>
+        .message-lable {
+            margin-top: 10px;
+        }
+
+        .message-form input {
+            margin-left: 2rem;
+            width: 30rem;
+            height: 2rem;
+            background: none;
+            outline: none;
+            border: 1px solid #e3e3e3;
+        }
+
+        .message-form label span {
+            color: #ff3e43;
+        }
+
+        .message-form textarea {
+            margin-left: 2rem;
+            width: 30rem;
+            height: 12rem;
+            background: none;
+            outline: none;
+            border: 1px solid #e3e3e3;
+            overflow: hidden;
+            vertical-align: middle
+        }
+
+        .message-form button {
+            width: 10%;
+            margin-left: 81px;
+            -ms-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        .am-btn {
+            display: inline-block;
+            margin-bottom: 0;
+            padding: 0.5em 0em;
+            vertical-align: middle;
+            font-weight: normal;
+            text-align: center;
+            white-space: nowrap;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 0;
+            cursor: pointer;
+            outline: none;
+            -webkit-appearance: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-transition: background-color 300ms ease-out,border-color 300ms ease-out;
+            transition: background-color 300ms ease-out,border-color 300ms ease-out;
+        }
+
+        .am-btn-danger {
+            color: #fff;
+            background-color: #dd514c;
+            border-color: #dd514c;
+        }
+    </style>
+}
+
+<div class="welcome">您现在的位置是：首页>@ViewBag.Title</div>
+<div class="blogbox">
+    <div class="contentbox">
+        <div class="message-form">
+            <div class="message-lable">
+                <label>
+                    姓&nbsp;&nbsp;&nbsp;&nbsp;名
+                    <input type="text" name="username" id="username">
+                    <span>*</span>
+                </label>
+            </div>
+            <div class="message-lable">
+                <label>
+                    电&nbsp;&nbsp;&nbsp;&nbsp;话
+                    <input type="text" name="tel" id="tel">
+                    <span>*</span>
+                </label>
+            </div>
+            <div class="message-lable">
+                <label>
+                    邮&nbsp;&nbsp;&nbsp;&nbsp;箱
+                    <input type="email" name="email" id="email">
+                    <span>*</span>
+                </label>
+            </div>
+            <div class="message-lable">
+                <label>
+                    内&nbsp;&nbsp;&nbsp;&nbsp;容
+                    <textarea name="content" id="content"></textarea>
+                    <span>*</span>
+                </label>
+            </div>
+            <div class="message-lable">
+                <label>
+                    <label style="float: left;">验&nbsp;证码</label>
+                    <input type="text" name="checkcode" style="width: 342px;vertical-align:middle; float: left;" id="checkcode">
+                    <img id="valiCode" style="cursor: pointer; vertical-align: middle; height: 33px; width: 107px; float: left;" src="@Url.Action("CheckCode","Home")" alt="验证码" />
+                </label>
+            </div>
+            <div style="clear: left;"></div>
+            <div class="message-lable"><button type="button" id="addCommentBtn" class="am-btn am-btn-danger">提交</button></div>
+        </div>
+    </div>
+
+</div>
+<div class="rside">
+    @if (topNoList != null && topNoList.Count > 0)
+    {
+        <div class="news">
+            <h2 class="newstitle"><b>文章排行</b></h2>
+            <ul>
+                @foreach (var syscontent in topNoList)
+                {
+                    <li><a href="@Url.Action("BlogDetail","Home",new {id=syscontent.Id})"><span>@syscontent.CreateTime.ToString("MM/dd")</span>@syscontent.Title</a></li>
+                }
+            </ul>
+        </div>
+    }
+</div>
+@section Script
+{
+    <script type="text/javascript">
+        $(function() {
+            $("#valiCode").bind("click",
+                function() {
+                    this.src = "@Url.Action("CheckCode", "Home")" + "?time=" + (new Date()).getTime();
+                });
+            $("#addCommentBtn").bind("click", addMessageInfo);
+        });
+
+        /**
+         * 添加留言
+         */
+        function addMessageInfo() {
+            var data = {};
+            data.username = $("#username").val();
+            data.tel = $("#tel").val();
+            data.email = $("#email").val();
+            data.content = $("#content").val();
+            data.checkcode = $("#checkcode").val();
+            $.ajax({
+                url: "@(ViewBag.RootNode)/Home/AddCommentInfo",
+                type: "POST",
+                data: data,
+                success: function(data) {
+                    if (data && data.ResultCode == 0) {
+                        alert(data.Message);
+                        window.location.href = "@Url.Action("Message","Home")";
+                    } else {
+                        alert('处理失败' + data.Message);
+                    }
+                    $("#valiCode").click();
+                }
+            });
+        }
+    </script>
+
+}
+

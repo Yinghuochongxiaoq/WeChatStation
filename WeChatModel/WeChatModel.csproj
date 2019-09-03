@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\ConfigModel.cs" />
+    <Compile Include="DatabaseModel\CustomercommentModel.cs" />
     <Compile Include="DatabaseModel\StatisticsViewModel.cs" />
     <Compile Include="DatabaseModel\SysadvertisementModel.cs" />
     <Compile Include="DatabaseModel\Syscontent.cs" />
@@ -51,6 +52,8 @@
     <Compile Include="Enum\EnumBusinessPermission.cs" />
     <Compile Include="Enum\FlagEnum.cs" />
     <Compile Include="Message\ErrorMessage.cs" />
+    <Compile Include="Message\ResponceCodeEnum.cs" />
+    <Compile Include="Message\ResponseBaseModel.cs" />
     <Compile Include="WeChatUser\WeChatSystemUserInfo.cs" />
     <Compile Include="WeChatUser\WeiXinUserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
