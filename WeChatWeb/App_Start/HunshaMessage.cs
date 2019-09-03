@@ -17,5 +17,10 @@ namespace WeChatWeb
         /// UserName 用户名
         /// </summary>
         public String Message { get; set; }
+
+        /// <summary>
+        /// 所属用户
+        /// </summary>
+        public String Prince { get; set; }
     }
 }

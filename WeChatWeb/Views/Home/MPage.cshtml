@@ -1,0 +1,132 @@
+﻿@model dynamic
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>秦先满&&吴芳,结婚了</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="../../Static/004/css/swiper.min.css">
+    <link href="../../Static/css/animate.min.css" rel="stylesheet" />
+    <!-- Demo styles -->
+    <link href="../../Static/004/css/hunsha.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide pic0">
+                <section class="fn-audio">
+                    <div class="btn">
+                        <p class="btn_audio">
+                            <span class="css_sprite01 audio_close"></span>
+                            <span class="css_sprite01 audio_open"></span>
+                        </p>
+                        <audio id="car_audio" controls preload="preload">
+                            <source src="../../Static/004/sounds/music.mp3" type="audio/mpeg">您的浏览器不支持HTML5音频格式
+                        </audio>
+                    </div>
+                </section>
+                @*<div class="main-heart">
+                    <img class="ani" swiper-animate-effect="zoomIn" swiper-animate-duration="1.5s" swiper-animate-delay="0s" src="../../Static/004/images/xin.png">
+                </div>
+                <div class="main_top">
+                    <p class="wenzi ani" swiper-animate-effect="fadeIn" swiper-animate-duration="0.5s" swiper-animate-delay="1.5s">
+                        <b style="font-size: 3em">请柬</b><br />我们携手走进婚礼的殿堂<br />邀请尊敬的你<br />共同见证我们生命中的<br />重要时刻
+                    </p>
+                </div>*@
+                <div class="main_middle">
+                    <p class="wenzi ani" swiper-animate-effect="fadeIn" swiper-animate-duration="0.5s" swiper-animate-delay="1.5s">
+                        <b style="font-size: 2em">秦先满&&吴芳</b><br />2019年10月4日(九月初六)<br />洞口
+                    </p>
+                </div>
+            </div>
+            <div class="swiper-slide flower">
+                <div class="main big_frame">
+                    <img class="ani love_head" swiper-animate-effect="slideInDown" swiper-animate-duration="1s" src="../../Static/004/images/love_head.png">
+                    <img class="ani love_content" swiper-animate-effect="slideInUp" swiper-animate-duration="1s" src="../../Static/004/images/love.png">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="ani plate pic2 plate01" swiper-animate-effect="rollIn" swiper-animate-duration="1s">
+                </div>
+                <div class="ani plate pic3" swiper-animate-effect="rollIn" swiper-animate-duration="1s" swiper-animate-delay="1.5s">
+                </div>
+                <div class="main">
+                    <div class="ani jiangai" swiper-animate-effect="bounceIn" swiper-animate-duration="1s" swiper-animate-delay="2s">将爱</div>
+                    <div class="ani jiangai" swiper-animate-effect="bounceIn" swiper-animate-duration="1s" swiper-animate-delay="3s">进行</div>
+                    <div class="ani jiangai" swiper-animate-effect="bounceIn" swiper-animate-duration="1s" swiper-animate-delay="4s">到底</div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="main">
+                    <img style="display: flex;max-width: 480px; max-height: 640px;" class="ani" swiper-animate-effect="slideInLeft" swiper-animate-duration="1s" src="../../Static/004/images/pic5.jpg">
+                </div>
+                <div class="main">
+                    <div class="ani qianshou" swiper-animate-effect="bounceInDown" swiper-animate-duration="1s" swiper-animate-delay="1.5s">
+                        以我之姓 冠子之名<br />执子之手 与子偕老
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="ani plate pic7 plate01" swiper-animate-effect="slideInDown" swiper-animate-duration="1s" swiper-animate-delay="1s">
+                </div>
+                <div class="ani" swiper-animate-effect="slideInLeft" swiper-animate-duration="1s" swiper-animate-delay="1.5s" style="text-align: center">
+                    / 醒来最幸福的事，是你在身边 /
+                </div>
+                <div class="ani plate pic8" swiper-animate-effect="slideInUp" swiper-animate-duration="1s" swiper-animate-delay="2s">
+                </div>
+            </div>
+            <div class="swiper-slide pic6">
+                <div class="hua">
+                    <span>love</span>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="plate pic9">
+                </div>
+                <div class="tableWrap tableWrap-1">
+                    <p class="submit submit-custom btn-boder-color">
+                        <input type="text" class="form-control" name="" id="barrage_content" placeholder="送祝福啦">
+                        <input type="button" class="btn btn-primary" id="submit_barraget" value="送祝福">
+                    </p>
+                    <div class="share-content">
+                        <div class="m-spopup"></div>
+                    </div>
+                </div>
+                <div class="tableWrap tableWrap-2"></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="m-map">
+                    <div id="ylMap" class="ylMap"></div>
+                    <div class="mapVal ">
+                        <input class="address" type="hidden" value="{&#39;sign_name&#39;:&#39;&#39;,&#39;contact_tel&#39;:&#39;18883257311&#39;,&#39;address&#39;:&#39;重庆市忠县花桥镇天井村洞口沟&#39;}">
+                        <input class="latitude" type="hidden" value="30.3431060041">
+                        <input class="longitude" type="hidden" value="107.6910631654">
+                    </div>
+                    <div id="transit_result"></div>
+                    <div class="tit">
+                        <p><a href="#"><span class="css_sprite01"></span>重庆市忠县花桥镇天井村</a></p>
+                        <a class="close_map css_sprite01" href="javascript:void(0)"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+    <section class="u-arrow">
+        <img src="../../Static/004/images/btn01_arrow.png">
+    </section>
+
+    <!-- Swiper JS -->
+    <script src="../../Static/004/js/swiper.min.js"></script>
+    <script type="text/javascript" src="../../Static/004/js/jquery-1.8.2.min.js"></script>
+    <script src="../../Static/004/js/swiper.animate.min.js"></script>
+    <script type="text/javascript" src="../../Static/004/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="../../Static/004/js/ylMap.js"></script>
+    <!-- Initialize Swiper -->
+    <script src="../../Static/004/js/hunsha.js"></script>
+</body>
+</html>

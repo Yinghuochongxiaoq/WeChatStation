@@ -7,12 +7,12 @@ namespace WeChatWeb
 {
     public class HunshaMessageServer
     {
-        public List<HunshaMessage> GetAllHunshaMessages()
+        public List<HunshaMessage> GetAllHunshaMessages(string prince)
         {
             List<HunshaMessage> messageList;
             using (var conn = SqlConnectionHelper.GetOpenConnection())
             {
-                messageList = conn.GetList<HunshaMessage>().OrderByDescending(f=>f.Id).ToList();
+                messageList = conn.GetList<HunshaMessage>(new { Prince=prince}).OrderByDescending(f => f.Id).ToList();
             }
 
             return messageList;

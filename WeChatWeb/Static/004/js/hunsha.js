@@ -160,7 +160,7 @@ var data = [];
  */
 function getAllMessage() {
     $.ajax({
-        url: "/Home/GetAllMessage?prince=1",
+        url: "/Home/GetAllMessage?prince=2",
         type: "POST",
         success: function (dataStr) {
             Obj.data = dataStr;
@@ -174,7 +174,7 @@ function getAllMessage() {
 function addMessage(strMessage) {
     var postData = {};
     postData.message = strMessage;
-    postData.prince = 1;
+    postData.prince = 2;
     $.ajax({
         url: "/Home/InserInfo",
         data: postData,

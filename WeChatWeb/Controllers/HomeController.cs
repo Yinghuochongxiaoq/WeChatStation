@@ -27,12 +27,21 @@ namespace WeChatWeb.Controllers
         }
 
         /// <summary>
+        /// M君婚礼邀请
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult MPage()
+        {
+            return View();
+        }
+
+        /// <summary>
         /// 获取所有的信息
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetAllMessage()
+        public ActionResult GetAllMessage(string prince)
         {
-            var messages = new HunshaMessageServer().GetAllHunshaMessages();
+            var messages = new HunshaMessageServer().GetAllHunshaMessages(prince);
             return Json(messages, JsonRequestBehavior.AllowGet);
         }
 
@@ -40,8 +49,9 @@ namespace WeChatWeb.Controllers
         /// 插入信息
         /// </summary>
         /// <param name="message"></param>
+        /// <param name="prince"></param>
         /// <returns></returns>
-        public ActionResult InserInfo(string message)
+        public ActionResult InserInfo(string message,string prince)
         {
             if (string.IsNullOrEmpty(message))
             {
@@ -58,7 +68,7 @@ namespace WeChatWeb.Controllers
             {
                 return Json(1, JsonRequestBehavior.AllowGet);
             }
-            var info = new HunshaMessage { Message = message };
+            var info = new HunshaMessage { Message = message ,Prince = prince };
             new HunshaMessageServer().InsertMessage(info);
             return Json(1, JsonRequestBehavior.AllowGet);
         }
