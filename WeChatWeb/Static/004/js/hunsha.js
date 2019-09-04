@@ -93,9 +93,31 @@ function doPrint(index) {
     console.log(index);
     switch (index) {
         case 2:
-            showPrintWord('pic1_word', ' 巴拉巴拉巴拉 <br>你啊我啊之类的讲故事 ',2400);
+            showPrintWord('pic1_word', ' 巴拉巴拉巴拉 <br>你啊我啊之类的讲故事 ', 2400);
+            break;
+        case 3:
+            var height = window.screen.height;
+            var currentHeight = height * 49.9 / 100 - 52;
+            changeDiveHeight("w-495", currentHeight);
+            break;
+        case 5:
+            var height = window.screen.height;
+            var currentHeight = height * 49.5 / 100 - 27;
+            changeDiveHeight("pic15", currentHeight);
+            changeDiveHeight("pic16", currentHeight - 27);
+            break;
+        case 7:
+            var height = window.screen.height;
+            var currentHeight = height / (120 + 576);
+            changeDiveHeight("pic17-change", currentHeight * 576);
+            changeDiveHeight("peiban", currentHeight * 120);
         default:
     }
+}
+
+
+function changeDiveHeight(classId, height) {
+    $("." + classId).css("height", height + "px");
 }
 
 //初始化地图

@@ -91,25 +91,47 @@ body {
 }
 
 .plate-height-20 {
-    position: relative;
-    width: 100%;
-    height: 20% !important;
+    width: 328px;
+    height: 104px;
+    /*position: absolute;*/
+    left: 0;
+    right: 0;
+    /*bottom: 0;*/
+    top: 0;
+    margin: auto;
 }
 
 .plate-height-40 {
     position: relative;
     width: 100%;
-    height: 40% !important;
+}
+
+.plate-height-50 {
+    position: relative;
+    width: 100%;
+    height: 50%;
 }
 
 .plate01 {
     margin-bottom: 1%;
 }
 
+.peiban {
+    max-height: 106px;
+    max-width: 470px;
+}
 .m-img {
     width: 100%;
     height: 100%;
 }
+
+.img-box{
+    width: 100%;
+    text-align: center;/*水平居中*/
+    box-sizing: border-box;
+}
+b{height: 100%;display: inline-block;vertical-align: middle;}
+.img{vertical-align: middle;}
 
 .pic0 {
     background: url(../images/pic0.jpg) center no-repeat;
@@ -164,6 +186,41 @@ body {
     background-size: cover;
 }
 
+.pic10 {
+    background: url(../images/pic10.jpg) center no-repeat;
+    background-size: cover;
+}
+
+.pic11 {
+    background: url(../images/pic11.jpg) center no-repeat;
+    background-size: cover;
+}
+
+.pic12 {
+    background: url(../images/pic12.jpg) center no-repeat;
+    background-size: cover;
+}
+
+.pic13 {
+    background: url(../images/pic13.jpg) center no-repeat;
+    background-size: cover;
+}
+
+.pic14 {
+    background: url(../images/pic14.jpg) center no-repeat;
+    background-size: cover;
+}
+
+.pic15 {
+    background: url(../images/pic15.jpg) center no-repeat;
+    background-size: cover;
+}
+
+.pic16 {
+    background: url(../images/pic16.jpg) center no-repeat;
+    background-size: cover;
+}
+
 .flower {
     background: url(../images/flower.png) center no-repeat;
     background-size: cover;
@@ -172,12 +229,18 @@ body {
 .float-left {
     float: left;
 }
+
 .float-right {
     float: right;
 }
 
-.top-left {
+.w-495 {
+    width: 49.9%;
+    min-height: 200px;
+}
 
+.mg-tp-02 {
+    margin-top: 0.2%;
 }
 /**
  * 箭头指示元件
@@ -457,7 +520,7 @@ a:link, a:visited {
 }
 
 .jiangai {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.2);
     width: 100%;
     height: 30%;
     padding: 5px;
@@ -487,7 +550,7 @@ a:link, a:visited {
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    margin-top: -200px;
+    margin-top: 200px;
 }
 
 .tipsInfo {
