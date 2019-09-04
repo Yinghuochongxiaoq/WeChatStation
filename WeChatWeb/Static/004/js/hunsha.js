@@ -8,14 +8,12 @@
     },
     onSlideChangeEnd: function (swiper) {
         swiperAnimate(swiper);
+        doPrint(swiper.activeIndex);
     },
     onTransitionEnd: function (swiper) {
         swiperAnimate(swiper);
     },
-
-
     watchSlidesProgress: true,
-
     onProgress: function (swiper) {
         for (var i = 0; i < swiper.slides.length; i++) {
             var slide = swiper.slides[i];
@@ -30,7 +28,6 @@
 
         }
     },
-
     onSetTransition: function (swiper, speed) {
         for (var i = 0; i < swiper.slides.length; i++) {
             es = swiper.slides[i].style;
@@ -39,9 +36,68 @@
 
         }
     },
-
-
 });
+
+function changeAnim(id, x) {
+    $('#' + id).removeClass().addClass(x + ' animated ani').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+        $(this).removeClass();
+    });
+};
+
+//打字效果
+var divTyping = document.getElementById('pic1_word');
+var i = 0,
+    timer = 0,
+    str = ' ';
+var sleepPrintTime = 1000;
+var waitTime = 0;
+/**
+ * 定时方法
+ */
+function printWord() {
+    if (i <= str.length) {
+        if (waitTime >= sleepPrintTime) {
+            divTyping.innerHTML = str.slice(0, i++) + '_';
+        }
+        waitTime = waitTime + 200;
+        timer = setTimeout('printWord()', 200);
+    }
+    else {
+        //结束打字,移除 _ 光标
+        divTyping.innerHTML = str;
+        clearTimeout(timer);
+        sleepPrintTime = 0;
+        waitTime = 0;
+    }
+}
+/**
+ * 打印方法
+ * @param {any} idName
+ * @param {any} word
+ * @param {any} waitTime
+ */
+function showPrintWord(idName, word, waitTime) {
+    divTyping = document.getElementById(idName);
+    str = word;
+    if (waitTime && waitTime > 0) {
+        sleepPrintTime = waitTime;
+    }
+    printWord();
+}
+
+/**
+ * 处理指定切换完成后的信息
+ * @param {any} index
+ */
+function doPrint(index) {
+    console.log(index);
+    switch (index) {
+        case 2:
+            showPrintWord('pic1_word', ' 巴拉巴拉巴拉 <br>你啊我啊之类的讲故事 ',2400);
+        default:
+    }
+}
+
 //初始化地图
 var map = new ylmap.init;
 map.mapInit;

@@ -90,6 +90,18 @@ body {
     height: 50% !important;
 }
 
+.plate-height-20 {
+    position: relative;
+    width: 100%;
+    height: 20% !important;
+}
+
+.plate-height-40 {
+    position: relative;
+    width: 100%;
+    height: 40% !important;
+}
+
 .plate01 {
     margin-bottom: 1%;
 }
@@ -157,6 +169,16 @@ body {
     background-size: cover;
 }
 
+.float-left {
+    float: left;
+}
+.float-right {
+    float: right;
+}
+
+.top-left {
+
+}
 /**
  * 箭头指示元件
  * -u-arrow
@@ -466,6 +488,18 @@ a:link, a:visited {
     -webkit-border-radius: 10px;
     border-radius: 10px;
     margin-top: -200px;
+}
+
+.tipsInfo {
+    background: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 30%;
+    padding: 5px;
+    color: #fff;
+    font-size: 2em;
+    min-width: 366px;
+    min-height: 80px;
+    margin-top: -300px;
 }
 
 @font-face {
