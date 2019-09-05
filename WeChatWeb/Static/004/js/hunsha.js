@@ -97,7 +97,9 @@ function doPrint(index) {
             break;
         case 3:
             var height = window.screen.height;
-            var currentHeight = height * 49.9 / 100 - 52;
+            var currentHeight = height * 49.9 / 100 - 27;
+            alert(window.screen.height);
+            alert(window.screen.width);
             changeDiveHeight("w-495", currentHeight);
             break;
         case 5:
@@ -291,8 +293,11 @@ $.fn.barrage = function (opt) {
     M.timer = null;
     M.ajaxTime = null;
     var createView = function () {
+        if (!(Obj.data && Obj.data.length > 0 && Obj.data[0])) {
+            return;
+        }
         var randomIndex = Math.floor(Math.random() * M.bgColors.length);
-        var ele = $('<a class="overflow-text" target="_blank" style="opacity:0;text-align:' + settings.direction.split(/\s+/)[1] + ';font-size:14px;float:' + settings.direction.split(/\s+/)[1] + ';background-color:' + M.bgColors[randomIndex] + '"; href="javascript:;' + '">' + (Obj.data && Obj.data.length > 0 ? Obj.data[0].Message : "") + '</a>');
+        var ele = $('<a class="overflow-text" target="_blank" style="opacity:0;text-align:' + settings.direction.split(/\s+/)[1] + ';font-size:14px;float:' + settings.direction.split(/\s+/)[1] + ';background-color:' + M.bgColors[randomIndex] + '"; href="javascript:;' + '">' + (Obj.data && Obj.data.length > 0 && Obj.data[0] ? Obj.data[0].Message : "") + '</a>');
         var str = Obj.data.shift();
         if (M.vertical == 'top') {
             ele.animate({
