@@ -38,7 +38,54 @@
     },
 });
 
+//修改动画效果
+var donghuaId = '';
+var j = 0,
+    dhTimer = 0,
+    animStr = '';
+var dhSleepPrintTime = 1000;
+var dhWaitTime = 0;
+/**
+ * 定时方法
+ */
+function changeAnimTime() {
+    if (dhWaitTime >= dhSleepPrintTime) {
+        console.log('执行' + dhWaitTime);
+        changeAnim(donghuaId, animStr);
+        donghuaId = '';
+        clearTimeout(dhTimer);
+        dhSleepPrintTime = 0;
+        dhWaitTime = 0;
+    }
+    else {
+        console.log('动画切换时间' + dhWaitTime);
+        dhWaitTime = dhWaitTime + 200;
+        dhTimer = setTimeout('changeAnimTime()', 200);
+    }
+}
+
+/**
+ * 修改动画
+ * @param {any} idName
+ * @param {any} word
+ * @param {any} waitTime
+ */
+function showChangeAnim(idName, word, waitTime) {
+    donghuaId = idName;
+    animStr = word;
+    if (waitTime && waitTime > 0) {
+        dhSleepPrintTime = waitTime;
+    }
+    changeAnimTime();
+}
+
+/**
+ *修改动画
+ * @param {any} id
+ * @param {any} x
+ */
 function changeAnim(id, x) {
+    debugger 
     $('#' + id).removeClass().addClass(x + ' animated ani').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
         $(this).removeClass();
     });
@@ -98,15 +145,17 @@ function doPrint(index) {
         case 3:
             var height = window.screen.height;
             var currentHeight = height * 49.9 / 100 - 27;
-            alert(window.screen.height);
-            alert(window.screen.width);
             changeDiveHeight("w-495", currentHeight);
+            break;
+        case 4:
+            showChangeAnim("shuan", "fadeOut", 1500);
             break;
         case 5:
             var height = window.screen.height;
             var currentHeight = height * 49.5 / 100 - 27;
             changeDiveHeight("pic15", currentHeight);
             changeDiveHeight("pic16", currentHeight - 27);
+            changeDiveHeight("pic14", currentHeight + 27);
             break;
         case 7:
             var height = window.screen.height;
