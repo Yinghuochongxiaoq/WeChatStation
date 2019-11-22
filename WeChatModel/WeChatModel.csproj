@@ -49,6 +49,7 @@
     <Compile Include="DatabaseModel\Syscontent.cs" />
     <Compile Include="DatabaseModel\SyscontentviewinfoModel.cs" />
     <Compile Include="DatabaseModel\SysdictModel.cs" />
+    <Compile Include="DatabaseModel\WangdaquestionModel.cs" />
     <Compile Include="Enum\EnumBusinessPermission.cs" />
     <Compile Include="Enum\FlagEnum.cs" />
     <Compile Include="Message\ErrorMessage.cs" />

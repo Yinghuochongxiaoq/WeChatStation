@@ -1,0 +1,108 @@
+﻿@using WeChatModel.DatabaseModel
+@model List<WeChatWeb.Controllers.WangDa.QuestResponseModel>
+@section css{
+    <style>
+        .main_search {
+            width: 660px;
+            margin-bottom: 80px;
+        }
+
+            .main_search .search_input {
+                width: 550px;
+                height: 66px;
+                border: 1px solid #21aa28;
+                border-radius: 4px 0 0 4px;
+                padding-left: 10px;
+                color: #333;
+                font-size: 16px;
+                box-sizing: border-box;
+            }
+
+            .main_search .search_btn {
+                position: relative;
+                width: 110px;
+                height: 66px;
+                background-color: #21aa28;
+                border-radius: 0 4px 4px 0;
+                color: white;
+            }
+    </style>
+}
+@{
+    ViewBag.Title = "网大找答案";
+    ViewBag.KeyWords = "网大找答案";
+    Layout = ViewBag.RootNote + "/Views/Share/_Layout.cshtml";
+    var topNoList = ViewBag.TopNoList != null ? (List<Syscontent>)ViewBag.TopNoList : null;
+}
+
+<div class="welcome">您现在的位置是：首页>@(ViewBag.Titl)</div>
+<div class="blogbox">
+    <div class="contentbox">
+        <!--搜索Start-->
+        <form method="post" action="@(ViewBag.RootNote + "/WangDaExam/Index")" onsubmit="return check()">
+            <div class="main_search">
+                <input name="title" type="text" id="search" placeholder="请输入您的问题" class="search_input" value="@ViewBag.SearchTitle">
+                <input type="submit" value="找答案" class="search_btn fr">
+            </div>
+        </form>
+        <!--搜索End-->
+        @if (!string.IsNullOrEmpty(ViewBag.SearchTitle))
+        {
+            if (Model != null && Model.Count > 0)
+            {
+                foreach (var questResponseModel in Model)
+                {
+                    <div class="gai_question_sm">
+                        <h2 class="contitle">@(questResponseModel.Content)</h2>
+                        <div class="s_mess2" id="LiteContextdiv">
+                            <div class="s_mess2_m">
+                                @foreach (var questRequestCopyModel in questResponseModel.QuestionAttrCopys)
+                                {
+                                    <p>@(questRequestCopyModel.Name +"、"+ questRequestCopyModel.Value)</p>
+                                }
+                            </div>
+                            <p class="jianjie"><b>参考答案：@(questResponseModel.Answer)</b></p>
+                        </div>
+                    </div>
+                }
+                <div class="nextinfo">
+                    <p>
+                        *以上搜索结果为网友贡献结果，仅供参考
+                    </p>
+                </div>
+            }
+            else
+            {
+                <p class="jianjie"><b>(；′⌒`)没有搜索到，快去增加题库吧</b></p>
+            }
+        }
+    </div>
+</div>
+<div class="rside">
+    @if (topNoList != null && topNoList.Count > 0)
+    {
+        <div class="news">
+            <h2 class="newstitle"><b>文章排行</b></h2>
+            <ul>
+                @foreach (var syscontent in topNoList)
+                {
+                    <li><a href="@Url.Action("BlogDetail","Home",new {id=syscontent.Id})"><span>@syscontent.CreateTime.ToString("MM/dd")</span>@syscontent.Title</a></li>
+                }
+            </ul>
+        </div>
+    }
+</div>
+@section Script{
+    <script language="javascript">
+        function check() {
+            var searchContent = $('#search').val();
+            if (searchContent) {
+                return true;
+            }
+            else {
+                alert('请输入你的问题');
+                return false;
+            }
+        }
+    </script>
+}
