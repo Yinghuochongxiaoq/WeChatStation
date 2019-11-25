@@ -126,10 +126,6 @@ namespace WeChatWeb.Controllers.WangDa
                     });
                     f.QuestionAttrCopys.ForEach(r =>
                     {
-                        if (!chooseItem.ContainsKey(r.Name))
-                        {
-                            System.Console.Out.Write(r.Name);
-                        }
                         r.Name = chooseItem[r.Name];
                         if (r.Type == "0")
                         {
@@ -150,7 +146,7 @@ namespace WeChatWeb.Controllers.WangDa
                 }
             });
             resultMode.ResultCode = ResponceCodeEnum.Success;
-            resultMode.Message = "感谢你对题目做出的贡献，题目已经全部存入库，本次贡献" + number + "道题目。";
+            resultMode.Message = "感谢你对题目做出的贡献，题目已经全部存入库，本次贡献" + number + "道题目，贡献率：" + (number / questionModels.Count * 100).ToString("#0.00") + " %";
             return Json(resultMode, JsonRequestBehavior.AllowGet);
         }
     }

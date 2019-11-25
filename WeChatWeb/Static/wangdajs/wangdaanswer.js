@@ -12,22 +12,42 @@
             $.ajax({
                 type: "GET",
                 dataType: "JSON",
-                data: { courseId: courseId },
                 url: 'https://wangda.andedu.net/api/v1/course-study/course-front/chapter-progress?courseId=' + courseId + '&versionId=' + versionId + '&isRegister=false' + '&_=' + new Date().getTime(),
                 success: function (data) {
                     if(!data || data.length<1){
                         console.log('\u83b7\u53d6\u8bfe\u7a0b\u8fdb\u5ea6\u5931\u8d25\uff0c\u8bf7\u5237\u65b0\u9875\u9762\u91cd\u8bd5');
                         return;
                     }
+                    let resourceIds='';
                     data.forEach((chapter,index)=>{
                         if(chapter && chapter.courseChapterSections && chapter.courseChapterSections.length>0){
                             let lastInfo = chapter.courseChapterSections[chapter.courseChapterSections.length-1];
-                            if (lastInfo && lastInfo.progress && lastInfo.sectionType==9 ) {
+                            if (lastInfo && lastInfo.sectionType==9 ) {
                                 let examId = lastInfo.resourceId;
-                                getAndPutData(examId);
-                            } else if(index==data.length-1) {
-                                console.log('\u6ca1\u6709\u83b7\u53d6\u5230\u8003\u8bd5\u8bb0\u5f55');
+                                resourceIds+=examId+",";
                             }
+                        }
+                    });
+                    if(resourceIds.length>0){
+                        resourceIds=resourceIds.substr(0,resourceIds.length-1);
+                    }
+                    $.ajax({
+                        type: "GET",
+                        dataType: "JSON",
+                        url: 'https://wangda.andedu.net/api/v1/exam/exam/basic-by-ids',
+                        data:{ids:resourceIds,_:new Date().getTime()},
+                        success:function(data){
+                            if(data && data.length>0){
+                                data.forEach((examInfo,index)=>{
+                                    if(examInfo && examInfo.examRecord && examInfo.examRecord.status){
+                                        let examId = examInfo.id;
+                                        getAndPutData(examId);
+                                    }
+                                });
+                            }
+                        },
+                        fail:function(){
+                            console.log('\u83b7\u53d6\u8003\u8bd5\u5217\u8868\u5931\u8d25');
                         }
                     });
                 },
@@ -74,12 +94,13 @@ function getAndPutData(examId) {
                 paperStr += title + "  \u7b54\u6848\uff1a" + answer + chooseItem + "\n\n";
             });
             console.log(paperStr);
+            let jsonData=JSON.stringify(questions).replace(/<[^>]+>/g,"");
             $.ajax({
                 type: "POST",
                 dataType: "JSON",
                 data: {
                     examId: examId,
-                    questions: JSON.stringify(questions)
+                    questions: jsonData
                 },
                 async: false,
                 url: 'https://aivabc.com/WangDaExam/PutQuestionInfo',
