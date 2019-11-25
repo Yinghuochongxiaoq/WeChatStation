@@ -1,5 +1,4 @@
-﻿var examId = '';
-$(function () {
+﻿$(function () {
     var urls = window.location.href.split('/');
     var courseId = urls[urls.length - 1];
     var versionId = "";
@@ -16,62 +15,79 @@ $(function () {
                 data: { courseId: courseId },
                 url: 'https://wangda.andedu.net/api/v1/course-study/course-front/chapter-progress?courseId=' + courseId + '&versionId=' + versionId + '&isRegister=false' + '&_=' + new Date().getTime(),
                 success: function (data) {
-                    var lastInfo = data[data.length - 1].courseChapterSections;
-                    examId = lastInfo[0].resourceId;
-                    if (lastInfo[0].progress && lastInfo && lastInfo.length > 0) {
-                        $.ajax({
-                            type: "GET",
-                            dataType: "JSON",
-                            async: false,
-                            url: 'https://wangda.andedu.net/api/v1/exam/exam-register/newenergy-score-detail?examId=' + examId + '&_=' + new Date().getTime(),
-                            success: function (data) {
-                                var questions = data.paper.questions;
-                                var paperStr = "";
-                                var answerMap = ["A", "B", "C", "D","E","F","H","I","J"];
-                                questions.forEach((item, index) => {
-                                    let title = (index + 1) + "、" + item.content;
-                                    let answer = "";
-                                    let chooseItem = "";
-                                    item.questionAttrCopys = item.questionAttrCopys.sort((a, b) => {
-                                        return a.name - b.name;
-                                    });
-                                    item.questionAttrCopys.forEach((aItem, aIndex) => {
-                                        if (aItem.type == "0") {
-                                            answer = answer + answerMap[aItem.name];
-                                        }
-                                        if (aIndex % 2 == 0) {
-                                            chooseItem = chooseItem + "\n";
-                                        }
-                                        if (aIndex % 2 == 1) {
-                                            chooseItem = chooseItem + "\t";
-                                        }
-                                        chooseItem = chooseItem + answerMap[aItem.name] + "、" + aItem.value;
-                                    });
-                                    paperStr += title + "  答案：" + answer + chooseItem + "\n\n";
-                                });
-                                console.log(paperStr);
-                                $.ajax({
-                                    type: "POST",
-                                    dataType: "JSON",
-                                    data: {
-                                        examId: examId,
-                                        questions: JSON.stringify(questions)
-                                    },
-                                    async: false,
-                                    url: 'http://localhost:8003/WangDaExam/PutQuestionInfo',
-                                    success: function (data) {
-                                        console.log(data.Message);
-                                        console.log('如果你需要可以去 https://aivabc.com/WangDaExam 检索参考答案');
-                                    }
-                                });
-                            }
-                        });
-                    } else {
-                        console.log('没有获取到考试记录');
+                    if(!data || data.length<1){
+                        console.log('\u83b7\u53d6\u8bfe\u7a0b\u8fdb\u5ea6\u5931\u8d25\uff0c\u8bf7\u5237\u65b0\u9875\u9762\u91cd\u8bd5');
+                        return;
                     }
+                    data.forEach((chapter,index)=>{
+                        if(chapter && chapter.courseChapterSections && chapter.courseChapterSections.length>0){
+                            let lastInfo = chapter.courseChapterSections[chapter.courseChapterSections.length-1];
+                            if (lastInfo && lastInfo.progress && lastInfo.sectionType==9 ) {
+                                let examId = lastInfo.resourceId;
+                                getAndPutData(examId);
+                            } else if(index==data.length-1) {
+                                console.log('\u6ca1\u6709\u83b7\u53d6\u5230\u8003\u8bd5\u8bb0\u5f55');
+                            }
+                        }
+                    });
+                },
+                fail: function() {
+                    console.log('\u83b7\u53d6\u8bfe\u7a0b\u8fdb\u5ea6\u5931\u8d25\uff0c\u8bf7\u5237\u65b0\u9875\u9762\u91cd\u8bd5');
+                }
+            });
+        },
+        fail: function() {
+            console.log('\u521d\u59cb\u5316\u5931\u8d25\uff0c\u8bf7\u5237\u65b0\u9875\u9762\u91cd\u8bd5');
+        }
+    });
+});
 
+function getAndPutData(examId) {
+    $.ajax({
+        type: "GET",
+        dataType: "JSON",
+        async: false,
+        url: 'https://wangda.andedu.net/api/v1/exam/exam-register/newenergy-score-detail?examId=' + examId + '&_=' + new Date().getTime(),
+        success: function (data) {
+            var questions = data.paper.questions;
+            var paperStr = "";
+            var answerMap = ["A", "B", "C", "D", "E", "F", "H", "I", "J"];
+            questions.forEach((item, index) => {
+                let title = (index + 1) + "、" + item.content;
+                let answer = "";
+                let chooseItem = "";
+                item.questionAttrCopys = item.questionAttrCopys.sort((a, b) => {
+                    return a.name - b.name;
+                });
+                item.questionAttrCopys.forEach((aItem, aIndex) => {
+                    if (aItem.type == "0") {
+                        answer = answer + answerMap[aItem.name];
+                    }
+                    if (aIndex % 2 == 0) {
+                        chooseItem = chooseItem + "\n";
+                    }
+                    if (aIndex % 2 == 1) {
+                        chooseItem = chooseItem + "\t";
+                    }
+                    chooseItem = chooseItem + answerMap[aItem.name] + "、" + aItem.value;
+                });
+                paperStr += title + "  \u7b54\u6848\uff1a" + answer + chooseItem + "\n\n";
+            });
+            console.log(paperStr);
+            $.ajax({
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    examId: examId,
+                    questions: JSON.stringify(questions)
+                },
+                async: false,
+                url: 'https://aivabc.com/WangDaExam/PutQuestionInfo',
+                success: function (data) {
+                    console.log(data.Message);
+                    console.log('\u5982\u679c\u4f60\u9700\u8981\u53ef\u4ee5\u53bb https://aivabc.com/WangDaExam \u68c0\u7d22\u53c2\u8003\u7b54\u6848');
                 }
             });
         }
     });
-});
+}

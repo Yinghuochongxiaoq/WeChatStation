@@ -288,6 +288,7 @@
     <Content Include="Static\images\zhuagnxiu_1.jpg" />
     <Content Include="Static\js\jquery.aniview.min.js" />
     <Content Include="Static\wangdajs\wangdaanswer.js" />
+    <Content Include="Static\wangdajs\升级版记录考试题目答案.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

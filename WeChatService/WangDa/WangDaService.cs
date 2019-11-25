@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FreshCommonUtility.Dapper;
-using FreshCommonUtility.SqlHelper;
+﻿using System.Collections.Generic;
 using WeChatDataAccess;
 using WeChatModel.DatabaseModel;
 
