@@ -2,6 +2,7 @@
     var urls = window.location.href.split('/');
     var courseId = urls[urls.length - 1];
     var versionId = "";
+    var courseName="";
     $.ajax({
         type: "POST",
         dataType: "JSON",
@@ -9,6 +10,7 @@
         url: 'https://wangda.andedu.net/api/v1/course-study/course-front/register',
         success: function (data) {
             versionId = data.versionId;
+            courseName=data.name.replace(/<[^>]+>/g,"");
             $.ajax({
                 type: "GET",
                 dataType: "JSON",
@@ -41,9 +43,10 @@
                                 data.forEach((examInfo,index)=>{
                                     if(examInfo && examInfo.examRecord && examInfo.examRecord.status){
                                         let examId = examInfo.id;
-                                        getAndPutData(examId);
+                                        getAndPutData(examId,courseId,courseName);
                                     }
                                 });
+                                getQuestionCourseRate();
                             }
                         },
                         fail:function(){
@@ -62,7 +65,7 @@
     });
 });
 
-function getAndPutData(examId) {
+function getAndPutData(examId,courseId,courseName) {
     $.ajax({
         type: "GET",
         dataType: "JSON",
@@ -100,15 +103,35 @@ function getAndPutData(examId) {
                 dataType: "JSON",
                 data: {
                     examId: examId,
-                    questions: jsonData
+                    questions: jsonData,
+                    courseId:courseId,
+                    courseName:courseName
                 },
                 async: false,
                 url: 'https://aivabc.com/WangDaExam/PutQuestionInfo',
                 success: function (data) {
-                    console.log(data.Message);
-                    console.log('\u5982\u679c\u4f60\u9700\u8981\u53ef\u4ee5\u53bb https://aivabc.com/WangDaExam \u68c0\u7d22\u53c2\u8003\u7b54\u6848');
+                    console.log("%c%s","color: #fff; background: #2daebf; font-size: 20px;",data.Message);
+                    console.log("%c%s","color: #e33100; background: yellow; font-size: 20px;",'\u5982\u679c\u4f60\u9700\u8981\u53ef\u4ee5\u53bb https://aivabc.com/WangDaExam \u68c0\u7d22\u53c2\u8003\u7b54\u6848');
                 }
             });
+        }
+    });
+}
+
+function getQuestionCourseRate(){
+    $.ajax({
+        type: "POST",
+        dataType: "JSON",
+        async: false,
+        url: 'https://aivabc.com/WangDaExam/GetQuestionCourseRate',
+        success: function (data) {
+            if(data && 0==data.ResultCode){
+                console.log("\u9898\u8bfe\u6bd4\u4f8b\uff08\u9898\u76ee\u6570\u91cf\u4e0e\u8bfe\u65f6\u6570\u6bd4\uff0c\u6570\u503c\u8d8a\u5927\u5e73\u5747\u6bcf\u8bfe\u65f6\u9898\u76ee\u66f4\u591a\uff0c\u8003\u8bd5\u901a\u8fc7\u53ef\u80fd\u6027\u66f4\u5927\u54df\uff09\u003a");
+                data.Data.forEach((item,index)=>{
+                    console.log(item.name+":"+item.count);
+                });
+            }
+            
         }
     });
 }

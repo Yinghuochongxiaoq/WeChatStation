@@ -45,5 +45,14 @@ namespace WeChatService.WangDa
             if (string.IsNullOrEmpty(title)) return null;
             return _dataAccess.GetModels(title);
         }
+
+        /// <summary>
+        /// 获取题课比例
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<string, int> GetQuestionCourseRate()
+        {
+            return _dataAccess.GetQuestionCourseRate();
+        }
     }
 }

@@ -48,5 +48,13 @@ namespace WeChatModel.DatabaseModel
         /// Answer 题目答案
         /// </summary>
         public String Answer { get;set; }
+        /// <summary>
+        /// 课程id
+        /// </summary>
+        public String CourseId { get; set; }
+        /// <summary>
+        /// 课程名称
+        /// </summary>
+        public String CourseName { get; set; }
     }
 }
