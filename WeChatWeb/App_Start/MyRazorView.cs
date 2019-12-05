@@ -22,14 +22,14 @@ namespace WeChatWeb
         {
         }
 
-        private static Minifier minifier = new Minifier();
-        private static CodeSettings codeSettings = new CodeSettings
+        private static readonly Minifier Minifier = new Minifier();
+        private static readonly CodeSettings CodeSettings = new CodeSettings
         {
             IgnoreAllErrors = true,
             MinifyCode = true,
             LocalRenaming = LocalRenaming.CrunchAll
         };
-        private static CssSettings cssSettings = new CssSettings
+        private static readonly CssSettings CssSettings = new CssSettings
         {
             IgnoreAllErrors = true,
             OutputMode = OutputMode.SingleLine,
@@ -73,7 +73,7 @@ namespace WeChatWeb
 
                             html = html.Replace(itemMatch.Value, KeyJs);
                             //压缩js
-                            var minJs = minifier.MinifyJavaScript(itemMatch.Value, codeSettings);
+                            var minJs = Minifier.MinifyJavaScript(itemMatch.Value, CodeSettings);
                             html = html.Replace(KeyJs, minJs);
                         }
                     }
@@ -93,7 +93,7 @@ namespace WeChatWeb
 
                             html = html.Replace(item.Value, KeyCss);
                             //压缩style
-                            var minCss = minifier.MinifyStyleSheet(item.Value, cssSettings, codeSettings);
+                            var minCss = Minifier.MinifyStyleSheet(item.Value, CssSettings, CodeSettings);
                             html = html.Replace(KeyCss, minCss);
                         }
                     }

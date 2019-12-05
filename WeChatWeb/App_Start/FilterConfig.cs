@@ -8,6 +8,7 @@ namespace WeChatWeb
         {
             filters.Add(new HandleErrorAttribute());
             filters.Add(new Filter.PageAuthFilter());
+            filters.Add(new CompressAttribute());
         }
     }
 }
