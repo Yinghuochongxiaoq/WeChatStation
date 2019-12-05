@@ -13,50 +13,50 @@ using WeChatService.WangDa;
 
 namespace WeChatWeb.Controllers.WangDa
 {
-    [AuthorizeIgnore]
     public class WangDaExamController : BaseController
     {
-        /// <summary>
-        /// 查询题目答案
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Index()
-        {
-            var title = HttpContext.GetStringFromParameters("title");
-            if (!string.IsNullOrEmpty(title))
-            {
-                title = Regex.Replace(title, @"\s", "");
-            }
-            var server = new ContentService();
-            ViewBag.TopNoList = server.GetTopNoContent(1, 20);
-            ViewBag.SearchTitle = title;
+        ///// <summary>
+        ///// 查询题目答案
+        ///// </summary>
+        ///// <returns></returns>
+        //public ActionResult Index()
+        //{
+        //    var title = HttpContext.GetStringFromParameters("title");
+        //    if (!string.IsNullOrEmpty(title))
+        //    {
+        //        title = Regex.Replace(title, @"\s", "");
+        //    }
+        //    var server = new ContentService();
+        //    ViewBag.TopNoList = server.GetTopNoContent(1, 20);
+        //    ViewBag.SearchTitle = title;
 
-            List<QuestResponseModel> models = new List<QuestResponseModel>();
-            if (!string.IsNullOrEmpty(title))
-            {
-                WangDaService questionService = new WangDaService();
-                var searchDataList = questionService.GetModels(title);
-                if (searchDataList != null && searchDataList.Count > 0)
-                {
-                    searchDataList.ForEach(f =>
-                    {
-                        QuestResponseModel tempModel = new QuestResponseModel
-                        {
-                            Answer = f.Answer,
-                            Content = f.Content,
-                            QuestionAttrCopys = JsonConvert.DeserializeObject<List<QuestRequestCopyModel>>(f.QuestionAttrCopys)
-                        };
-                        models.Add(tempModel);
-                    });
-                }
-            }
-            return View(models);
-        }
+        //    List<QuestResponseModel> models = new List<QuestResponseModel>();
+        //    if (!string.IsNullOrEmpty(title))
+        //    {
+        //        WangDaService questionService = new WangDaService();
+        //        var searchDataList = questionService.GetModels(title);
+        //        if (searchDataList != null && searchDataList.Count > 0)
+        //        {
+        //            searchDataList.ForEach(f =>
+        //            {
+        //                QuestResponseModel tempModel = new QuestResponseModel
+        //                {
+        //                    Answer = f.Answer,
+        //                    Content = f.Content,
+        //                    QuestionAttrCopys = JsonConvert.DeserializeObject<List<QuestRequestCopyModel>>(f.QuestionAttrCopys)
+        //                };
+        //                models.Add(tempModel);
+        //            });
+        //        }
+        //    }
+        //    return View(models);
+        //}
 
         /// <summary>
         /// 添加题库信息  
         /// </summary>
         /// <returns></returns>
+        [AuthorizeIgnore]
         public ActionResult PutQuestionInfo()
         {
 
@@ -144,6 +144,7 @@ namespace WeChatWeb.Controllers.WangDa
         /// 获取题课比例
         /// </summary>
         /// <returns></returns>
+        [AuthorizeIgnore]
         public ActionResult GetQuestionCourseRate()
         {
             var resultMode = new ResponseBaseModel<dynamic>
