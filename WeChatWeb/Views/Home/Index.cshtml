@@ -10,7 +10,7 @@
 }
 
 
-<div class="welcome"> 您好，欢迎您访问我的网站！ </div>
+<div class="welcome"><i class="bg-zhuye"></i><span>您好，欢迎您访问我的网站！</span></div>
 <div class="picbox">
     @if (sliderList != null && sliderList.Count > 0)
     {
@@ -40,11 +40,15 @@
     {
         <section>
             <div class="news">
-                <h2 class="newstitle"><span><a href="@(ViewBag.RootNode)/Home/BlogHistory">更多</a></span><b>个人博客日记</b></h2>
+                <h2 class="newstitle">
+                    <i class="bg-newslist"></i><b>个人博客日记</b><span><a href="@(ViewBag.RootNode)/Home/BlogHistory">更多</a></span>
+                </h2>
                 <ul>
                     @foreach (var technology in technologyList)
                     {
-                        <li><a href="@Url.Action("BlogDetail","Home",new {id=technology.Id})"><span>@(technology.CreateTime.ToString("yyyy/MM/dd"))</span>@technology.Title</a></li>
+                        <li>
+                            <i class="bg-li"></i><a href="@Url.Action("BlogDetail", "Home", new {id = technology.Id})"><span>@(technology.CreateTime.ToString("yyyy/MM/dd"))</span>@technology.Title</a>
+                        </li>
                     }
                 </ul>
             </div>
@@ -55,11 +59,18 @@
     {
         <section>
             <div class="news">
-                <h2 class="newstitle"><span><a href="@(ViewBag.RootNode)/Home/OpenSourceArea">更多</a></span><b>开源专区</b></h2>
+                <h2 class="newstitle">
+                    <i class="bg-newslist"></i>
+                    <b>开源专区</b>
+                    <span><a href="@(ViewBag.RootNode)/Home/OpenSourceArea">更多</a></span>
+                </h2>
                 <ul>
                     @foreach (var openSource in openSourceList)
                     {
-                        <li><a href="@Url.Action("BlogDetail","Home",new {id=openSource.Id})"><span>@(openSource.CreateTime.ToString("yyyy/MM/dd"))</span>@openSource.Title</a></li>
+                        <li>
+                            <i class="bg-li"></i>
+                            <a href="@Url.Action("BlogDetail", "Home", new {id = openSource.Id})"><span>@(openSource.CreateTime.ToString("yyyy/MM/dd"))</span>@openSource.Title</a>
+                        </li>
                     }
                 </ul>
             </div>
@@ -70,11 +81,20 @@
     {
         <section>
             <div class="news">
-                <h2 class="newstitle"><span><a href="@(ViewBag.RootNode)/Home/Life">更多</a></span><b>生活感悟</b></h2>
+                <h2 class="newstitle">
+                    <i class="bg-newslist"></i>
+                    <b>生活感悟</b>
+                    <span><a href="@(ViewBag.RootNode)/Home/Life">更多</a></span>
+                </h2>
                 <ul>
                     @foreach (var lifeFeel in lifeFeelList)
                     {
-                        <li><a href="@Url.Action("BlogDetail","Home",new {id=lifeFeel.Id})"><span>@(lifeFeel.CreateTime.ToString("yyyy/MM/dd"))</span>@lifeFeel.Title</a></li>
+                        <li>
+                            <i class="bg-li"></i>
+                            <a href="@Url.Action("BlogDetail", "Home", new {id = lifeFeel.Id})">
+                                <span>@(lifeFeel.CreateTime.ToString("yyyy/MM/dd"))</span>@lifeFeel.Title
+                            </a>
+                        </li>
                     }
                 </ul>
             </div>

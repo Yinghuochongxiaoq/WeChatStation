@@ -100,7 +100,10 @@
             <ul>
                 @foreach (var syscontent in topNoList)
                 {
-                    <li><a href="@Url.Action("BlogDetail","Home",new {id=syscontent.Id})"><span>@syscontent.CreateTime.ToString("MM/dd")</span>@syscontent.Title</a></li>
+                <li>
+                    <i class="bg-li"></i>
+                    <a href="@Url.Action("BlogDetail", "Home", new {id = syscontent.Id})"><span>@syscontent.CreateTime.ToString("MM/dd")</span>@syscontent.Title</a>
+                </li>
                 }
             </ul>
         </div>
