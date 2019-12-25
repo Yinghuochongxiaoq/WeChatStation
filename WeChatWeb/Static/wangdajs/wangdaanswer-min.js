@@ -1,1 +1,139 @@
-﻿eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('5U(5K(p,a,c,k,e,r){e=5K(c){5L(c<a?\'\':e(5Q(c/a)))+((c=c%a)>35?5N.5V(c+29):c.5R(36))};5O(!\'\'.5P(/^/,5N)){5M(c--)r[e(c)]=k[c]||e(c);k=[5K(e){5L r[e]}];e=5K(){5L\'\\\\w+\'};c=1};5M(c--)5O(k[c])p=p.5P(5S 5T(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);5L p}(\'3b(2Z(p,a,c,k,e,r){e=2Z(c){30(c<a?\\\'\\\':e(4P(c/a)))+((c=c%a)>35?37.3c(c+29):c.39(36))};31(!\\\'\\\'.32(/^/,37)){34(c--)r[e(c)]=k[c]||e(c);k=[2Z(e){30 r[e]}];e=2Z(){30\\\'\\\\\\\\w+\\\'};c=1};34(c--)31(k[c])p=p.32(33 3a(\\\'\\\\\\\\b\\\'+e(c)+\\\'\\\\\\\\b\\\',\\\'g\\\'),k[c]);30 p}(\\\'$(3(){l d=1X.1Z.20.24(\\\\\\\'/\\\\\\\');l e=d[d.q-1];l f="";l g="";$.v({p:"1i",w:"k",1n:{13:e},x:\\\\\\\'m://Q.R.12/V/X/11-1S/11-1P/1I\\\\\\\',u:3(c){f=c.1H;g=c.z.1t(/<[^>]+>/g,"");$.v({p:"1s",w:"k",x:\\\\\\\'m://Q.R.12/V/X/11-1S/11-1P/r-27?13=\\\\\\\'+e+\\\\\\\'&1H=\\\\\\\'+f+\\\\\\\'&2i=Y\\\\\\\'+\\\\\\\'&1a=\\\\\\\'+1c 1d().1e(),u:3(b){4(!b||b.q<1){6.5(\\\\\\\'\\\\\\\\1j\\\\\\\\1k\\\\\\\\M\\\\\\\\1D\\\\\\\\1C\\\\\\\\1B\\\\\\\\Z\\\\\\\\T\\\\\\\\G\\\\\\\\14\\\\\\\\15\\\\\\\\16\\\\\\\\17\\\\\\\\1h\\\\\\\\19\\\\\\\\L\\\\\\\');1A}j o=\\\\\\\'\\\\\\\';b.N((r,O)=>{4(r&&r.S&&r.S.q>0){j U=r.S[r.S.q-1];4(U&&U.25==9){j y=U.2d;o+=y+","}}});4(o.q>0){o=o.2h(0,o.q-1)}$.v({p:"1s",w:"k",x:\\\\\\\'m://Q.R.12/V/X/W/W/2k-2F-1z\\\\\\\',1n:{1z:o,1a:1c 1d().1e()},u:3(a){4(a&&a.q>0){a.N((P,O)=>{4(P&&P.1y&&P.1y.21){j y=P.23;1w(y,e,g)}});1u()}},1q:3(){6.5(\\\\\\\'\\\\\\\\1j\\\\\\\\1k\\\\\\\\1r\\\\\\\\L\\\\\\\\28\\\\\\\\2a\\\\\\\\Z\\\\\\\\T\\\\\\\')}})},1q:3(){6.5(\\\\\\\'\\\\\\\\1j\\\\\\\\1k\\\\\\\\M\\\\\\\\1D\\\\\\\\1C\\\\\\\\1B\\\\\\\\Z\\\\\\\\T\\\\\\\\G\\\\\\\\14\\\\\\\\15\\\\\\\\16\\\\\\\\17\\\\\\\\1h\\\\\\\\19\\\\\\\\L\\\\\\\')}})},1q:3(){6.5(\\\\\\\'\\\\\\\\2Y\\\\\\\\2e\\\\\\\\2f\\\\\\\\Z\\\\\\\\T\\\\\\\\G\\\\\\\\14\\\\\\\\15\\\\\\\\16\\\\\\\\17\\\\\\\\1h\\\\\\\\19\\\\\\\\L\\\\\\\')}})});3 1w(g,h,i){$.v({p:"1s",w:"k",1p:Y,x:\\\\\\\'m://Q.R.12/V/X/W/W-1I/2m-2n-2o?y=\\\\\\\'+g+\\\\\\\'&1a=\\\\\\\'+1c 1d().1e(),u:3(c){l d=c.2x.1v;l e="";l f=["A","B","C","D","E","F","H","I","J"];d.N((7,O)=>{j 1x=(O+1)+"、"+7.1Y;j 10="";j 8="";7.1b=7.1b.22((a,b)=>{1A a.z-b.z});7.1b.N((K,1m)=>{4(K.p=="0"){10=10+f[K.z]}4(1m%2==0){8=8+"\\\\\\\\n"}4(1m%2==1){8=8+"\\\\\\\\t"}8=8+f[K.z]+"、"+K.26});e+=1x+"  \\\\\\\\1E\\\\\\\\1F\\\\\\\\29"+10+8+"\\\\\\\\n\\\\\\\\n"});6.5(e);j 1G=k.2b(d).1t(/<[^>]+>/g,"");$.v({p:"1i",w:"k",1n:{y:g,1v:1G,13:h,2c:i},1p:Y,x:\\\\\\\'m://1o.1l/1g/2g\\\\\\\',u:3(a){6.5("%c%s","1J: #2j; 1K: #2l; 1L-1M: 1N;",a.2p);6.5("%c%s","1J: #2q; 1K: 2r; 1L-1M: 1N;",\\\\\\\'\\\\\\\\2s\\\\\\\\2t\\\\\\\\2u\\\\\\\\2v\\\\\\\\2w\\\\\\\\1O\\\\\\\\2y\\\\\\\\2z m://1o.1l/1g \\\\\\\\2A\\\\\\\\2B\\\\\\\\2C\\\\\\\\1r\\\\\\\\1E\\\\\\\\1F\\\\\\\')}})}})}3 1u(){$.v({p:"1i",w:"k",1p:Y,x:\\\\\\\'m://1o.1l/1g/2D\\\\\\\',u:3(a){4(a&&0==a.2E){6.5("\\\\\\\\1f\\\\\\\\M\\\\\\\\1Q\\\\\\\\2G\\\\\\\\2H\\\\\\\\1f\\\\\\\\1R\\\\\\\\18\\\\\\\\2I\\\\\\\\2J\\\\\\\\M\\\\\\\\1T\\\\\\\\18\\\\\\\\1Q\\\\\\\\G\\\\\\\\18\\\\\\\\2K\\\\\\\\2L\\\\\\\\1U\\\\\\\\2M\\\\\\\\2N\\\\\\\\2O\\\\\\\\M\\\\\\\\1T\\\\\\\\1f\\\\\\\\1R\\\\\\\\1V\\\\\\\\2P\\\\\\\\G\\\\\\\\1r\\\\\\\\L\\\\\\\\2Q\\\\\\\\2R\\\\\\\\1O\\\\\\\\2S\\\\\\\\2T\\\\\\\\1V\\\\\\\\1U\\\\\\\\2U\\\\\\\\2V\\\\\\\\2W");a.2X.N((7,O)=>{6.5(7.z+":"+7.1W)})}}})}\\\',3d,3e,\\\'|||2Z|31|3f|3g|3h|3i|||||||||||3j|3k|3l|3m||3n|3o|3p|3q|||3r|3s|3t|3u|3v|3w|||||||3x||||3y|3z|3A|3B|3C|3D|3E|3F|3G|3H|3I|3J|3K|3L|3M|3N|3O|3P|3Q|3R|3S|3T|3U|3V|3W|3X|3Y|3Z|33|40|41|42|43|44|45|46|47|48|49|4a|4b|4c|4d|4e|4f|32|4g|4h|4i|4j|4k|4l|30|4m|4n|4o|4p|4q|4r|4s|4t|4u|4v|4w|4x|4y|4z|4A|4B|4C|4D|4E|4F|4G|4H|4I|4J|4K|4L|4M|4N|4O|38|4Q|4R|4S|4T|4U|4V|4W|4X|4Y|4Z|50|51|52|53|54|55|56|57|58|59|5a|5b|5c|5d|5e|5f|5g|5h|5i|5j|5k|5l|5m|5n|5o|5p|5q|5r|5s|5t|5u|5v|5w|5x|5y|5z|5A|5B|5C|5D|5E|5F|5G|5H|5I|5J\\\'.38(\\\'|\\\'),0,{}))\',62,5Y,\'|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||5K|5L|5O|5P|5S|5M|||5N|5W|5R|5T|5U|5V|62|5Z|60|61|63|64|65|66|67|68|69|6a|6b|6c|6d|6e|6f|6g|6h|6i|6j|6k|6l|6m|6n|6o|6p|6q|6r|6s|6t|6u|6v|6w|6x|6y|6z|6A|6B|6C|6D|6E|6F|6G|6H|6I|6J|6K|6L|6M|6N|6O|6P|6Q|6R|6S|6T|6U|6V|6W|6X|6Y|6Z|70|71|72|73|74|75|76|77|78|79|7a|7b|7c|7d|7e|7f|7g|7h|7i|7j|7k|7l|7m|7n|7o|7p|7q|7r|7s|7t|7u|7v|7w|7x|7y|7z|7A|5Q|7B|7C|7D|7E|7F|7G|7H|7I|7J|7K|7L|7M|7N|7O|7P|7Q|7R|7S|7T|7U|7V|7W|7X|7Y|7Z|80|81|82|83|84|85|86|87|88|89|8a|8b|8c|8d|8e|8f|8g|8h|8i|8j|8k|8l|8m|8n|8o|8p|8q|8r|8s|8t|5X\'.5W(\'|\'),0,{}))',62,526,'||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||function|return|while|String|if|replace|parseInt|toString|new|RegExp|eval|fromCharCode|split|u521d|356|185|log|console||item|chooseItem|let|JSON|var|https|resourceIds|type|length|chapter|success|ajax|dataType|url|examId|name|uff0c|aItem|u8bd5|u8bfe|forEach|index|examInfo|wangda|andedu|courseChapterSections|u8d25|lastInfo|api|exam|v1|false|u5931|answer|course|net|courseId|u8bf7|u5237|u65b0|u9875|u6570|u91cd|_|questionAttrCopys|Date|getTime|u9898|WangDaExam|u9762|POST|u83b7|u53d6|com|aIndex|data|aivabc|async|fail|u8003|GET|getQuestionCourseRate|questions|getAndPutData|title|examRecord|ids|u5ea6|u8fdb|u7a0b|u7b54|u6848|jsonData|versionId|register|color|background|font|size|20px|u53ef|front|u6bd4|u76ee|study|u65f6|u5927|u66f4|count|window|content|location|href|status|sort|id|sectionType|value|progress|u5217|uff1a|u8868|stringify|courseName|resourceId|u59cb|u5316|PutQuestionInfo|substr|isRegister|fff|basic|2daebf|newenergy|score|detail|Message|e33100|yellow|u5982|u679c|u4f60|u9700|u8981|paper|u4ee5|u53bb|u68c0|u7d22|u53c2|GetQuestionCourseRate|ResultCode|by|u4f8b|uff08|u91cf|u4e0e|u503c|u8d8a|u5e73|u5747|u6bcf|u591a|u901a|u8fc7|u80fd|u6027|u54df|uff09|u003a|Data'.split('|'),0,{}))
+﻿$(function () {
+    var urls = window.location.href.split('/');
+    var courseId = urls[urls.length - 1];
+    var versionId = "";
+    var courseName = "";
+    $.ajax({
+        type: "POST",
+        dataType: "JSON",
+        data: { courseId: courseId },
+        url: 'https://wangda.andedu.net/api/v1/course-study/course-front/register',
+        success: function (data) {
+            versionId = data.versionId;
+            courseName = data.name.replace(/<[^>]+>/g, "");
+            $.ajax({
+                type: "GET",
+                dataType: "JSON",
+                url: 'https://wangda.andedu.net/api/v1/course-study/course-front/chapter-progress?courseId=' + courseId + '&versionId=' + versionId + '&isRegister=false' + '&_=' + new Date().getTime(),
+                success: function (data) {
+                    if (!data || data.length < 1) {
+                        console.log('\u83b7\u53d6\u8bfe\u7a0b\u8fdb\u5ea6\u5931\u8d25\uff0c\u8bf7\u5237\u65b0\u9875\u9762\u91cd\u8bd5');
+                        return;
+                    }
+                    let resourceIds = '';
+                    data.forEach((chapter, index) => {
+                        if (chapter && chapter.courseChapterSections && chapter.courseChapterSections.length > 0) {
+                            let lastInfo = chapter.courseChapterSections[chapter.courseChapterSections.length - 1];
+                            if (lastInfo && lastInfo.sectionType == 9) {
+                                let examId = lastInfo.resourceId;
+                                resourceIds += examId + ",";
+                            }
+                        }
+                    });
+                    if (resourceIds.length > 0) {
+                        resourceIds = resourceIds.substr(0, resourceIds.length - 1);
+                    }
+                    $.ajax({
+                        type: "GET",
+                        dataType: "JSON",
+                        url: 'https://wangda.andedu.net/api/v1/exam/exam/basic-by-ids',
+                        data: { ids: resourceIds, _: new Date().getTime() },
+                        success: function (data) {
+                            if (data && data.length > 0) {
+                                data.forEach((examInfo, index) => {
+                                    if (examInfo && examInfo.examRecord && examInfo.examRecord.status) {
+                                        let examId = examInfo.showAnswerRule == 4 ? examInfo.id : examInfo.examRecord.id;
+                                        getAndPutData(examId, courseId, courseName, examInfo.showAnswerRule);
+                                    }
+                                });
+                                getQuestionCourseRate();
+                            }
+                        },
+                        fail: function () {
+                            console.log('\u83b7\u53d6\u8003\u8bd5\u5217\u8868\u5931\u8d25');
+                        }
+                    });
+                },
+                fail: function () {
+                    console.log('\u83b7\u53d6\u8bfe\u7a0b\u8fdb\u5ea6\u5931\u8d25\uff0c\u8bf7\u5237\u65b0\u9875\u9762\u91cd\u8bd5');
+                }
+            });
+        },
+        fail: function () {
+            console.log('\u521d\u59cb\u5316\u5931\u8d25\uff0c\u8bf7\u5237\u65b0\u9875\u9762\u91cd\u8bd5');
+        }
+    });
+});
+
+function getAndPutData(examId, courseId, courseName, showAnswerRule) {
+    var url = showAnswerRule == 4 ? "https://wangda.andedu.net/api/v1/exam/exam-register/newenergy-score-detail?examId=" :
+        "https://wangda.andedu.net/api/v1/exam/exam/front/score-detail?examRecordId=";
+    $.ajax({
+        type: "GET",
+        dataType: "JSON",
+        async: false,
+        url: url + examId + '&_=' + new Date().getTime(),
+        success: function (data) {
+            var questions = data.paper.questions;
+            var paperStr = "";
+            var answerMap = ["A", "B", "C", "D", "E", "F", "H", "I", "J"];
+            questions.forEach((item, index) => {
+                let title = (index + 1) + "、" + item.content;
+                let answer = "";
+                let chooseItem = "";
+                item.questionAttrCopys = item.questionAttrCopys.sort((a, b) => {
+                    return a.name - b.name;
+                });
+                item.questionAttrCopys.forEach((aItem, aIndex) => {
+                    if (aItem.type == "0") {
+                        answer = answer + answerMap[aItem.name];
+                    }
+                    if (aIndex % 2 == 0) {
+                        chooseItem = chooseItem + "\n";
+                    }
+                    if (aIndex % 2 == 1) {
+                        chooseItem = chooseItem + "\t";
+                    }
+                    chooseItem = chooseItem + answerMap[aItem.name] + "、" + aItem.value;
+                });
+                paperStr += title + "  \u7b54\u6848\uff1a" + answer + chooseItem + "\n\n";
+            });
+            console.log(paperStr);
+            let jsonData = JSON.stringify(questions).replace(/<[^>]+>/g, "");
+            $.ajax({
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    examId: examId,
+                    questions: jsonData,
+                    courseId: courseId,
+                    courseName: courseName
+                },
+                async: false,
+                url: 'https://aivabc.com/WangDaExam/PutQuestionInfo',
+                success: function (data) {
+                    console.log("%c%s", "color: #fff; background: #2daebf; font-size: 20px;", data.Message);
+                    console.log("%c%s", "color: #e33100; background: yellow; font-size: 20px;", '\u5982\u679c\u4f60\u9700\u8981\u53ef\u4ee5\u53bb https://aivabc.com/WangDaExam \u68c0\u7d22\u53c2\u8003\u7b54\u6848');
+                }
+            });
+        }
+    });
+}
+
+function getQuestionCourseRate() {
+    $.ajax({
+        type: "POST",
+        dataType: "JSON",
+        async: false,
+        url: 'https://aivabc.com/WangDaExam/GetQuestionCourseRate',
+        success: function (data) {
+            if (data && 0 == data.ResultCode) {
+                console.log("\u9898\u8bfe\u6bd4\u4f8b\uff08\u9898\u76ee\u6570\u91cf\u4e0e\u8bfe\u65f6\u6570\u6bd4\uff0c\u6570\u503c\u8d8a\u5927\u5e73\u5747\u6bcf\u8bfe\u65f6\u9898\u76ee\u66f4\u591a\uff0c\u8003\u8bd5\u901a\u8fc7\u53ef\u80fd\u6027\u66f4\u5927\u54df\uff09\u003a");
+                data.Data.forEach((item, index) => {
+                    console.log(item.name + ":" + item.count);
+                });
+            }
+
+        }
+    });
+}
