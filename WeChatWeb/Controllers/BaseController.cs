@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using FreshCommonUtility.Configure;
+using FreshCommonUtility.DataConvert;
 using Newtonsoft.Json;
 using WeChatCommon.Cookie;
 using WeChatCommon.CustomerAttribute;
@@ -28,6 +29,36 @@ namespace WeChatWeb.Controllers
         /// <param name="filterContext"></param>
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            #region [1、验证是否在服务时间内]
+
+            var startTimeStr = AppConfigurationHelper.GetString("SystemRunStartTime");
+            var endTimeStr = AppConfigurationHelper.GetString("SystemRunEndTime");
+            //没有配置时间
+            if (!string.IsNullOrEmpty(startTimeStr) && !string.IsNullOrEmpty(endTimeStr))
+            {
+                var startTime = DataTypeConvertHelper.ToDateTime(startTimeStr);
+                var endTime = DataTypeConvertHelper.ToDateTime(endTimeStr);
+
+                if (startTime <= new DateTime(1900, 1, 1) || endTime <= new DateTime(1900, 1, 1))
+                {
+                    filterContext.Result = Request.UrlReferrer != null ? Stop("系统运行时间配置错误！", Request.UrlReferrer.AbsoluteUri) : Content("系统运行时间配置错误！");
+                    return;
+                }
+                startTime = new DateTime(1900, 1, 1, startTime.Hour, startTime.Minute, startTime.Second);
+                endTime = new DateTime(1900, 1, 1, endTime.Hour, endTime.Minute, endTime.Second);
+                var newTime = DateTime.Now;
+                newTime = new DateTime(1900, 1, 1, newTime.Hour, newTime.Minute, newTime.Second);
+                if (newTime < startTime || newTime > endTime)
+                {
+                    filterContext.Result = Request.UrlReferrer != null ? Stop("系统处于维护期！", Request.UrlReferrer.AbsoluteUri) : Content("系统处于维护期！");
+                    return;
+                }
+            }
+
+            #endregion
+
+            #region [2、验证权限]
+
             var noAuthorizeAttributesController = filterContext.ActionDescriptor.ControllerDescriptor.GetCustomAttributes(typeof(AuthorizeIgnoreAttribute), false);
             if (noAuthorizeAttributesController.Length > 0) return;
             var noAuthorizeAttributes = filterContext.ActionDescriptor.GetCustomAttributes(typeof(AuthorizeIgnoreAttribute), false);
@@ -82,6 +113,8 @@ namespace WeChatWeb.Controllers
                     filterContext.Result = Request.UrlReferrer != null ? Stop("没有权限！", Request.UrlReferrer.AbsoluteUri) : Content("没有权限！");
                 }
             }
+            #endregion
+
         }
 
         /// <summary>
@@ -202,7 +235,7 @@ namespace WeChatWeb.Controllers
         /// </summary>
         private void InitializeStaticResource()
         {
-            ViewBag.RootNode = AppConfigurationHelper.GetString("ReferenceKey.RootNode","") ?? string.Empty;
+            ViewBag.RootNode = AppConfigurationHelper.GetString("ReferenceKey.RootNode", "") ?? string.Empty;
         }
     }
 }
