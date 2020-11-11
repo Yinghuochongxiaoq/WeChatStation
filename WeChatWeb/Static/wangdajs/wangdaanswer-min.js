@@ -7,14 +7,14 @@
         type: "POST",
         dataType: "JSON",
         data: { courseId: courseId },
-        url: 'https://wangda.andedu.net/api/v1/course-study/course-front/register',
+        url: 'https://wangda.chinamobile.com/api/v1/course-study/course-front/register',
         success: function (data) {
             versionId = data.versionId;
             courseName = data.name.replace(/<[^>]+>/g, "");
             $.ajax({
                 type: "GET",
                 dataType: "JSON",
-                url: 'https://wangda.andedu.net/api/v1/course-study/course-front/chapter-progress?courseId=' + courseId + '&versionId=' + versionId + '&isRegister=false' + '&_=' + new Date().getTime(),
+                url: 'https://wangda.chinamobile.com/api/v1/course-study/course-front/chapter-progress?courseId=' + courseId + '&versionId=' + versionId + '&isRegister=false' + '&_=' + new Date().getTime(),
                 success: function (data) {
                     if (!data || data.length < 1) {
                         console.log('\u83b7\u53d6\u8bfe\u7a0b\u8fdb\u5ea6\u5931\u8d25\uff0c\u8bf7\u5237\u65b0\u9875\u9762\u91cd\u8bd5');
@@ -36,7 +36,7 @@
                     $.ajax({
                         type: "GET",
                         dataType: "JSON",
-                        url: 'https://wangda.andedu.net/api/v1/exam/exam/basic-by-ids',
+                        url: 'https://wangda.chinamobile.com/api/v1/exam/exam/basic-by-ids',
                         data: { ids: resourceIds, _: new Date().getTime() },
                         success: function (data) {
                             if (data && data.length > 0) {
@@ -66,8 +66,8 @@
 });
 
 function getAndPutData(examId, courseId, courseName, showAnswerRule) {
-    var url = showAnswerRule == 4 ? "https://wangda.andedu.net/api/v1/exam/exam-register/newenergy-score-detail?examId=" :
-        "https://wangda.andedu.net/api/v1/exam/exam/front/score-detail?examRecordId=";
+    var url = showAnswerRule == 4 ? "https://wangda.chinamobile.com/api/v1/exam/exam-register/newenergy-score-detail?examId=" :
+        "https://wangda.chinamobile.com/api/v1/exam/exam/front/score-detail?examRecordId=";
     $.ajax({
         type: "GET",
         dataType: "JSON",
@@ -84,18 +84,23 @@ function getAndPutData(examId, courseId, courseName, showAnswerRule) {
                 item.questionAttrCopys = item.questionAttrCopys.sort((a, b) => {
                     return a.name - b.name;
                 });
-                item.questionAttrCopys.forEach((aItem, aIndex) => {
-                    if (aItem.type == "0") {
-                        answer = answer + answerMap[aItem.name];
-                    }
-                    if (aIndex % 2 == 0) {
-                        chooseItem = chooseItem + "\n";
-                    }
-                    if (aIndex % 2 == 1) {
-                        chooseItem = chooseItem + "\t";
-                    }
-                    chooseItem = chooseItem + answerMap[aItem.name] + "、" + aItem.value;
-                });
+                if (item.type == "3") {
+                    answer = answer + (item.questionAttrCopys[0].value ? "A" : "B")+"\n";
+                    chooseItem = chooseItem + "A、正确\tB、错误";
+                } else {
+                    item.questionAttrCopys.forEach((aItem, aIndex) => {
+                        if (aItem.type == "0") {
+                            answer = answer + answerMap[aItem.name];
+                        }
+                        if (aIndex % 2 == 0) {
+                            chooseItem = chooseItem + "\n";
+                        }
+                        if (aIndex % 2 == 1) {
+                            chooseItem = chooseItem + "\t";
+                        }
+                        chooseItem = chooseItem + answerMap[aItem.name] + "、" + aItem.value;
+                    });
+                }
                 paperStr += title + "  \u7b54\u6848\uff1a" + answer + chooseItem + "\n\n";
             });
             console.log(paperStr);

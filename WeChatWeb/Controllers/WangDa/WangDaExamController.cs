@@ -15,42 +15,43 @@ namespace WeChatWeb.Controllers.WangDa
 {
     public class WangDaExamController : BaseController
     {
-        ///// <summary>
-        ///// 查询题目答案
-        ///// </summary>
-        ///// <returns></returns>
-        //public ActionResult Index()
-        //{
-        //    var title = HttpContext.GetStringFromParameters("title");
-        //    if (!string.IsNullOrEmpty(title))
-        //    {
-        //        title = Regex.Replace(title, @"\s", "");
-        //    }
-        //    var server = new ContentService();
-        //    ViewBag.TopNoList = server.GetTopNoContent(1, 20);
-        //    ViewBag.SearchTitle = title;
+        /// <summary>
+        /// 查询题目答案
+        /// </summary>
+        /// <returns></returns>
+        [AuthorizeIgnore]
+        public ActionResult Index()
+        {
+            var title = HttpContext.GetStringFromParameters("title");
+            if (!string.IsNullOrEmpty(title))
+            {
+                title = Regex.Replace(title, @"\s", "");
+            }
+            var server = new ContentService();
+            ViewBag.TopNoList = server.GetTopNoContent(1, 20);
+            ViewBag.SearchTitle = title;
 
-        //    List<QuestResponseModel> models = new List<QuestResponseModel>();
-        //    if (!string.IsNullOrEmpty(title))
-        //    {
-        //        WangDaService questionService = new WangDaService();
-        //        var searchDataList = questionService.GetModels(title);
-        //        if (searchDataList != null && searchDataList.Count > 0)
-        //        {
-        //            searchDataList.ForEach(f =>
-        //            {
-        //                QuestResponseModel tempModel = new QuestResponseModel
-        //                {
-        //                    Answer = f.Answer,
-        //                    Content = f.Content,
-        //                    QuestionAttrCopys = JsonConvert.DeserializeObject<List<QuestRequestCopyModel>>(f.QuestionAttrCopys)
-        //                };
-        //                models.Add(tempModel);
-        //            });
-        //        }
-        //    }
-        //    return View(models);
-        //}
+            List<QuestResponseModel> models = new List<QuestResponseModel>();
+            if (!string.IsNullOrEmpty(title))
+            {
+                WangDaService questionService = new WangDaService();
+                var searchDataList = questionService.GetModels(title);
+                if (searchDataList != null && searchDataList.Count > 0)
+                {
+                    searchDataList.ForEach(f =>
+                    {
+                        QuestResponseModel tempModel = new QuestResponseModel
+                        {
+                            Answer = f.Answer,
+                            Content = f.Content,
+                            QuestionAttrCopys = JsonConvert.DeserializeObject<List<QuestRequestCopyModel>>(f.QuestionAttrCopys)
+                        };
+                        models.Add(tempModel);
+                    });
+                }
+            }
+            return View(models);
+        }
 
         /// <summary>
         /// 添加题库信息  
@@ -112,15 +113,22 @@ namespace WeChatWeb.Controllers.WangDa
                         }
                         return DataTypeConvertHelper.ToInt(left.Name) < DataTypeConvertHelper.ToInt(right.Name) ? -1 : 0;
                     });
-                    f.QuestionAttrCopys.ForEach(r =>
+                    if (f.Type == "3")
                     {
-                        r.Name = chooseItem[r.Name];
-                        if (r.Type == "0")
+                        tempAnswer += f.QuestionAttrCopys[0].Value == "1" ? "A" : "B";
+                    }
+                    else
+                    {
+                        f.QuestionAttrCopys.ForEach(r =>
                         {
-                            tempAnswer += r.Name;
-                        }
-                        mateChoose += "|" + r.Value;
-                    });
+                            r.Name = chooseItem[r.Name];
+                            if (r.Type == "0")
+                            {
+                                tempAnswer += r.Name;
+                            }
+                            mateChoose += "|" + r.Value;
+                        });
+                    }
                     var tempQuestionModel = new WangdaquestionModel
                     {
                         ExamId = examId,

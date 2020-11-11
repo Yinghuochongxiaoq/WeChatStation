@@ -3,12 +3,13 @@
 @section css{
     <style>
         .main_search {
-            width: 660px;
+            /*width: 660px;*/
             margin-bottom: 80px;
         }
 
             .main_search .search_input {
-                width: 550px;
+                /*width: 550px;*/
+                width: 86%;
                 height: 66px;
                 border: 1px solid #21aa28;
                 border-radius: 4px 0 0 4px;
@@ -20,7 +21,8 @@
 
             .main_search .search_btn {
                 position: relative;
-                width: 110px;
+                /*width: 110px;*/
+                width: 14%;
                 height: 66px;
                 background-color: #21aa28;
                 border-radius: 0 4px 4px 0;
@@ -29,8 +31,8 @@
     </style>
 }
 @{
-    ViewBag.Title = "网大找答案";
-    ViewBag.KeyWords = "网大找答案";
+    ViewBag.Title = "网大油猴";
+    ViewBag.KeyWords = "网大油猴";
     Layout = ViewBag.RootNote + "/Views/Share/_Layout.cshtml";
     var topNoList = ViewBag.TopNoList != null ? (List<Syscontent>)ViewBag.TopNoList : null;
 }
@@ -58,10 +60,27 @@
                             <div class="s_mess2_m">
                                 @foreach (var questRequestCopyModel in questResponseModel.QuestionAttrCopys)
                                 {
-                                    <p>@(questRequestCopyModel.Name +"、"+ questRequestCopyModel.Value)</p>
+                                    if (questRequestCopyModel.Type == "3")
+                                    {
+                                        <p>A、正确       B、错误</p>
+                                    }
+                                    else
+                                    {
+                                        <p>@(questRequestCopyModel.Name + "、" + questRequestCopyModel.Value)</p>
+                                    }
                                 }
                             </div>
-                            <p class="jianjie"><b>参考答案：@(questResponseModel.Answer)</b></p>
+                            <p class="jianjie">
+                                @if (string.IsNullOrEmpty(questResponseModel.Answer) && questResponseModel.QuestionAttrCopys[0].Type == "3")
+                                {
+                                    <b>参考答案：@(questResponseModel.QuestionAttrCopys[0].Value=="1"?"A":"B")</b>
+                                }
+                                else
+                                {
+                                    <b>参考答案：@(questResponseModel.Answer)</b>
+                                }
+
+                            </p>
                         </div>
                     </div>
                 }

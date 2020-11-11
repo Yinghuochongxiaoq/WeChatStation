@@ -28,5 +28,11 @@ namespace WeChatWeb.Controllers.WangDa
         /// </summary>
         [JsonProperty("questionAttrCopys")]
         public List<QuestRequestCopyModel> QuestionAttrCopys { get; set; }
+
+        /// <summary>
+        /// 问题类型1：单选；2：多选；3：判断
+        /// </summary>
+        [JsonProperty("type")]
+        public string Type { get; set; }
     }
 }
